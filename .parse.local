@@ -1,0 +1,11 @@
+{
+  "applications": {
+    "Kin-Connect": {
+      "parseAppId": "1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9",
+      "herokuAppId": "cd5dd66a-33d2-46a3-bf73-33f82a7a2c2a"
+    },
+    "_default": {
+      "link": "Kin-Connect"
+    }
+  }
+}
