@@ -31702,6 +31702,36 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":29}],161:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: "exports",
+
+    render: function render() {
+        return React.createElement(
+            "footer",
+            { className: "page-footer" },
+            React.createElement(
+                "div",
+                { className: "footer-copyright" },
+                React.createElement(
+                    "div",
+                    { className: "container" },
+                    "Made by ",
+                    React.createElement(
+                        "a",
+                        { className: "subHeader text-lighten-3", href: "https://github.com/Jmingus/Kin-Connect" },
+                        "Jacob Mingus"
+                    )
+                )
+            )
+        );
+    }
+});
+
+},{"react":160}],162:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -31937,59 +31967,101 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":160}],162:[function(require,module,exports){
-"use strict";
+},{"react":160}],163:[function(require,module,exports){
+'use strict';
 
 var React = require('react');
-
+var Backbone = require('backbone');
 module.exports = React.createClass({
-    displayName: "exports",
+    displayName: 'exports',
 
+    componentWillMount: function componentWillMount() {
+        var _this = this;
+
+        this.props.router.on('route', function () {
+            _this.forceUpdate();
+        });
+        $(document).ready(function () {
+            $(".button-collapse").sideNav();
+        });
+    },
     render: function render() {
         var currentUser = Parse.User.current();
-        var links = [];
-        if (currentUser) {} else {
-            links.push(React.createElement(
-                "li",
-                { key: "signin" },
+        var allLinks = [];
+        if (currentUser) {
+            allLinks.push(React.createElement(
+                'li',
+                { key: 'signout' },
                 React.createElement(
-                    "a",
-                    { href: "#signin" },
-                    "Sign-In"
+                    'a',
+                    { href: '#signout' },
+                    'Sign-Out'
                 )
             ));
-            links.push(React.createElement(
-                "li",
-                { key: "signup" },
-                React.createElement(
-                    "a",
-                    { href: "#signup" },
-                    "Sign-Up"
-                )
-            ));
+        } else {
+            allLinks.push(this.links('signin', 'Sign-In'));
+            allLinks.push(this.links('signup', 'Sign-Up'));
         }
         return React.createElement(
-            "nav",
+            'nav',
             null,
             React.createElement(
-                "div",
-                { className: "nav-wrapper" },
+                'div',
+                { className: 'nav-wrapper' },
                 React.createElement(
-                    "a",
-                    { href: "#", className: "brand-logo" },
-                    "Kin-Connect"
+                    'a',
+                    { href: '#', className: 'brand-logo' },
+                    'Kin-Connect'
                 ),
                 React.createElement(
-                    "ul",
-                    { id: "nav-mobile", className: "right hide-on-med-and-down" },
-                    links
+                    'a',
+                    { href: 'javascript:void(0)', 'data-activates': 'mobile', className: 'button-collapse' },
+                    React.createElement(
+                        'i',
+                        { className: 'material-icons' },
+                        'menu'
+                    )
+                ),
+                React.createElement(
+                    'ul',
+                    { id: 'nav-mobile', className: 'right hide-on-med-and-down' },
+                    allLinks
+                ),
+                React.createElement(
+                    'ul',
+                    { className: 'side-nav', id: 'mobile' },
+                    allLinks
                 )
             )
         );
+    },
+    links: function links(url, label) {
+        var currentUrl = Backbone.history.getFragment();
+        if (currentUrl === url) {
+            return React.createElement(
+                'li',
+                { className: 'active', key: url },
+                React.createElement(
+                    'a',
+                    { href: '#' + url },
+                    label
+                )
+            );
+        } else {
+            return React.createElement(
+                'li',
+                { key: url },
+                React.createElement(
+                    'a',
+                    { href: '#' + url },
+                    label
+                )
+            );
+        }
     }
 });
 
-},{"react":160}],163:[function(require,module,exports){
+},{"backbone":1,"react":160}],164:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -31999,10 +32071,12 @@ window.jQuery = $;
 
 var main = document.getElementById('main');
 var nav = document.getElementById('nav');
+var footer = document.getElementById('footer');
 
 Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 var NavbarComponent = require('./components/NavbarComponent');
 var HomepageComponent = require('./components/HomepageComponent');
+var FooterComponent = require('./components/FooterComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -32018,7 +32092,9 @@ Backbone.history.start();
 
 ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
-},{"./components/HomepageComponent":161,"./components/NavbarComponent":162,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[163])
+ReactDOM.render(React.createElement(FooterComponent, null), footer);
+
+},{"./components/FooterComponent":161,"./components/HomepageComponent":162,"./components/NavbarComponent":163,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[164])
 
 
 //# sourceMappingURL=bundle.js.map

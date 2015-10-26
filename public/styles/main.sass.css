@@ -8,8 +8,18 @@
 .HomepageComponent .icon-color {
   color: #02635e; }
 
+footer .subHeader {
+  color: #DFEC90; }
+
+footer.page-footer {
+  background-color: #0088AA; }
+
 .nav-wrapper {
   background-color: #0088AA; }
 
 .btn-large {
   background-color: #025063; }
+
+.btn-large:hover {
+  background-color: #8fdd88;
+  color: #000; }
