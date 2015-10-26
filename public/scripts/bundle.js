@@ -31736,7 +31736,7 @@ module.exports = React.createClass({
                         React.createElement(
                             'div',
                             { className: 'row center' },
-                            React.createElement('h5', { className: 'header col s12 light' })
+                            React.createElement('h5', { className: 'header col s12 subHeader' })
                         ),
                         React.createElement(
                             'div',
@@ -31774,22 +31774,22 @@ module.exports = React.createClass({
                                 { className: 'icon-block' },
                                 React.createElement(
                                     'h2',
-                                    { className: 'center brown-text' },
+                                    { className: 'center icon-color' },
                                     React.createElement(
                                         'i',
                                         { className: 'material-icons' },
-                                        'flash_on'
+                                        'supervisor_account'
                                     )
                                 ),
                                 React.createElement(
                                     'h5',
                                     { className: 'center' },
-                                    'Speeds up development'
+                                    'Stay Together'
                                 ),
                                 React.createElement(
                                     'p',
                                     { className: 'light' },
-                                    'We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.'
+                                    'Kin-Connect is making it easier than ever to stay in touch with your family members!'
                                 )
                             )
                         ),
@@ -31801,22 +31801,22 @@ module.exports = React.createClass({
                                 { className: 'icon-block' },
                                 React.createElement(
                                     'h2',
-                                    { className: 'center brown-text' },
+                                    { className: 'center icon-color' },
                                     React.createElement(
                                         'i',
                                         { className: 'material-icons' },
-                                        'group'
+                                        'today'
                                     )
                                 ),
                                 React.createElement(
                                     'h5',
                                     { className: 'center' },
-                                    'User Experience Focused'
+                                    'Stay Up to Date'
                                 ),
                                 React.createElement(
                                     'p',
                                     { className: 'light' },
-                                    'By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.'
+                                    'Kin-Connect allows your family to keep up with all of the upcoming family events! '
                                 )
                             )
                         ),
@@ -31828,22 +31828,22 @@ module.exports = React.createClass({
                                 { className: 'icon-block' },
                                 React.createElement(
                                     'h2',
-                                    { className: 'center brown-text' },
+                                    { className: 'center icon-color' },
                                     React.createElement(
                                         'i',
                                         { className: 'material-icons' },
-                                        'settings'
+                                        'view_list'
                                     )
                                 ),
                                 React.createElement(
                                     'h5',
                                     { className: 'center' },
-                                    'Easy to work with'
+                                    'Stay Talking'
                                 ),
                                 React.createElement(
                                     'p',
                                     { className: 'light' },
-                                    'We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.'
+                                    'Kin-Connect lets you enter recipes into a family-wide cookbook, no longer with you be asking how to make grandma\'s apple pie!'
                                 )
                             )
                         )
@@ -31865,7 +31865,7 @@ module.exports = React.createClass({
                             React.createElement(
                                 'h5',
                                 { className: 'header col s12 subHeader' },
-                                'A modern responsive front-end framework based on Material Design'
+                                'Kin-Connect will bridge the gap between family members and keep them together!'
                             )
                         )
                     )
@@ -31891,7 +31891,7 @@ module.exports = React.createClass({
                             React.createElement(
                                 'h3',
                                 null,
-                                React.createElement('i', { className: 'mdi-content-send brown-text' })
+                                React.createElement('i', { className: 'mdi-content-send icon-color' })
                             ),
                             React.createElement(
                                 'h4',
@@ -31901,7 +31901,7 @@ module.exports = React.createClass({
                             React.createElement(
                                 'p',
                                 { className: 'left-align light' },
-                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;'
+                                'Come chat with us at our website Kin-Connect!'
                             )
                         )
                     )
@@ -31921,18 +31921,21 @@ module.exports = React.createClass({
                             { className: 'row center' },
                             React.createElement(
                                 'h5',
-                                { className: 'header col s12 light' },
-                                'A modern responsive front-end framework based on Material Design'
+                                { className: 'header col s12 subHeader' },
+                                'Kin-Connect will making your family experience much more memorable!'
                             )
                         )
                     )
                 ),
-                React.createElement('div', { className: 'parallax' })
+                React.createElement(
+                    'div',
+                    { className: 'parallax' },
+                    React.createElement('img', { src: '../images/familyOnBoat.jpg' })
+                )
             )
         );
     }
 });
-/*   Icon Section   */ /*ImageGoesHere*/
 
 },{"react":160}],162:[function(require,module,exports){
 "use strict";
