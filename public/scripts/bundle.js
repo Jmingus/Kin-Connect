@@ -31702,6 +31702,239 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":29}],161:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    componentWillMount: function componentWillMount() {
+        $(document).ready(function () {
+            $('.parallax').parallax();
+        });
+    },
+    render: function render() {
+        return React.createElement(
+            'div',
+            { className: 'HomepageComponent' },
+            React.createElement(
+                'div',
+                { id: 'index-banner', className: 'parallax-container' },
+                React.createElement(
+                    'div',
+                    { className: 'section no-pad-bot' },
+                    React.createElement(
+                        'div',
+                        { className: 'container' },
+                        React.createElement('br', null),
+                        React.createElement('br', null),
+                        React.createElement(
+                            'h1',
+                            { className: 'header center brand-title' },
+                            'Kin-Connect'
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'row center' },
+                            React.createElement('h5', { className: 'header col s12 light' })
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'row center' },
+                            React.createElement(
+                                'a',
+                                { href: '#signup', id: 'signup-button', className: 'btn-large waves-effect ' },
+                                'Sign-Up'
+                            )
+                        ),
+                        React.createElement('br', null),
+                        React.createElement('br', null)
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'parallax' },
+                    React.createElement('img', { src: '../images/familyOnDock.jpg' })
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'container' },
+                React.createElement(
+                    'div',
+                    { className: 'section' },
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(
+                            'div',
+                            { className: 'col s12 m4' },
+                            React.createElement(
+                                'div',
+                                { className: 'icon-block' },
+                                React.createElement(
+                                    'h2',
+                                    { className: 'center brown-text' },
+                                    React.createElement(
+                                        'i',
+                                        { className: 'material-icons' },
+                                        'flash_on'
+                                    )
+                                ),
+                                React.createElement(
+                                    'h5',
+                                    { className: 'center' },
+                                    'Speeds up development'
+                                ),
+                                React.createElement(
+                                    'p',
+                                    { className: 'light' },
+                                    'We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.'
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'col s12 m4' },
+                            React.createElement(
+                                'div',
+                                { className: 'icon-block' },
+                                React.createElement(
+                                    'h2',
+                                    { className: 'center brown-text' },
+                                    React.createElement(
+                                        'i',
+                                        { className: 'material-icons' },
+                                        'group'
+                                    )
+                                ),
+                                React.createElement(
+                                    'h5',
+                                    { className: 'center' },
+                                    'User Experience Focused'
+                                ),
+                                React.createElement(
+                                    'p',
+                                    { className: 'light' },
+                                    'By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.'
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'col s12 m4' },
+                            React.createElement(
+                                'div',
+                                { className: 'icon-block' },
+                                React.createElement(
+                                    'h2',
+                                    { className: 'center brown-text' },
+                                    React.createElement(
+                                        'i',
+                                        { className: 'material-icons' },
+                                        'settings'
+                                    )
+                                ),
+                                React.createElement(
+                                    'h5',
+                                    { className: 'center' },
+                                    'Easy to work with'
+                                ),
+                                React.createElement(
+                                    'p',
+                                    { className: 'light' },
+                                    'We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.'
+                                )
+                            )
+                        )
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'parallax-container valign-wrapper' },
+                React.createElement(
+                    'div',
+                    { className: 'section no-pad-bot' },
+                    React.createElement(
+                        'div',
+                        { className: 'container' },
+                        React.createElement(
+                            'div',
+                            { className: 'row center' },
+                            React.createElement(
+                                'h5',
+                                { className: 'header col s12 subHeader' },
+                                'A modern responsive front-end framework based on Material Design'
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'parallax' },
+                    React.createElement('img', { src: '../images/familyInGrass.jpg' })
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'container' },
+                React.createElement(
+                    'div',
+                    { className: 'section' },
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(
+                            'div',
+                            { className: 'col s12 center' },
+                            React.createElement(
+                                'h3',
+                                null,
+                                React.createElement('i', { className: 'mdi-content-send brown-text' })
+                            ),
+                            React.createElement(
+                                'h4',
+                                null,
+                                'Contact Us'
+                            ),
+                            React.createElement(
+                                'p',
+                                { className: 'left-align light' },
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;'
+                            )
+                        )
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'parallax-container valign-wrapper' },
+                React.createElement(
+                    'div',
+                    { className: 'section no-pad-bot' },
+                    React.createElement(
+                        'div',
+                        { className: 'container' },
+                        React.createElement(
+                            'div',
+                            { className: 'row center' },
+                            React.createElement(
+                                'h5',
+                                { className: 'header col s12 light' },
+                                'A modern responsive front-end framework based on Material Design'
+                            )
+                        )
+                    )
+                ),
+                React.createElement('div', { className: 'parallax' })
+            )
+        );
+    }
+});
+/*   Icon Section   */ /*ImageGoesHere*/
+
+},{"react":160}],162:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -31710,6 +31943,28 @@ module.exports = React.createClass({
     displayName: "exports",
 
     render: function render() {
+        var currentUser = Parse.User.current();
+        var links = [];
+        if (currentUser) {} else {
+            links.push(React.createElement(
+                "li",
+                { key: "signin" },
+                React.createElement(
+                    "a",
+                    { href: "#signin" },
+                    "Sign-In"
+                )
+            ));
+            links.push(React.createElement(
+                "li",
+                { key: "signup" },
+                React.createElement(
+                    "a",
+                    { href: "#signup" },
+                    "Sign-Up"
+                )
+            ));
+        }
         return React.createElement(
             "nav",
             null,
@@ -31719,45 +31974,19 @@ module.exports = React.createClass({
                 React.createElement(
                     "a",
                     { href: "#", className: "brand-logo" },
-                    "Logo"
+                    "Kin-Connect"
                 ),
                 React.createElement(
                     "ul",
                     { id: "nav-mobile", className: "right hide-on-med-and-down" },
-                    React.createElement(
-                        "li",
-                        null,
-                        React.createElement(
-                            "a",
-                            { href: "sass.html" },
-                            "Sass"
-                        )
-                    ),
-                    React.createElement(
-                        "li",
-                        null,
-                        React.createElement(
-                            "a",
-                            { href: "badges.html" },
-                            "Components"
-                        )
-                    ),
-                    React.createElement(
-                        "li",
-                        null,
-                        React.createElement(
-                            "a",
-                            { href: "collapsible.html" },
-                            "JavaScript"
-                        )
-                    )
+                    links
                 )
             )
         );
     }
 });
 
-},{"react":160}],162:[function(require,module,exports){
+},{"react":160}],163:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -31765,21 +31994,28 @@ var Backbone = require('backbone');
 window.$ = require('jquery');
 window.jQuery = $;
 
+var main = document.getElementById('main');
+var nav = document.getElementById('nav');
+
+Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 var NavbarComponent = require('./components/NavbarComponent');
+var HomepageComponent = require('./components/HomepageComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
         '': 'home'
     },
-    home: function home() {}
+    home: function home() {
+        ReactDOM.render(React.createElement(HomepageComponent, null), main);
+    }
 });
 
 var app = new Router();
 Backbone.history.start();
 
-ReactDOM.render(React.createElement(NavbarComponent, { router: app }), document.getElementById('nav'));
+ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
-},{"./components/NavbarComponent":161,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[162])
+},{"./components/HomepageComponent":161,"./components/NavbarComponent":162,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[163])
 
 
 //# sourceMappingURL=bundle.js.map

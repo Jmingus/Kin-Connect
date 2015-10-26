@@ -5,7 +5,12 @@ var Backbone = require('backbone');
 window.$ = require('jquery');
 window.jQuery = $;
 
+var main = document.getElementById('main');
+var nav = document.getElementById('nav');
+
+Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 var NavbarComponent = require('./components/NavbarComponent');
+var HomepageComponent = require('./components/HomepageComponent');
 
 
 var Router = Backbone.Router.extend({
@@ -13,7 +18,10 @@ var Router = Backbone.Router.extend({
         '': 'home'
     },
     home: function(){
-
+        ReactDOM.render(
+            <HomepageComponent />,
+            main
+        )
     }
 });
 
@@ -22,5 +30,5 @@ Backbone.history.start();
 
 ReactDOM.render(
     <NavbarComponent router={app} />,
-    document.getElementById('nav')
+    nav
 );

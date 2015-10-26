@@ -1,1 +1,8 @@
-@import 'materialize-css/dist/css/materialize.min.css';
+@import 'materialize-css/dist/css/materialize.min.css',
+'variables',
+'home-page',
+'nav-styling';
+
+.btn-large{
+  background-color: $ButtonBackgroundColor;
+}
