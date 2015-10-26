@@ -12,5 +12,5 @@ everything that is going on with your lives. This app is looking to make that a 
 <hr>
 
 ###Deliverables
-[Trello Board](https://trello.com/b/kG1mfgjC/kin-connect)
+[Trello Board](https://trello.com/b/kG1mfgjC/kin-connect)<br>
 _Mockups_ Can be found in sketches folder.
