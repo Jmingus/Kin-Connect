@@ -12,9 +12,9 @@ everything that is going on with your lives. This app is looking to make that a 
 <hr>
 
 ###Deliverables
-[Trello Board](https://trello.com/b/kG1mfgjC/kin-connect)<br>
-_Mockups_ Can be found in sketches folder. <br>
-_Data Models_ Can be found in the dataModels folder.
+- [Trello Board](https://trello.com/b/kG1mfgjC/kin-connect)<br>
+- _Mockups_ Can be found in sketches folder. <br>
+- _Data Models_ Can be found in the dataModels folder.
 
 <hr>
 
