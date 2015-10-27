@@ -31994,7 +31994,7 @@ module.exports = React.createClass({
                 { key: 'signout' },
                 React.createElement(
                     'a',
-                    { href: '#signout' },
+                    { href: '#signout', onClick: this.signOut },
                     'Sign-Out'
                 )
             ));
@@ -32058,10 +32058,214 @@ module.exports = React.createClass({
                 )
             );
         }
+    },
+    signOut: function signOut(e) {
+        e.preventDefault();
+        Parse.User.logOut();
+        this.navigate('', { trigger: true });
     }
 });
 
 },{"backbone":1,"react":160}],164:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+    displayName: "exports",
+
+    getInitialState: function getInitialState() {
+        return {
+            error: null
+        };
+    },
+    render: function render() {
+        var errorElement = React.createElement(
+            "div",
+            { className: "red darken-1" },
+            this.state.error
+        );
+        return React.createElement(
+            "div",
+            { className: "SignUpComponent" },
+            React.createElement(
+                "div",
+                { className: "row" },
+                errorElement,
+                React.createElement(
+                    "form",
+                    { className: "col s12", onSubmit: this.signIn },
+                    React.createElement(
+                        "div",
+                        { className: "row" },
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "input-field col s12" },
+                                React.createElement("input", { id: "email", type: "email", className: "validate", ref: "email" }),
+                                React.createElement(
+                                    "label",
+                                    { htmlFor: "email" },
+                                    "Email"
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "input-field col s12" },
+                                React.createElement("input", { id: "password", type: "password", className: "validate", ref: "password" }),
+                                React.createElement(
+                                    "label",
+                                    { htmlFor: "password" },
+                                    "Password"
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            "button",
+                            { type: "submit", className: "btn-large waves-effect" },
+                            "Sign-In"
+                        )
+                    )
+                )
+            )
+        );
+    },
+    signIn: function signIn(e) {
+        var _this = this;
+
+        e.preventDefault();
+        Parse.User.logIn(this.refs.email.value, this.refs.password.value, {
+            success: function success() {
+                _this.props.router.navigate('', { trigger: true });
+            },
+            error: function error(_error) {
+                _this.setState({
+                    error: _error.message
+                });
+            }
+        });
+    }
+});
+
+},{"react":160}],165:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+    displayName: "exports",
+
+    getInitialState: function getInitialState() {
+        return {
+            error: null
+        };
+    },
+    render: function render() {
+        var errorElement = React.createElement(
+            "div",
+            { className: "red darken-1" },
+            this.state.error
+        );
+        return React.createElement(
+            "div",
+            { className: "SignUpComponent" },
+            React.createElement(
+                "div",
+                { className: "row" },
+                errorElement,
+                React.createElement(
+                    "form",
+                    { className: "col s12", onSubmit: this.signUp },
+                    React.createElement(
+                        "div",
+                        { className: "row" },
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "input-field col s12" },
+                                React.createElement("input", { id: "email", type: "email", className: "validate", ref: "email" }),
+                                React.createElement(
+                                    "label",
+                                    { htmlFor: "email" },
+                                    "Email"
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "input-field col s12" },
+                                React.createElement("input", { id: "password", type: "password", className: "validate", ref: "password" }),
+                                React.createElement(
+                                    "label",
+                                    { htmlFor: "password" },
+                                    "Password"
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "input-field col s6" },
+                            React.createElement("input", { id: "firstName", type: "text", className: "validate", ref: "firstName" }),
+                            React.createElement(
+                                "label",
+                                { htmlFor: "firstName" },
+                                "First Name"
+                            )
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "input-field col s6" },
+                            React.createElement("input", { id: "lastName", type: "text", className: "validate", ref: "lastName" }),
+                            React.createElement(
+                                "label",
+                                { htmlFor: "lastName" },
+                                "Last Name"
+                            )
+                        ),
+                        React.createElement(
+                            "button",
+                            { type: "submit", className: "btn-large waves-effect" },
+                            "Sign-Up"
+                        )
+                    )
+                )
+            )
+        );
+    },
+    signUp: function signUp(e) {
+        var _this = this;
+
+        e.preventDefault();
+        var user = new Parse.User();
+        user.signUp({
+            firstname: this.refs.firstName.value,
+            lastname: this.refs.lastName.value,
+            password: this.refs.password.value,
+            username: this.refs.email.value,
+            email: this.refs.email.value
+        }, {
+            success: function success() {
+                _this.props.router.navigate('', { trigger: true });
+            },
+            error: function error(_error) {
+                _this.setState({
+                    error: _error.message
+                });
+            }
+        });
+    }
+});
+
+},{"react":160}],166:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -32077,13 +32281,23 @@ Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12
 var NavbarComponent = require('./components/NavbarComponent');
 var HomepageComponent = require('./components/HomepageComponent');
 var FooterComponent = require('./components/FooterComponent');
+var SignUpComponent = require('./components/SignUpComponent');
+var SignInComponent = require('./components/SignInComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
-        '': 'home'
+        '': 'home',
+        'signup': 'signup',
+        'signin': 'signin'
     },
     home: function home() {
         ReactDOM.render(React.createElement(HomepageComponent, null), main);
+    },
+    signup: function signup() {
+        ReactDOM.render(React.createElement(SignUpComponent, { router: app }), main);
+    },
+    signin: function signin() {
+        ReactDOM.render(React.createElement(SignInComponent, { router: app }), main);
     }
 });
 
@@ -32094,7 +32308,7 @@ ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
 ReactDOM.render(React.createElement(FooterComponent, null), footer);
 
-},{"./components/FooterComponent":161,"./components/HomepageComponent":162,"./components/NavbarComponent":163,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[164])
+},{"./components/FooterComponent":161,"./components/HomepageComponent":162,"./components/NavbarComponent":163,"./components/SignInComponent":164,"./components/SignUpComponent":165,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[166])
 
 
 //# sourceMappingURL=bundle.js.map

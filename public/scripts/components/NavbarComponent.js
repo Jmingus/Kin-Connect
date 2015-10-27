@@ -13,7 +13,7 @@ module.exports = React.createClass({
         var currentUser = Parse.User.current();
         var allLinks = [];
         if(currentUser){
-            allLinks.push(<li key="signout"><a href="#signout">Sign-Out</a></li>)
+            allLinks.push(<li key="signout"><a href="#signout" onClick={this.signOut}>Sign-Out</a></li>)
         }else{
             allLinks.push(this.links('signin', 'Sign-In'));
             allLinks.push(this.links('signup', 'Sign-Up'));
@@ -41,5 +41,10 @@ module.exports = React.createClass({
         else {
             return (<li key={url}><a href={'#'+url}>{label}</a></li>);
         }
+    },
+    signOut: function(e){
+        e.preventDefault();
+        Parse.User.logOut();
+        this.navigate('', {trigger: true});
     }
 });

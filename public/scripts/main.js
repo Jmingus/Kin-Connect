@@ -13,15 +13,30 @@ Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12
 var NavbarComponent = require('./components/NavbarComponent');
 var HomepageComponent = require('./components/HomepageComponent');
 var FooterComponent = require('./components/FooterComponent');
-
+var SignUpComponent = require('./components/SignUpComponent');
+var SignInComponent = require('./components/SignInComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
-        '': 'home'
+        '': 'home',
+        'signup': 'signup',
+        'signin': 'signin'
     },
     home: function(){
         ReactDOM.render(
             <HomepageComponent />,
+            main
+        )
+    },
+    signup: function(){
+        ReactDOM.render(
+            <SignUpComponent router={app}/>,
+            main
+        )
+    },
+    signin: function(){
+        ReactDOM.render(
+            <SignInComponent router={app} />,
             main
         )
     }
