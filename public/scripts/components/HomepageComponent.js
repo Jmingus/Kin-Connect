@@ -1,6 +1,6 @@
 var React = require('react');
 module.exports = React.createClass({
-    componentWillMount: function(){
+    componentDidMount: function(){
         $(document).ready(function(){
             $('.parallax').parallax();
         });

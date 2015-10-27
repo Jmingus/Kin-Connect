@@ -31738,7 +31738,7 @@ var React = require('react');
 module.exports = React.createClass({
     displayName: 'exports',
 
-    componentWillMount: function componentWillMount() {
+    componentDidMount: function componentDidMount() {
         $(document).ready(function () {
             $('.parallax').parallax();
         });
@@ -32062,7 +32062,7 @@ module.exports = React.createClass({
     signOut: function signOut(e) {
         e.preventDefault();
         Parse.User.logOut();
-        this.navigate('', { trigger: true });
+        this.props.router.navigate('signin', { trigger: true });
     }
 });
 
@@ -32161,8 +32161,12 @@ module.exports = React.createClass({
 
     getInitialState: function getInitialState() {
         return {
-            error: null
+            error: null,
+            showFamilyCode: false
         };
+    },
+    showFamily: function showFamily() {
+        this.state.showFamilyCode ? this.setState({ showFamilyCode: false }) : this.setState({ showFamilyCode: true });
     },
     render: function render() {
         var errorElement = React.createElement(
@@ -32232,8 +32236,40 @@ module.exports = React.createClass({
                             )
                         ),
                         React.createElement(
+                            "div",
+                            { className: "row" },
+                            this.state.showFamilyCode ? React.createElement(
+                                "div",
+                                { className: "input-field col s6" },
+                                React.createElement("input", { id: "familyCode", type: "text", ref: "familyCode" }),
+                                React.createElement(
+                                    "label",
+                                    { htmlFor: "familyCode" },
+                                    "Family Code "
+                                )
+                            ) : React.createElement(
+                                "div",
+                                { className: "optional col s6" },
+                                "Already have a family code, then click here!",
+                                React.createElement(
+                                    "i",
+                                    { className: "material-icons" },
+                                    "play_arrow"
+                                )
+                            ),
+                            React.createElement(
+                                "a",
+                                { className: "btn-floating btn-large waves-effect waves-light", onClick: this.showFamily },
+                                React.createElement(
+                                    "i",
+                                    { className: "material-icons" },
+                                    "add"
+                                )
+                            )
+                        ),
+                        React.createElement(
                             "button",
-                            { type: "submit", className: "btn-large waves-effect" },
+                            { type: "submit", className: "btn-large waves-effect col s6" },
                             "Sign-Up"
                         )
                     )
@@ -32245,13 +32281,24 @@ module.exports = React.createClass({
         var _this = this;
 
         e.preventDefault();
+        var familyId = null;
+        if (this.state.showFamilyCode === true) {
+            familyId = this.refs.familyCode.value;
+        } else {
+            familyId = this.generateFamilyCode();
+        }
+        if (familyId.length !== 36) {
+            this.setState({ error: "You must have family code!" });
+            return console.log('family code missing.');
+        }
         var user = new Parse.User();
         user.signUp({
             firstname: this.refs.firstName.value,
             lastname: this.refs.lastName.value,
             password: this.refs.password.value,
             username: this.refs.email.value,
-            email: this.refs.email.value
+            email: this.refs.email.value,
+            familyId: familyId
         }, {
             success: function success() {
                 _this.props.router.navigate('', { trigger: true });
@@ -32261,6 +32308,13 @@ module.exports = React.createClass({
                     error: _error.message
                 });
             }
+        });
+    },
+    generateFamilyCode: function generateFamilyCode() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : r & 0x3 | 0x8;
+            return v.toString(16);
         });
     }
 });
@@ -32278,6 +32332,7 @@ var nav = document.getElementById('nav');
 var footer = document.getElementById('footer');
 
 Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
+
 var NavbarComponent = require('./components/NavbarComponent');
 var HomepageComponent = require('./components/HomepageComponent');
 var FooterComponent = require('./components/FooterComponent');

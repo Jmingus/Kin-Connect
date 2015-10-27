@@ -14,6 +14,9 @@ footer .subHeader {
 footer.page-footer {
   background-color: #0088AA; }
 
+.SignUpComponent .optional {
+  font-size: 30px; }
+
 .nav-wrapper {
   background-color: #0088AA; }
 
@@ -29,5 +32,5 @@ body {
   background-color: #025063; }
 
 .btn-large:hover {
-  background-color: #8fdd88;
+  background-color: #A4DD88;
   color: #000; }

@@ -10,6 +10,7 @@ var nav = document.getElementById('nav');
 var footer = document.getElementById('footer');
 
 Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
+
 var NavbarComponent = require('./components/NavbarComponent');
 var HomepageComponent = require('./components/HomepageComponent');
 var FooterComponent = require('./components/FooterComponent');

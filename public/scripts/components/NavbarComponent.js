@@ -1,5 +1,5 @@
 var React = require('react');
-var Backbone = require('backbone')
+var Backbone = require('backbone');
 module.exports = React.createClass({
     componentWillMount: function(){
         this.props.router.on('route', () => {
@@ -45,6 +45,6 @@ module.exports = React.createClass({
     signOut: function(e){
         e.preventDefault();
         Parse.User.logOut();
-        this.navigate('', {trigger: true});
+        this.props.router.navigate('signin', {trigger: true});
     }
 });
