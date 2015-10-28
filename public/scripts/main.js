@@ -8,6 +8,7 @@ window.jQuery = $;
 var main = document.getElementById('main');
 var nav = document.getElementById('nav');
 var footer = document.getElementById('footer');
+var listDetails = document.getElementById('')
 
 Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 
@@ -16,12 +17,16 @@ var HomepageComponent = require('./components/HomepageComponent');
 var FooterComponent = require('./components/FooterComponent');
 var SignUpComponent = require('./components/SignUpComponent');
 var SignInComponent = require('./components/SignInComponent');
+var ListManagementComponent = require('./components/ListManagementComponent');
+var ListDetailsComponent = require('./components/ListDetailsComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
         '': 'home',
         'signup': 'signup',
-        'signin': 'signin'
+        'signin': 'signin',
+        'listmanagement(/:id)': 'listmanagement',
+        'listdetails/:id': 'listdetails'
     },
     home: function(){
         ReactDOM.render(
@@ -38,6 +43,12 @@ var Router = Backbone.Router.extend({
     signin: function(){
         ReactDOM.render(
             <SignInComponent router={app} />,
+            main
+        )
+    },
+    listmanagement: function(id){
+        ReactDOM.render(
+            <ListManagementComponent list={id} router={app}/>,
             main
         )
     }

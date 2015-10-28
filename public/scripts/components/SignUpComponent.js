@@ -10,7 +10,7 @@ module.exports = React.createClass({
         this.state.showFamilyCode ? this.setState({showFamilyCode :false}) : this.setState({showFamilyCode : true})
     },
     render: function(){
-        var errorElement = (<div className="red darken-1">{this.state.error}</div>);
+        var errorElement = (<div className="red lighten-1">{this.state.error}</div>);
         return(
             <div className="SignUpComponent">
                     <div className="row">

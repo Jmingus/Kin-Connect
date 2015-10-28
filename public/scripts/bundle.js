@@ -31971,6 +31971,180 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
+var Lists = require('../models/ListsModel');
+var Backbone = require('backbone');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    getInitialState: function getInitialState() {
+        return {
+            listTitle: null,
+            listDetails: []
+        };
+    },
+    componentWillMount: function componentWillMount() {
+        var _this = this;
+
+        this.props.router.on('route', function () {
+            _this.fetchList();
+        });
+        this.fetchList();
+    },
+    render: function render() {
+        if (this.state.listTitle !== []) {
+            var list = this.state.listTitle;
+        }
+        return React.createElement(
+            'div',
+            { className: 'ListDetailsComponent' },
+            React.createElement(
+                'h4',
+                null,
+                list
+            )
+        );
+    },
+    fetchList: function fetchList() {
+        var _this2 = this;
+
+        var listTitleQuery = new Parse.Query('Lists');
+        listTitleQuery.equalTo('objectId', this.props.list);
+        listTitleQuery.first().then(function (listTitle) {
+            _this2.setState({ listTitle: listTitle.get('listTitle') });
+        }, function (err) {
+            console.log(err);
+        });
+    }
+});
+
+},{"../models/ListsModel":169,"backbone":1,"react":160}],164:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Lists = require('../models/ListsModel');
+var ListDetailsComponent = require('./ListDetailsComponent');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    getInitialState: function getInitialState() {
+        return {
+            lists: []
+        };
+    },
+    componentDidMount: function componentDidMount() {
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal();
+        });
+    },
+    componentWillMount: function componentWillMount() {
+        this.fetchLists();
+    },
+    render: function render() {
+        var allLists = this.state.lists.map(function (list) {
+            return React.createElement(
+                'a',
+                { key: list.id, href: '#listmanagement/' + list.id },
+                React.createElement(
+                    'div',
+                    null,
+                    list.get('listTitle')
+                )
+            );
+        });
+        if (this.props.list !== null) {
+            var listDetails = React.createElement(ListDetailsComponent, { list: this.props.list, router: this.props.router });
+        }
+        return React.createElement(
+            'div',
+            { className: 'ListManagementComponent' },
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col s3' },
+                    allLists
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col s9', id: 'list-details' },
+                    React.createElement(
+                        'a',
+                        { className: 'waves-effect waves-light btn-large modal-trigger add-list-button', href: '#addList' },
+                        'AddList'
+                    ),
+                    React.createElement(
+                        'div',
+                        { id: 'addList', className: 'modal' },
+                        React.createElement(
+                            'div',
+                            { className: 'modal-content' },
+                            React.createElement(
+                                'h4',
+                                null,
+                                'Add a List'
+                            ),
+                            React.createElement(
+                                'form',
+                                null,
+                                React.createElement(
+                                    'div',
+                                    { className: 'row' },
+                                    React.createElement(
+                                        'div',
+                                        { className: 'input-field col s12' },
+                                        React.createElement('input', { type: 'text', ref: 'listTitle', id: 'listTitle' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'listTitle' },
+                                            'List Title'
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'modal-footer' },
+                            React.createElement(
+                                'a',
+                                { href: '#listmanagement', className: 'modal-action modal-close waves-effect waves-green btn-large', onClick: this.addList },
+                                'Submit'
+                            )
+                        )
+                    ),
+                    listDetails
+                )
+            )
+        );
+    },
+    addList: function addList() {
+        var newList = new Lists({
+            listTitle: this.refs.listTitle.value,
+            listPrivacy: false,
+            userId: Parse.User.current()
+        });
+        newList.save();
+    },
+    fetchLists: function fetchLists() {
+        var _this = this;
+
+        var query = new Parse.Query('Lists');
+        query.equalTo('userId', Parse.User.current());
+        query.find().then(function (lists) {
+            _this.setState({ lists: lists });
+        }, function (err) {
+            console.log(err);
+        });
+    }
+});
+
+},{"../models/ListsModel":169,"./ListDetailsComponent":163,"react":160}],165:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
 var Backbone = require('backbone');
 module.exports = React.createClass({
     displayName: 'exports',
@@ -31989,6 +32163,7 @@ module.exports = React.createClass({
         var currentUser = Parse.User.current();
         var allLinks = [];
         if (currentUser) {
+            allLinks.push(this.links('listmanagement', 'Lists'));
             allLinks.push(React.createElement(
                 'li',
                 { key: 'signout' },
@@ -32066,7 +32241,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"backbone":1,"react":160}],164:[function(require,module,exports){
+},{"backbone":1,"react":160}],166:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32081,7 +32256,7 @@ module.exports = React.createClass({
     render: function render() {
         var errorElement = React.createElement(
             "div",
-            { className: "red darken-1" },
+            { className: "red lighten-1" },
             this.state.error
         );
         return React.createElement(
@@ -32152,7 +32327,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":160}],165:[function(require,module,exports){
+},{"react":160}],167:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32171,7 +32346,7 @@ module.exports = React.createClass({
     render: function render() {
         var errorElement = React.createElement(
             "div",
-            { className: "red darken-1" },
+            { className: "red lighten-1" },
             this.state.error
         );
         return React.createElement(
@@ -32319,7 +32494,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":160}],166:[function(require,module,exports){
+},{"react":160}],168:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -32330,6 +32505,7 @@ window.jQuery = $;
 var main = document.getElementById('main');
 var nav = document.getElementById('nav');
 var footer = document.getElementById('footer');
+var listDetails = document.getElementById('');
 
 Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 
@@ -32338,12 +32514,16 @@ var HomepageComponent = require('./components/HomepageComponent');
 var FooterComponent = require('./components/FooterComponent');
 var SignUpComponent = require('./components/SignUpComponent');
 var SignInComponent = require('./components/SignInComponent');
+var ListManagementComponent = require('./components/ListManagementComponent');
+var ListDetailsComponent = require('./components/ListDetailsComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
         '': 'home',
         'signup': 'signup',
-        'signin': 'signin'
+        'signin': 'signin',
+        'listmanagement(/:id)': 'listmanagement',
+        'listdetails/:id': 'listdetails'
     },
     home: function home() {
         ReactDOM.render(React.createElement(HomepageComponent, null), main);
@@ -32353,6 +32533,9 @@ var Router = Backbone.Router.extend({
     },
     signin: function signin() {
         ReactDOM.render(React.createElement(SignInComponent, { router: app }), main);
+    },
+    listmanagement: function listmanagement(id) {
+        ReactDOM.render(React.createElement(ListManagementComponent, { list: id, router: app }), main);
     }
 });
 
@@ -32363,7 +32546,14 @@ ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
 ReactDOM.render(React.createElement(FooterComponent, null), footer);
 
-},{"./components/FooterComponent":161,"./components/HomepageComponent":162,"./components/NavbarComponent":163,"./components/SignInComponent":164,"./components/SignUpComponent":165,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[166])
+},{"./components/FooterComponent":161,"./components/HomepageComponent":162,"./components/ListDetailsComponent":163,"./components/ListManagementComponent":164,"./components/NavbarComponent":165,"./components/SignInComponent":166,"./components/SignUpComponent":167,"backbone":1,"jquery":4,"react":160,"react-dom":5}],169:[function(require,module,exports){
+'use strict';
+
+module.exports = Parse.Object.extend({
+    className: 'Lists'
+});
+
+},{}]},{},[168])
 
 
 //# sourceMappingURL=bundle.js.map

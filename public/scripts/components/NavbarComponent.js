@@ -13,6 +13,7 @@ module.exports = React.createClass({
         var currentUser = Parse.User.current();
         var allLinks = [];
         if(currentUser){
+            allLinks.push(this.links('listmanagement', 'Lists'));
             allLinks.push(<li key="signout"><a href="#signout" onClick={this.signOut}>Sign-Out</a></li>)
         }else{
             allLinks.push(this.links('signin', 'Sign-In'));

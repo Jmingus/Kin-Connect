@@ -17,6 +17,11 @@ footer.page-footer {
 .SignUpComponent .optional {
   font-size: 30px; }
 
+.ListManagementComponent .add-list-button {
+  position: absolute;
+  right: 15px;
+  top: 80px; }
+
 .nav-wrapper {
   background-color: #0088AA; }
 
