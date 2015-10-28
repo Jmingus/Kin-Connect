@@ -31972,6 +31972,7 @@ module.exports = React.createClass({
 
 var React = require('react');
 var Lists = require('../models/ListsModel');
+var List = require('../models/ListModel');
 var Backbone = require('backbone');
 
 module.exports = React.createClass({
@@ -31980,7 +31981,8 @@ module.exports = React.createClass({
     getInitialState: function getInitialState() {
         return {
             listTitle: null,
-            listDetails: []
+            listDetails: [],
+            listObject: []
         };
     },
     componentWillMount: function componentWillMount() {
@@ -31994,6 +31996,16 @@ module.exports = React.createClass({
     componentDidMount: function componentDidMount() {
         $(document).ready(function () {
             $('.tooltipped').tooltip({ delay: 30 });
+            $('.modal-trigger').leanModal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .5, // Opacity of modal background
+                in_duration: 200, // Transition in duration
+                out_duration: 200, // Transition out duration
+                ready: function ready() {}, // Callback for Modal open
+                complete: function complete() {
+                    $('.lean-overlay').remove();
+                } // Callback for Modal close
+            });
         });
     },
     render: function render() {
@@ -32003,8 +32015,8 @@ module.exports = React.createClass({
         var allItems = this.state.listDetails.map(function (item) {
             return React.createElement(
                 'li',
-                null,
-                item.listItemName
+                { key: item.id },
+                item.get('listItemName')
             );
         });
         return React.createElement(
@@ -32035,7 +32047,7 @@ module.exports = React.createClass({
                         null,
                         React.createElement(
                             'a',
-                            { className: 'btn-floating light-green darken-1 tooltipped', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Add List Item' },
+                            { className: 'btn-floating light-green darken-1 tooltipped modal-trigger', href: '#addListItem', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Add List Item' },
                             React.createElement(
                                 'i',
                                 { className: 'material-icons' },
@@ -32072,6 +32084,46 @@ module.exports = React.createClass({
                 )
             ),
             React.createElement(
+                'div',
+                { id: 'addListItem', className: 'modal' },
+                React.createElement(
+                    'div',
+                    { className: 'modal-content' },
+                    React.createElement(
+                        'form',
+                        null,
+                        React.createElement(
+                            'h4',
+                            null,
+                            'Add List Item'
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'row' },
+                            React.createElement(
+                                'div',
+                                { className: 'input-field col s12' },
+                                React.createElement('input', { type: 'text', ref: 'itemListName', id: 'itemListName' }),
+                                React.createElement(
+                                    'label',
+                                    { htmlFor: 'itemListName' },
+                                    'Item Name'
+                                )
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'modal-footer' },
+                    React.createElement(
+                        'button',
+                        { className: 'modal-action modal-close waves-effect waves-green btn-large', id: 'addListItemButton', onClick: this.addListItem },
+                        'Submit'
+                    )
+                )
+            ),
+            React.createElement(
                 'ul',
                 null,
                 allItems
@@ -32085,21 +32137,33 @@ module.exports = React.createClass({
         listTitleQuery.equalTo('objectId', this.props.list);
         listTitleQuery.first().then(function (listTitle) {
             _this2.setState({ listTitle: listTitle.get('listTitle') });
-        }, function (err) {
-            console.log(err);
-        });
-        var listDetailsQuery = new Parse.Query('List');
-        listDetailsQuery.equalTo('listId', this.props.list);
-        listDetailsQuery.find().then(function (listDetails) {
-            _this2.setState({ listDetails: listDetails });
+            _this2.setState({ listObject: listTitle });
+
+            var listDetailsQuery = new Parse.Query('List');
+            listDetailsQuery.equalTo('ListId', listTitle);
+            listDetailsQuery.find().then(function (listDetails) {
+                _this2.setState({ listDetails: listDetails });
+            }, function (err) {
+                console.log(err);
+            });
         }, function (err) {
             console.log(err);
         });
     },
-    addListItem: function addListItem() {}
+    addListItem: function addListItem() {
+        var newListItem = new List({
+            listItemName: this.refs.itemListName.value,
+            quantity: 0,
+            price: 0,
+            whereToFind: "N/A",
+            ListId: this.state.listObject
+        });
+        newListItem.save();
+        this.fetchList();
+    }
 });
 
-},{"../models/ListsModel":169,"backbone":1,"react":160}],164:[function(require,module,exports){
+},{"../models/ListModel":169,"../models/ListsModel":170,"backbone":1,"react":160}],164:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -32222,7 +32286,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListsModel":169,"./ListDetailsComponent":163,"react":160}],165:[function(require,module,exports){
+},{"../models/ListsModel":170,"./ListDetailsComponent":163,"react":160}],165:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -32628,6 +32692,13 @@ ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 ReactDOM.render(React.createElement(FooterComponent, null), footer);
 
 },{"./components/FooterComponent":161,"./components/HomepageComponent":162,"./components/ListDetailsComponent":163,"./components/ListManagementComponent":164,"./components/NavbarComponent":165,"./components/SignInComponent":166,"./components/SignUpComponent":167,"backbone":1,"jquery":4,"react":160,"react-dom":5}],169:[function(require,module,exports){
+'use strict';
+
+module.exports = Parse.Object.extend({
+    className: 'List'
+});
+
+},{}],170:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
