@@ -19,8 +19,18 @@ footer.page-footer {
 
 .ListManagementComponent .add-list-button {
   position: absolute;
-  right: 15px;
-  top: 80px; }
+  left: 10px;
+  bottom: 80px; }
+
+.ListDetailsComponent .action-button {
+  top: 60px;
+  right: 10px; }
+
+.ListDetailsComponent .fixed-action-btn ul {
+  top: 90px; }
+
+.ListDetailsComponent .main-floating-button {
+  color: #A4DD88; }
 
 .nav-wrapper {
   background-color: #0088AA; }

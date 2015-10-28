@@ -28,9 +28,9 @@ module.exports = React.createClass({
                 <div className="row">
                     <div className="col s3">
                         {allLists}
+                        <a className="waves-effect waves-light btn-large modal-trigger add-list-button" href="#addList">Add List</a>
                     </div>
                     <div className="col s9" id="list-details">
-                        <a className="waves-effect waves-light btn-large modal-trigger add-list-button" href="#addList">AddList</a>
                         <div id="addList" className="modal">
                             <div className="modal-content">
                                 <h4>Add a List</h4>

@@ -31991,10 +31991,22 @@ module.exports = React.createClass({
         });
         this.fetchList();
     },
+    componentDidMount: function componentDidMount() {
+        $(document).ready(function () {
+            $('.tooltipped').tooltip({ delay: 30 });
+        });
+    },
     render: function render() {
         if (this.state.listTitle !== []) {
             var list = this.state.listTitle;
         }
+        var allItems = this.state.listDetails.map(function (item) {
+            return React.createElement(
+                'li',
+                null,
+                item.listItemName
+            );
+        });
         return React.createElement(
             'div',
             { className: 'ListDetailsComponent' },
@@ -32002,6 +32014,67 @@ module.exports = React.createClass({
                 'h4',
                 null,
                 list
+            ),
+            React.createElement(
+                'div',
+                { className: 'fixed-action-btn action-button' },
+                React.createElement(
+                    'a',
+                    { className: 'btn-floating btn-large main-floating-button' },
+                    React.createElement(
+                        'i',
+                        { className: 'large material-icons' },
+                        'mode_edit'
+                    )
+                ),
+                React.createElement(
+                    'ul',
+                    null,
+                    React.createElement(
+                        'li',
+                        null,
+                        React.createElement(
+                            'a',
+                            { className: 'btn-floating light-green darken-1 tooltipped', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Add List Item' },
+                            React.createElement(
+                                'i',
+                                { className: 'material-icons' },
+                                'add'
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'li',
+                        null,
+                        React.createElement(
+                            'a',
+                            { className: 'btn-floating yellow darken-2 tooltipped', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Edit List' },
+                            React.createElement(
+                                'i',
+                                { className: 'material-icons' },
+                                'settings'
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'li',
+                        null,
+                        React.createElement(
+                            'a',
+                            { className: 'btn-floating red darken-1 tooltipped', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Delete List' },
+                            React.createElement(
+                                'i',
+                                { className: 'material-icons' },
+                                'close'
+                            )
+                        )
+                    )
+                )
+            ),
+            React.createElement(
+                'ul',
+                null,
+                allItems
             )
         );
     },
@@ -32015,7 +32088,15 @@ module.exports = React.createClass({
         }, function (err) {
             console.log(err);
         });
-    }
+        var listDetailsQuery = new Parse.Query('List');
+        listDetailsQuery.equalTo('listId', this.props.list);
+        listDetailsQuery.find().then(function (listDetails) {
+            _this2.setState({ listDetails: listDetails });
+        }, function (err) {
+            console.log(err);
+        });
+    },
+    addListItem: function addListItem() {}
 });
 
 },{"../models/ListsModel":169,"backbone":1,"react":160}],164:[function(require,module,exports){
@@ -32065,16 +32146,16 @@ module.exports = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col s3' },
-                    allLists
+                    allLists,
+                    React.createElement(
+                        'a',
+                        { className: 'waves-effect waves-light btn-large modal-trigger add-list-button', href: '#addList' },
+                        'Add List'
+                    )
                 ),
                 React.createElement(
                     'div',
                     { className: 'col s9', id: 'list-details' },
-                    React.createElement(
-                        'a',
-                        { className: 'waves-effect waves-light btn-large modal-trigger add-list-button', href: '#addList' },
-                        'AddList'
-                    ),
                     React.createElement(
                         'div',
                         { id: 'addList', className: 'modal' },
