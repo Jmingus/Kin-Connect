@@ -18,7 +18,7 @@ var FooterComponent = require('./components/FooterComponent');
 var SignUpComponent = require('./components/SignUpComponent');
 var SignInComponent = require('./components/SignInComponent');
 var ListManagementComponent = require('./components/ListManagementComponent');
-var ListDetailsComponent = require('./components/ListDetailsComponent');
+var EventManagementComponent = require('./components/EventManagementComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -26,7 +26,8 @@ var Router = Backbone.Router.extend({
         'signup': 'signup',
         'signin': 'signin',
         'listmanagement(/:id)': 'listmanagement',
-        'listdetails/:id': 'listdetails'
+        'listdetails/:id': 'listdetails',
+        'eventmanagement': 'eventmanagement'
     },
     home: function(){
         ReactDOM.render(
@@ -51,8 +52,14 @@ var Router = Backbone.Router.extend({
             <ListManagementComponent list={id} router={app}/>,
             main
         )
+    },
+    eventmanagement: function(){
+        ReactDOM.render(
+            <EventManagementComponent />,
+            main
+        )
     }
-});
+    });
 
 var app = new Router;
 Backbone.history.start();

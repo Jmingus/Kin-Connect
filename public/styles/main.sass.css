@@ -1,4 +1,49 @@
 @import url(materialize-css/dist/css/materialize.min.css);
+.EventManagementComponent *, .EventManagementComponent *:before, .EventManagementComponent *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.EventManagementComponent * {
+  position: relative; }
+
+.EventManagementComponent .Calendar {
+  border-collapse: collapse;
+  padding: 0;
+  margin: 4rem auto 0;
+  background: #fff; }
+
+.EventManagementComponent .Calendar th,
+.EventManagementComponent .Calendar td {
+  padding: 1rem;
+  text-align: center; }
+
+.EventManagementComponent .Calendar th {
+  background: #ddd; }
+
+.EventManagementComponent .Calendar .month-header {
+  border-bottom: 1px solid #fff; }
+
+.EventManagementComponent .Day.weekend {
+  background: #bdc3c7;
+  color: #000; }
+
+.EventManagementComponent .Day.other-month {
+  color: #999;
+  font-style: italic; }
+
+.EventManagementComponent .Day.today {
+  background: #fafad2;
+  color: #000; }
+
+.EventManagementComponent .Day:hover {
+  background: #eee;
+  color: #000; }
+
+.EventManagementComponent .Day.selected {
+  background: #2980b9;
+  color: #fff; }
+
 .HomepageComponent .brand-title {
   color: #8fdd88; }
 
