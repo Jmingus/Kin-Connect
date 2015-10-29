@@ -35137,9 +35137,53 @@ module.exports = require('./lib/React');
 'use strict';
 
 var React = require('react');
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    componentDidMount: function componentDidMount() {
+        $(document).ready(function () {
+            $('.collapsible').collapsible({
+                accordion: false
+            });
+        });
+    },
+    render: function render() {
+        return React.createElement(
+            'li',
+            { key: this.props.event.id,
+                id: this.props.event.id },
+            React.createElement(
+                'div',
+                {
+                    className: 'collapsible-header' },
+                this.props.event.get('eventName')
+            ),
+            React.createElement(
+                'div',
+                {
+                    className: 'collapsible-body event' },
+                React.createElement(
+                    'p',
+                    null,
+                    this.props.event.get('startTime'),
+                    ' ',
+                    this.props.event.get('endTime'),
+                    ' ',
+                    this.props.event.get('eventDescription')
+                )
+            )
+        );
+    }
+});
+
+},{"react":165}],167:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
 var moment = require('moment');
 var Calendar = require('react-calendar-pane');
-var Event = require('../models/Event');
+var Event = require('../models/EventModel');
+var EventListComponent = require('./EventListComponent');
 module.exports = React.createClass({
     displayName: 'exports',
 
@@ -35150,6 +35194,25 @@ module.exports = React.createClass({
             return false;
         }
     },
+    getInitialState: function getInitialState() {
+        return {
+            events: []
+        };
+    },
+    componentWillMount: function componentWillMount() {
+        this.eventQuery(moment());
+    },
+    componentDidMount: function componentDidMount() {
+        $(document).ready(function () {
+            $('.datepicker').pickadate({
+                selectMonths: true,
+                selectYears: 3
+            });
+            $('.collapsible').collapsible({
+                accordion: false
+            });
+        });
+    },
     render: function render() {
         var dayClasses = function dayClasses(date) {
             var day = date.isoWeekday();
@@ -35158,6 +35221,9 @@ module.exports = React.createClass({
             }
             return [];
         };
+        var allEvents = this.state.events.map(function (event) {
+            return React.createElement(EventListComponent, { event: event });
+        });
         return React.createElement(
             'div',
             { className: 'EventManagementComponent' },
@@ -35166,20 +35232,143 @@ module.exports = React.createClass({
                 { className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'col s4' },
+                    { className: 'col s5' },
+                    React.createElement(
+                        'ul',
+                        { className: 'collapsible', 'data-collapsible': 'accordion' },
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'div',
+                                { className: 'collapsible-header' },
+                                React.createElement(
+                                    'i',
+                                    { className: 'material-icons' },
+                                    'filter_drama'
+                                ),
+                                'Add Event'
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'collapsible-body' },
+                                React.createElement(
+                                    'form',
+                                    { className: 'event-form', onSubmit: this.addEvent },
+                                    React.createElement(
+                                        'div',
+                                        { className: 'row' },
+                                        React.createElement(
+                                            'div',
+                                            { className: 'input-field col s12' },
+                                            React.createElement('input', { type: 'text', id: 'event-name', ref: 'eventName' }),
+                                            React.createElement(
+                                                'label',
+                                                { htmlFor: 'event-name' },
+                                                'Event Name'
+                                            )
+                                        ),
+                                        React.createElement(
+                                            'div',
+                                            { className: 'input-field col s12' },
+                                            React.createElement(
+                                                'label',
+                                                { htmlFor: 'datepicker' },
+                                                'Event Date'
+                                            ),
+                                            React.createElement('input', { type: 'date', className: 'datepicker', id: 'datepicker', ref: 'dateOfEvent' })
+                                        ),
+                                        React.createElement(
+                                            'div',
+                                            { className: 'input-field col s6' },
+                                            React.createElement('input', { id: 'Start-Time', type: 'time', ref: 'startTime' }),
+                                            React.createElement(
+                                                'label',
+                                                { htmlFor: 'Start-Time', className: 'active' },
+                                                'Start Time'
+                                            )
+                                        ),
+                                        React.createElement(
+                                            'div',
+                                            { className: 'input-field col s6' },
+                                            React.createElement('input', { id: 'End-Time', type: 'time', ref: 'endTime' }),
+                                            React.createElement(
+                                                'label',
+                                                { htmlFor: 'End-Time', className: 'active' },
+                                                'End Time'
+                                            )
+                                        ),
+                                        React.createElement(
+                                            'div',
+                                            { className: 'input-field col s12' },
+                                            React.createElement(
+                                                'label',
+                                                { htmlFor: 'Event-Description' },
+                                                'Event Description'
+                                            ),
+                                            React.createElement('textarea', { id: 'Event-Description', className: 'materialize-textarea', ref: 'eventDescription' })
+                                        ),
+                                        React.createElement(
+                                            'button',
+                                            { type: 'submit', className: 'btn-large waves-effect' },
+                                            'Add Event'
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ),
                     React.createElement(Calendar, { onSelect: this.onSelect, dayClasses: dayClasses })
                 ),
-                React.createElement('div', { className: 'col s8' })
+                React.createElement(
+                    'div',
+                    { className: 'col s7' },
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(
+                            'h3',
+                            null,
+                            'Events'
+                        ),
+                        React.createElement(
+                            'ul',
+                            { className: 'collapsible popout', 'data-collapsible': 'accordion' },
+                            allEvents
+                        )
+                    )
+                )
             )
         );
     },
+    addEvent: function addEvent(e) {
+        e.preventDefault();
+        var dateOfEvent = moment(new Date(this.refs.dateOfEvent.value)).format('MMMM Do YYYY');
+        var newEvent = new Event({
+            eventName: this.refs.eventName.value,
+            dateOfEvent: dateOfEvent,
+            startTime: this.refs.startTime.value,
+            endTime: this.refs.endTime.value,
+            eventDescription: this.refs.eventDescription.value,
+            userId: Parse.User.current()
+        });
+        newEvent.save();
+    },
     eventQuery: function eventQuery(date) {
+        var _this = this;
+
+        var currentDate = moment(date._d).format('MMMM Do YYYY');
         var eventQuery = new Parse.Query('Event');
-        eventQuery;
+        eventQuery.equalTo('dateOfEvent', currentDate);
+        eventQuery.find().then(function (events) {
+            _this.setState({ events: events });
+        }, function (err) {
+            console.log(err);
+        });
     }
 });
 
-},{"../models/Event":175,"moment":5,"react":165,"react-calendar-pane":6}],167:[function(require,module,exports){
+},{"../models/EventModel":176,"./EventListComponent":166,"moment":5,"react":165,"react-calendar-pane":6}],168:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -35209,7 +35398,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":165}],168:[function(require,module,exports){
+},{"react":165}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35445,7 +35634,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":165}],169:[function(require,module,exports){
+},{"react":165}],170:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35641,7 +35830,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListModel":176,"../models/ListsModel":177,"backbone":1,"react":165}],170:[function(require,module,exports){
+},{"../models/ListModel":177,"../models/ListsModel":178,"backbone":1,"react":165}],171:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35764,7 +35953,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListsModel":177,"./ListDetailsComponent":169,"react":165}],171:[function(require,module,exports){
+},{"../models/ListsModel":178,"./ListDetailsComponent":170,"react":165}],172:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35865,7 +36054,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"backbone":1,"react":165}],172:[function(require,module,exports){
+},{"backbone":1,"react":165}],173:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -35951,7 +36140,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":165}],173:[function(require,module,exports){
+},{"react":165}],174:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -36118,7 +36307,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":165}],174:[function(require,module,exports){
+},{"react":165}],175:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -36174,28 +36363,28 @@ ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
 ReactDOM.render(React.createElement(FooterComponent, null), footer);
 
-},{"./components/EventManagementComponent":166,"./components/FooterComponent":167,"./components/HomepageComponent":168,"./components/ListManagementComponent":170,"./components/NavbarComponent":171,"./components/SignInComponent":172,"./components/SignUpComponent":173,"backbone":1,"jquery":4,"react":165,"react-dom":10}],175:[function(require,module,exports){
+},{"./components/EventManagementComponent":167,"./components/FooterComponent":168,"./components/HomepageComponent":169,"./components/ListManagementComponent":171,"./components/NavbarComponent":172,"./components/SignInComponent":173,"./components/SignUpComponent":174,"backbone":1,"jquery":4,"react":165,"react-dom":10}],176:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Event'
 });
 
-},{}],176:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'List'
 });
 
-},{}],177:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Lists'
 });
 
-},{}]},{},[174])
+},{}]},{},[175])
 
 
 //# sourceMappingURL=bundle.js.map

@@ -50,7 +50,6 @@ module.exports = React.createClass({
                         {listDetails}
                     </div>
                 </div>
-
             </div>
         )
     },

@@ -1,14 +1,11 @@
 .EventManagementComponent{
-  *, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+  .row {
+    .col.s5{
+      .event-form {
 
-  * {
-    position: relative;
+      }
+    }
   }
-
   .Calendar {
     border-collapse: collapse;
     padding: 0;
@@ -53,6 +50,9 @@
   .Day.selected {
     background: #2980b9;
     color: #fff;
+  }
+  .picker.picker--opened.picker--focused{
+    font-size: 15px;
   }
 
 }

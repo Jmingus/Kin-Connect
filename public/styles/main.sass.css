@@ -1,11 +1,21 @@
 @import url(materialize-css/dist/css/materialize.min.css);
-.EventManagementComponent *, .EventManagementComponent *:before, .EventManagementComponent *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+.HomepageComponent .brand-title {
+  color: #8fdd88; }
 
-.EventManagementComponent * {
-  position: relative; }
+.HomepageComponent .subHeader {
+  color: #DFEC90; }
+
+.HomepageComponent .icon-color {
+  color: #02635e; }
+
+footer .subHeader {
+  color: #DFEC90; }
+
+footer.page-footer {
+  background-color: #0088AA; }
+
+.SignUpComponent .optional {
+  font-size: 30px; }
 
 .EventManagementComponent .Calendar {
   border-collapse: collapse;
@@ -44,23 +54,8 @@
   background: #2980b9;
   color: #fff; }
 
-.HomepageComponent .brand-title {
-  color: #8fdd88; }
-
-.HomepageComponent .subHeader {
-  color: #DFEC90; }
-
-.HomepageComponent .icon-color {
-  color: #02635e; }
-
-footer .subHeader {
-  color: #DFEC90; }
-
-footer.page-footer {
-  background-color: #0088AA; }
-
-.SignUpComponent .optional {
-  font-size: 30px; }
+.EventManagementComponent .picker.picker--opened.picker--focused {
+  font-size: 15px; }
 
 .ListManagementComponent .add-list-button {
   position: absolute;
