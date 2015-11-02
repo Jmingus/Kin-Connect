@@ -37871,7 +37871,7 @@ module.exports = React.createClass({
         );
     },
     sendEmail: function sendEmail() {
-        Parse.Cloud.run('emailNotification', 'Jacob', {
+        Parse.Cloud.run('emailNotification', { user: 'Jacob' }, {
             success: function success(email) {
                 console.log('Sent Email');
             },
