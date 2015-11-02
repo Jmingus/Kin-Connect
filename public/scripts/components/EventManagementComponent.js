@@ -40,7 +40,7 @@ module.exports = React.createClass({
         };
         let allEvents = this.state.events.map(function(event){
            return (
-            <EventListComponent event={event} />
+            <EventListComponent event={event} key={event.id} />
            )
         });
         return (

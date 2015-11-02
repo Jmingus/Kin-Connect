@@ -62,6 +62,12 @@ footer.page-footer {
   left: 10px;
   bottom: 80px; }
 
+.RecipeManagementComponent .dz-error-mark {
+  display: none; }
+
+.RecipeManagementComponent .dz-success-mark {
+  display: none; }
+
 .ListDetailsComponent .action-button {
   top: 60px;
   right: 10px; }

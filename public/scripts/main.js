@@ -8,7 +8,7 @@ window.jQuery = $;
 var main = document.getElementById('main');
 var nav = document.getElementById('nav');
 var footer = document.getElementById('footer');
-var listDetails = document.getElementById('')
+var listDetails = document.getElementById('');
 
 Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 
@@ -19,6 +19,7 @@ var SignUpComponent = require('./components/SignUpComponent');
 var SignInComponent = require('./components/SignInComponent');
 var ListManagementComponent = require('./components/ListManagementComponent');
 var EventManagementComponent = require('./components/EventManagementComponent');
+var RecipeManagementComponent = require('./components/RecipeManagementComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -27,7 +28,8 @@ var Router = Backbone.Router.extend({
         'signin': 'signin',
         'listmanagement(/:id)': 'listmanagement',
         'listdetails/:id': 'listdetails',
-        'eventmanagement': 'eventmanagement'
+        'eventmanagement': 'eventmanagement',
+        'recipemanagement': 'recipemanagement'
     },
     home: function(){
         ReactDOM.render(
@@ -56,6 +58,12 @@ var Router = Backbone.Router.extend({
     eventmanagement: function(){
         ReactDOM.render(
             <EventManagementComponent />,
+            main
+        )
+    },
+    recipemanagement: function(){
+        ReactDOM.render(
+            <RecipeManagementComponent />,
             main
         )
     }
