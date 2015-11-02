@@ -2,7 +2,7 @@ var Parse = require('parse-cloud-express').Parse;
 var postmark = require("postmark")(process.env.POSTMARK_API_TOKEN);
 
 
-Parse.Cloud.define('emailNotification', function(req,res){
+Parse.Cloud.define('emailNotification', function(request,response){
     postmark.send({
         "From": "kinconnect@connection.com",
         "To": "jmingus@austin.rr.com",
@@ -14,7 +14,9 @@ Parse.Cloud.define('emailNotification', function(req,res){
             console.error("Unable to send via postmark: " + error.message);
             return;
         }
-        response.success('Email Sent');
-        console.info("Sent to postmark for delivery")
+        if(success){
+            response.success('Email Sent');
+            console.info("Sent to postmark for delivery")
+        }
     });
 });
