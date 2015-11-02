@@ -1,9 +1,12 @@
 @import url(materialize-css/dist/css/materialize.min.css);
 .HomepageComponent .brand-title {
-  color: #8fdd88; }
+  color: #8fdd88;
+  background-color: RGBA(0, 0, 0, 0.5); }
 
 .HomepageComponent .subHeader {
-  color: #DFEC90; }
+  color: #DFEC90;
+  background-color: RGBA(0, 0, 0, 0.5);
+  padding: 1em; }
 
 .HomepageComponent .icon-color {
   color: #02635e; }
@@ -61,6 +64,15 @@ footer.page-footer {
   position: absolute;
   left: 10px;
   bottom: 80px; }
+
+.ListManagementComponent .list-title {
+  background-color: #025063;
+  width: 100%;
+  display: block; }
+
+.ListManagementComponent .list-title:hover {
+  background-color: #A4DD88;
+  color: #000; }
 
 .RecipeManagementComponent .dz-error-mark {
   display: none; }

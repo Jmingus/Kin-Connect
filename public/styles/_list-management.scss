@@ -4,4 +4,13 @@
     left: 10px;
     bottom: 80px;
   }
+  .list-title{
+    background-color: $ButtonBackgroundColor;
+    width: 100%;
+    display: block;
+  }
+  .list-title:hover{
+    background-color: $HeaderColor;
+    color: #000;
+  }
 }

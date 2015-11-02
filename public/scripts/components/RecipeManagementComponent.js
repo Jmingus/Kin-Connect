@@ -37,7 +37,17 @@ module.exports = React.createClass({
                         </form>
                     </div>
                 </div>
+                <button className="btn-large" onClick={this.sendEmail}>Send Email</button>
             </div>
         )
+    },
+    sendEmail: function(){
+        Parse.Cloud.run('emailNotification', 'Jacob', {
+            success: function(email) {
+                console.log('Sent Email')
+            },
+            error: function(error) {
+            }
+        });
     }
 });

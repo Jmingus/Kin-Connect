@@ -18,7 +18,7 @@ module.exports = React.createClass({
     },
     render: function(){
         var allLists = this.state.lists.map(function(list){
-            return (<a key={list.id} href={`#listmanagement/${list.id}`}><div>{list.get('listTitle')}</div></a>)
+            return (<a key={list.id} href={`#listmanagement/${list.id}`}><div className="btn list-title">{list.get('listTitle')}</div></a>)
         });
         if(this.props.list !== null){
            var listDetails = <ListDetailsComponent list={this.props.list} router={this.props.router}/>

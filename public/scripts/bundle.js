@@ -37187,11 +37187,6 @@ module.exports = React.createClass({
                         React.createElement(
                             'div',
                             { className: 'row center' },
-                            React.createElement('h5', { className: 'header col s12 subHeader' })
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'row center' },
                             React.createElement(
                                 'a',
                                 { href: '#signup', id: 'signup-button', className: 'btn-large waves-effect ' },
@@ -37373,7 +37368,7 @@ module.exports = React.createClass({
                             React.createElement(
                                 'h5',
                                 { className: 'header col s12 subHeader' },
-                                'Kin-Connect will making your family experience much more memorable!'
+                                'Kin-Connect will make your family experience much more memorable!'
                             )
                         )
                     )
@@ -37614,7 +37609,7 @@ module.exports = React.createClass({
                 { key: list.id, href: '#listmanagement/' + list.id },
                 React.createElement(
                     'div',
-                    null,
+                    { className: 'btn list-title' },
                     list.get('listTitle')
                 )
             );
@@ -37867,8 +37862,21 @@ module.exports = React.createClass({
                         )
                     )
                 )
+            ),
+            React.createElement(
+                'button',
+                { className: 'btn-large', onClick: this.sendEmail },
+                'Send Email'
             )
         );
+    },
+    sendEmail: function sendEmail() {
+        Parse.Cloud.run('emailNotification', 'Jacob', {
+            success: function success(email) {
+                console.log('Sent Email');
+            },
+            error: function error(_error) {}
+        });
     }
 });
 

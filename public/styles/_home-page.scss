@@ -1,9 +1,12 @@
 .HomepageComponent{
   .brand-title{
     color: #8fdd88;
+    background-color: RGBA(0, 0, 0, 0.5);
   }
   .subHeader{
     color: $SubHeaderColor;
+    background-color: RGBA(0, 0, 0, 0.5);
+    padding: 1em;
   }
   .icon-color{
     color: $IconColor;
