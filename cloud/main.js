@@ -15,7 +15,7 @@ Parse.Cloud.define('emailNotification', function(request,response){
             return;
         }
         if(success){
-            response.success('Email Sent');
+            response.success(response, 'Email Sent');
             console.info("Sent to postmark for delivery")
         }
     });
