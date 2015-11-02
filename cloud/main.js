@@ -7,7 +7,7 @@ Parse.Cloud.define('emailNotification', function(request,response){
         "From": "jmingus@austin.rr.com",
         "To": "jmingus@austin.rr.com",
         "Subject": "Hello from Kin-Connect",
-        "TextBody": "req",
+        "TextBody": request,
         "Tag": "email-notification"
     }, function(error, success) {
         if(error) {
