@@ -3,11 +3,12 @@ var postmark = require("postmark")(process.env.POSTMARK_API_TOKEN);
 
 
 Parse.Cloud.define('emailNotification', function(request,response){
+    console.log(request);
     postmark.send({
         "From": "jmingus@austin.rr.com",
         "To": "jmingus@austin.rr.com",
         "Subject": "Hello from Kin-Connect",
-        "TextBody": request,
+        "TextBody": "Hi there!",
         "Tag": "email-notification"
     }, function(error, success) {
         if(error) {
