@@ -1,5 +1,6 @@
 var React = require('react');
 var Dropzone = require('dropzone');
+var Recipes = require('../models/RecipesModel');
 
 module.exports = React.createClass({
     componentWillMount: function(){
@@ -24,22 +25,51 @@ module.exports = React.createClass({
             <div className="RecipeManagementComponent">
                 <div className="row">
                     <div className="col s6">
-                        <form action="#">
+                        <form onSubmit={this.addRecipe}>
                             <div className="file-field input-field">
                                 <div className="btn">
-                                    <span>File</span>
-                                    <input type="file" />
+                                    <span>Recipe Image</span>
+                                    <input type="file" ref="recipeImage"/>
                                 </div>
                                 <div className="file-path-wrapper">
                                     <input className="file-path validate" type="text" id="dropbox"/>
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="col s6">
+                                    <div className="input-field">
+                                        <input type="text" id="recipe-name" ref="recipeName" />
+                                        <label htmlFor="recipe-name"> Recipe Name </label>
+                                    </div>
+                                </div>
+                                <div className="col s6">
+                                    <div className="input-field">
+                                        <input type="number" id="average-cook-time" ref="averageCookTime"/>
+                                        <label htmlFor="average-cook-time"> Average Cook Time</label>
+                                    </div>
+                                </div>
+                                <div className="col s12">
+                                    <label htmlFor="recipe-description"> Recipe Description</label>
+                                    <textarea id="recipe-description" className="materialize-textarea" ref="recipeDescription"></textarea>
+                                </div>
+                                <button className="btn-large waves-effect" type='submit'>Submit Recipe</button>
+                            </div>
                         </form>
                     </div>
                 </div>
-                <button className="btn-large" onClick={this.sendEmail}>Send Email</button>
             </div>
         )
+    },
+    addRecipe: function(e){
+        e.preventDefault();
+        var newRecipe = new Recipes({
+            recipeImage: this.refs.recipeImage.files[0],
+            recipeName: this.refs.recipeName.value,
+            averageCookTime: this.refs.averageCookTime.value,
+            recipeDescription: this.refs.recipeDescription.value,
+            userId : Parse.User.current()
+        });
+        newRecipe.save();
     },
     sendEmail: function(){
         Parse.Cloud.run('emailNotification', {user: 'Jacob'}, {
@@ -51,3 +81,16 @@ module.exports = React.createClass({
         });
     }
 });
+
+//file = this.refs.addPicture.files[0];
+//var picLabel;
+//var formatTitle = this.refs.title.value.split(' ').join('');
+//console.log(formatTitle)
+//formatTitle.length > 0 ? picLabel = formatTitle : picLabel = 'picture';
+//var parseFile = new Parse.File(picLabel+'.png',file);
+//var pic = new PictureModel({
+//    spotId: new SpotModel({objectId:this.props.spot}),
+//    title: this.refs.title.value,
+//    caption: this.refs.caption.value
+//});
+//pic.set('picture', parseFile);

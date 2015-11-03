@@ -37809,6 +37809,7 @@ module.exports = React.createClass({
 
 var React = require('react');
 var Dropzone = require('dropzone');
+var Recipes = require('../models/RecipesModel');
 
 module.exports = React.createClass({
     displayName: 'exports',
@@ -37840,7 +37841,7 @@ module.exports = React.createClass({
                     { className: 'col s6' },
                     React.createElement(
                         'form',
-                        { action: '#' },
+                        { onSubmit: this.addRecipe },
                         React.createElement(
                             'div',
                             { className: 'file-field input-field' },
@@ -37850,25 +37851,78 @@ module.exports = React.createClass({
                                 React.createElement(
                                     'span',
                                     null,
-                                    'File'
+                                    'Recipe Image'
                                 ),
-                                React.createElement('input', { type: 'file' })
+                                React.createElement('input', { type: 'file', ref: 'recipeImage' })
                             ),
                             React.createElement(
                                 'div',
                                 { className: 'file-path-wrapper' },
                                 React.createElement('input', { className: 'file-path validate', type: 'text', id: 'dropbox' })
                             )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'row' },
+                            React.createElement(
+                                'div',
+                                { className: 'col s6' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field' },
+                                    React.createElement('input', { type: 'text', id: 'recipe-name', ref: 'recipeName' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'recipe-name' },
+                                        ' Recipe Name '
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s6' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field' },
+                                    React.createElement('input', { type: 'number', id: 'average-cook-time', ref: 'averageCookTime' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'average-cook-time' },
+                                        ' Average Cook Time'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s12' },
+                                React.createElement(
+                                    'label',
+                                    { htmlFor: 'recipe-description' },
+                                    ' Recipe Description'
+                                ),
+                                React.createElement('textarea', { id: 'recipe-description', className: 'materialize-textarea', ref: 'recipeDescription' })
+                            ),
+                            React.createElement(
+                                'button',
+                                { className: 'btn-large waves-effect', type: 'submit' },
+                                'Submit Recipe'
+                            )
                         )
                     )
                 )
-            ),
-            React.createElement(
-                'button',
-                { className: 'btn-large', onClick: this.sendEmail },
-                'Send Email'
             )
         );
+    },
+    addRecipe: function addRecipe(e) {
+        e.preventDefault();
+        var newRecipe = new Recipes({
+            recipeImage: this.refs.recipeImage.files[0],
+            recipeName: this.refs.recipeName.value,
+            averageCookTime: this.refs.averageCookTime.value,
+            recipeDescription: this.refs.recipeDescription.value,
+            userId: Parse.User.current()
+        });
+        newRecipe.save();
     },
     sendEmail: function sendEmail() {
         Parse.Cloud.run('emailNotification', { user: 'Jacob' }, {
@@ -37880,7 +37934,20 @@ module.exports = React.createClass({
     }
 });
 
-},{"dropzone":4,"react":166}],175:[function(require,module,exports){
+//file = this.refs.addPicture.files[0];
+//var picLabel;
+//var formatTitle = this.refs.title.value.split(' ').join('');
+//console.log(formatTitle)
+//formatTitle.length > 0 ? picLabel = formatTitle : picLabel = 'picture';
+//var parseFile = new Parse.File(picLabel+'.png',file);
+//var pic = new PictureModel({
+//    spotId: new SpotModel({objectId:this.props.spot}),
+//    title: this.refs.title.value,
+//    caption: this.refs.caption.value
+//});
+//pic.set('picture', parseFile);
+
+},{"../models/RecipesModel":181,"dropzone":4,"react":166}],175:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -38213,6 +38280,13 @@ module.exports = Parse.Object.extend({
 
 module.exports = Parse.Object.extend({
     className: 'Lists'
+});
+
+},{}],181:[function(require,module,exports){
+'use strict';
+
+module.exports = Parse.Object.extend({
+    className: 'Recipes'
 });
 
 },{}]},{},[177])
