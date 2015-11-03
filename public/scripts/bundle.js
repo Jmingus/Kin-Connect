@@ -37915,13 +37915,16 @@ module.exports = React.createClass({
     },
     addRecipe: function addRecipe(e) {
         e.preventDefault();
+        var recipeName = this.refs.recipeName.value;
+        var recipeImageData = this.refs.recipeImage.files[0];
         var newRecipe = new Recipes({
-            recipeImage: this.refs.recipeImage.files[0],
-            recipeName: this.refs.recipeName.value,
+            recipeName: recipeName,
             averageCookTime: this.refs.averageCookTime.value,
             recipeDescription: this.refs.recipeDescription.value,
             userId: Parse.User.current()
         });
+        var recipeFile = new Parse.File(recipeName + '.png', recipeImageData);
+        newRecipe.set('recipeImage', recipeFile);
         newRecipe.save();
     },
     sendEmail: function sendEmail() {

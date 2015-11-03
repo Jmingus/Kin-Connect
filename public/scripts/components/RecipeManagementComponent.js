@@ -62,13 +62,16 @@ module.exports = React.createClass({
     },
     addRecipe: function(e){
         e.preventDefault();
-        var newRecipe = new Recipes({
-            recipeImage: this.refs.recipeImage.files[0],
-            recipeName: this.refs.recipeName.value,
+        let recipeName = this.refs.recipeName.value;
+        let recipeImageData = this.refs.recipeImage.files[0];
+        let newRecipe = new Recipes({
+            recipeName: recipeName,
             averageCookTime: this.refs.averageCookTime.value,
             recipeDescription: this.refs.recipeDescription.value,
             userId : Parse.User.current()
         });
+        let recipeFile = new Parse.File(`${recipeName}.png`,recipeImageData);
+        newRecipe.set('recipeImage', recipeFile);
         newRecipe.save();
     },
     sendEmail: function(){
