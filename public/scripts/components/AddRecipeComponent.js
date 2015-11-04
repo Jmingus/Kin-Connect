@@ -43,7 +43,7 @@ module.exports = React.createClass({
                                </div>
                                <div className="col s12">
                                    <div className="input-field section scrollspy" id="recipeIngredientSection">
-                                       <textarea className="materialize-textarea" id="recipeIngredient" ref="recipeIngredients"/>
+                                       <textarea className="materialize-textarea" id="recipeIngredient" ref="recipeIngredients" placeholder="seperate ingredients with a comma"/>
                                        <label htmlFor="recipeIngredient"> Recipe Ingredients </label>
                                    </div>
                                </div>
@@ -92,43 +92,43 @@ module.exports = React.createClass({
                                <div className="col s4">
                                    <div className="input-field section scrollspy" id="recipeTagsSection">
                                        <p>
-                                           <input type="checkbox" id="checkbox-appetizers" />
+                                           <input type="checkbox" id="checkbox-appetizers" value="Appetizers"/>
                                            <label htmlFor="checkbox-appetizers">Appetizers</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-bbq" />
-                                           <label htmlFor="checkbox-bbq">BBQ and grilling</label>
+                                           <input type="checkbox" id="checkbox-bbq" value="BBQ and Grilling"/>
+                                           <label htmlFor="checkbox-bbq">BBQ and Grilling</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-beef" />
+                                           <input type="checkbox" id="checkbox-beef" value="Beef" />
                                            <label htmlFor="checkbox-beef">Beef</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-beverages" />
+                                           <input type="checkbox" id="checkbox-beverages" value="Beverages"/>
                                            <label htmlFor="checkbox-beverages">Beverages</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-bread" />
+                                           <input type="checkbox" id="checkbox-bread" value="Bread" />
                                            <label htmlFor="checkbox-bread">Bread</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-breakfast/brunch" />
+                                           <input type="checkbox" id="checkbox-breakfast/brunch" value="Breakfast/Brunch" />
                                            <label htmlFor="checkbox-breakfast/brunch">Breakfast/Brunch</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-cakes" />
+                                           <input type="checkbox" id="checkbox-cakes" value="Cakes" />
                                            <label htmlFor="checkbox-cakes">Cakes</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-chicken" />
+                                           <input type="checkbox" id="checkbox-chicken" value="Chicken"/>
                                            <label htmlFor="checkbox-chicken">Chicken</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-chinese" />
+                                           <input type="checkbox" id="checkbox-chinese"  value="Chinese"/>
                                            <label htmlFor="checkbox-chinese">Chinese</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-cookies" />
+                                           <input type="checkbox" id="checkbox-cookies" value="Cookies" />
                                            <label htmlFor="checkbox-cookies">Cookies</label>
                                        </p>
                                    </div>
@@ -136,44 +136,40 @@ module.exports = React.createClass({
                                <div className="col s4">
                                    <div className="input-field section">
                                        <p>
-                                           <input type="checkbox" id="checkbox-desserts" />
+                                           <input type="checkbox" id="checkbox-desserts"  value="Desserts"/>
                                            <label htmlFor="checkbox-desserts">Desserts</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-family" />
-                                           <label htmlFor="checkbox-family">Family</label>
-                                       </p>
-                                       <p>
-                                           <input type="checkbox" id="checkbox-healthy" />
+                                           <input type="checkbox" id="checkbox-healthy"  value="Healthy Cooking"/>
                                            <label htmlFor="checkbox-healthy">Healthy Cooking</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-holidays" />
+                                           <input type="checkbox" id="checkbox-holidays"  value="Holidays"/>
                                            <label htmlFor="checkbox-holidays">Holidays</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-italian" />
+                                           <input type="checkbox" id="checkbox-italian" value="Italian" />
                                            <label htmlFor="checkbox-italian">Italian</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-japanese" />
+                                           <input type="checkbox" id="checkbox-japanese" value="Japanese" />
                                            <label htmlFor="checkbox-japanese">Japanese</label>
                                        </p>
 
                                        <p>
-                                           <input type="checkbox" id="checkbox-main" />
+                                           <input type="checkbox" id="checkbox-main" value="Main Dish" />
                                            <label htmlFor="checkbox-main">Main Dish</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-mexican" />
+                                           <input type="checkbox" id="checkbox-mexican" value="Mexican"/>
                                            <label htmlFor="checkbox-mexican">Mexican</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-other" />
+                                           <input type="checkbox" id="checkbox-other" value="Other"/>
                                            <label htmlFor="checkbox-other">Other</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-pasta" />
+                                           <input type="checkbox" id="checkbox-pasta" value="Pasta"/>
                                            <label htmlFor="checkbox-pasta">Pasta</label>
                                        </p>
                                    </div>
@@ -181,39 +177,39 @@ module.exports = React.createClass({
                                <div className="col s4">
                                    <div className="input-field section">
                                        <p>
-                                           <input type="checkbox" id="checkbox-pork" />
+                                           <input type="checkbox" id="checkbox-pork" value="Pork"/>
                                            <label htmlFor="checkbox-pork">Pork</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-quick" />
+                                           <input type="checkbox" id="checkbox-quick"  value="Quick and Easy"/>
                                            <label htmlFor="checkbox-quick">Quick and Easy</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-salad" />
+                                           <input type="checkbox" id="checkbox-salad"  value="Salad"/>
                                            <label htmlFor="checkbox-salad">Salad</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-seafood" />
+                                           <input type="checkbox" id="checkbox-seafood" value="Seafood"/>
                                            <label htmlFor="checkbox-seafood">Seafood</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-seasonal" />
+                                           <input type="checkbox" id="checkbox-seasonal" value="Seasonal"/>
                                            <label htmlFor="checkbox-seasonal">Seasonal</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-sidedish" />
+                                           <input type="checkbox" id="checkbox-sidedish" value="Side Dish"/>
                                            <label htmlFor="checkbox-sidedish">Side Dish</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-slowcooker" />
+                                           <input type="checkbox" id="checkbox-slowcooker" value="Slow Cooker"/>
                                            <label htmlFor="checkbox-slowcooker">Slow Cooker</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-soupsandstews" />
+                                           <input type="checkbox" id="checkbox-soupsandstews" value="Soups and Stews"/>
                                            <label htmlFor="checkbox-soupsandstews">Soups and Stews</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-vegetarian" />
+                                           <input type="checkbox" id="checkbox-vegetarian" value="Vegetarian"/>
                                            <label htmlFor="checkbox-vegetarian">Vegetarian</label>
                                        </p>
                                    </div>
@@ -247,15 +243,31 @@ module.exports = React.createClass({
    },
    addRecipe: function(e){
        e.preventDefault();
-       let recipeTags = this.refs.recipeTags;
+       let recipeTags = $('input[type=checkbox]:checked').map(function(_, el) {
+           return $(el).val();
+       }).get();
        let recipeName = this.refs.recipeName.value;
+       let recipeReadyTime;
+       let recipeYield;
+       this.refs.readyTime.value === '' ? recipeReadyTime = 0 : recipeReadyTime = this.refs.readyTime.value;
+       this.refs.recipeYield.value === '' ? recipeYield = 0 : recipeYield = this.refs.recipeYield.value;
        let recipeImageData = this.refs.recipeImage.files[0];
+       let recipeIngredients = this.refs.recipeIngredients.value.split(',');
        let newRecipe = new Recipes({
            recipeName: recipeName,
-           averageCookTime: this.refs.averageCookTime.value,
            recipeDescription: this.refs.recipeDescription.value,
            userId : Parse.User.current(),
-           recipeTags: recipeTags
+           recipeTags: recipeTags,
+           recipeIngredients: recipeIngredients,
+           recipeDirections: this.refs.recipeDirections.value,
+           recipeNotes: this.refs.recipeNotes.value,
+           recipeCookTime: this.refs.cookTime.value,
+           recipePrepTime: this.refs.prepTime.value,
+           recipeReadyTime: recipeReadyTime,
+           recipeServingSize: this.refs.servingSize.value,
+           recipeYield : recipeYield
+
+
        });
        let recipeFile = new Parse.File(`${recipeName}.png`,recipeImageData);
        newRecipe.set('recipeImage', recipeFile);

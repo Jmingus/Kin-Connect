@@ -36990,7 +36990,7 @@ module.exports = React.createClass({
                                 React.createElement(
                                     'div',
                                     { className: 'input-field section scrollspy', id: 'recipeIngredientSection' },
-                                    React.createElement('textarea', { className: 'materialize-textarea', id: 'recipeIngredient', ref: 'recipeIngredients' }),
+                                    React.createElement('textarea', { className: 'materialize-textarea', id: 'recipeIngredient', ref: 'recipeIngredients', placeholder: 'seperate ingredients with a comma' }),
                                     React.createElement(
                                         'label',
                                         { htmlFor: 'recipeIngredient' },
@@ -37105,7 +37105,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-appetizers' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-appetizers', value: 'Appetizers' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-appetizers' },
@@ -37115,17 +37115,17 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-bbq' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-bbq', value: 'BBQ and Grilling' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-bbq' },
-                                            'BBQ and grilling'
+                                            'BBQ and Grilling'
                                         )
                                     ),
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-beef' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-beef', value: 'Beef' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-beef' },
@@ -37135,7 +37135,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-beverages' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-beverages', value: 'Beverages' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-beverages' },
@@ -37145,7 +37145,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-bread' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-bread', value: 'Bread' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-bread' },
@@ -37155,7 +37155,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-breakfast/brunch' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-breakfast/brunch', value: 'Breakfast/Brunch' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-breakfast/brunch' },
@@ -37165,7 +37165,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-cakes' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-cakes', value: 'Cakes' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-cakes' },
@@ -37175,7 +37175,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-chicken' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-chicken', value: 'Chicken' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-chicken' },
@@ -37185,7 +37185,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-chinese' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-chinese', value: 'Chinese' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-chinese' },
@@ -37195,7 +37195,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-cookies' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-cookies', value: 'Cookies' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-cookies' },
@@ -37213,7 +37213,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-desserts' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-desserts', value: 'Desserts' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-desserts' },
@@ -37223,17 +37223,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-family' }),
-                                        React.createElement(
-                                            'label',
-                                            { htmlFor: 'checkbox-family' },
-                                            'Family'
-                                        )
-                                    ),
-                                    React.createElement(
-                                        'p',
-                                        null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-healthy' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-healthy', value: 'Healthy Cooking' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-healthy' },
@@ -37243,7 +37233,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-holidays' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-holidays', value: 'Holidays' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-holidays' },
@@ -37253,7 +37243,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-italian' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-italian', value: 'Italian' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-italian' },
@@ -37263,7 +37253,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-japanese' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-japanese', value: 'Japanese' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-japanese' },
@@ -37273,7 +37263,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-main' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-main', value: 'Main Dish' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-main' },
@@ -37283,7 +37273,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-mexican' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-mexican', value: 'Mexican' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-mexican' },
@@ -37293,7 +37283,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-other' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-other', value: 'Other' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-other' },
@@ -37303,7 +37293,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-pasta' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-pasta', value: 'Pasta' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-pasta' },
@@ -37321,7 +37311,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-pork' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-pork', value: 'Pork' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-pork' },
@@ -37331,7 +37321,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-quick' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-quick', value: 'Quick and Easy' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-quick' },
@@ -37341,7 +37331,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-salad' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-salad', value: 'Salad' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-salad' },
@@ -37351,7 +37341,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-seafood' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-seafood', value: 'Seafood' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-seafood' },
@@ -37361,7 +37351,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-seasonal' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-seasonal', value: 'Seasonal' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-seasonal' },
@@ -37371,7 +37361,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-sidedish' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-sidedish', value: 'Side Dish' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-sidedish' },
@@ -37381,7 +37371,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-slowcooker' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-slowcooker', value: 'Slow Cooker' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-slowcooker' },
@@ -37391,7 +37381,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-soupsandstews' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-soupsandstews', value: 'Soups and Stews' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-soupsandstews' },
@@ -37401,7 +37391,7 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-vegetarian' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-vegetarian', value: 'Vegetarian' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-vegetarian' },
@@ -37517,15 +37507,30 @@ module.exports = React.createClass({
     },
     addRecipe: function addRecipe(e) {
         e.preventDefault();
-        var recipeTags = this.refs.recipeTags;
+        var recipeTags = $('input[type=checkbox]:checked').map(function (_, el) {
+            return $(el).val();
+        }).get();
         var recipeName = this.refs.recipeName.value;
+        var recipeReadyTime = undefined;
+        var recipeYield = undefined;
+        this.refs.readyTime.value === '' ? recipeReadyTime = 0 : recipeReadyTime = this.refs.readyTime.value;
+        this.refs.recipeYield.value === '' ? recipeYield = 0 : recipeYield = this.refs.recipeYield.value;
         var recipeImageData = this.refs.recipeImage.files[0];
+        var recipeIngredients = this.refs.recipeIngredients.value.split(',');
         var newRecipe = new Recipes({
             recipeName: recipeName,
-            averageCookTime: this.refs.averageCookTime.value,
             recipeDescription: this.refs.recipeDescription.value,
             userId: Parse.User.current(),
-            recipeTags: recipeTags
+            recipeTags: recipeTags,
+            recipeIngredients: recipeIngredients,
+            recipeDirections: this.refs.recipeDirections.value,
+            recipeNotes: this.refs.recipeNotes.value,
+            recipeCookTime: this.refs.cookTime.value,
+            recipePrepTime: this.refs.prepTime.value,
+            recipeReadyTime: recipeReadyTime,
+            recipeServingSize: this.refs.servingSize.value,
+            recipeYield: recipeYield
+
         });
         var recipeFile = new Parse.File(recipeName + '.png', recipeImageData);
         newRecipe.set('recipeImage', recipeFile);
