@@ -97,6 +97,9 @@ footer.page-footer {
 .ListDetailsComponent .main-floating-button {
   color: #A4DD88; }
 
+.AddRecipeComponent .table-of-contents {
+  position: fixed; }
+
 .nav-wrapper {
   background-color: #0088AA; }
 

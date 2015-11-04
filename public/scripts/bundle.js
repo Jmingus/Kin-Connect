@@ -36888,103 +36888,628 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":35}],167:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: "exports",
+
+    render: function render() {
+        return React.createElement(
+            "div",
+            { className: "input-field" },
+            React.createElement(
+                "label",
+                { htmlFor: "ingredientField" },
+                "Ingredient"
+            ),
+            React.createElement("input", { id: "ingredientField", type: "text" })
+        );
+    }
+});
+
+},{"react":166}],168:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Recipes = require('../models/RecipesModel');
+var AddIngredientComponent = require('./AddIngredientComponent');
+var Dropzone = require('dropzone');
 
 module.exports = React.createClass({
     displayName: 'exports',
 
+    componentDidMount: function componentDidMount() {
+        $(document).ready(function () {
+            $('.scrollspy').scrollSpy();
+            $("input#dropbox").dropzone({ url: "/file/post" });
+        });
+        Dropzone.options.imageUpload = {
+            paramName: "file",
+            maxFilesize: 2,
+            uploadMultiple: false,
+            maxFiles: 1,
+            accept: function accept(file, done) {
+                done('File Accepted');
+            }
+        };
+    },
     render: function render() {
         return React.createElement(
             'div',
             { className: 'AddRecipeComponent' },
             React.createElement(
-                'form',
-                { onSubmit: this.addRecipe },
+                'div',
+                { className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'file-field input-field' },
+                    { className: 'col s7' },
                     React.createElement(
-                        'div',
-                        { className: 'btn-large' },
+                        'form',
+                        { onSubmit: this.addRecipe },
                         React.createElement(
-                            'span',
-                            null,
-                            'Recipe Image'
-                        ),
-                        React.createElement('input', { type: 'file', ref: 'recipeImage' })
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'file-path-wrapper' },
-                        React.createElement('input', { className: 'file-path validate', type: 'text', id: 'dropbox' })
+                            'div',
+                            { className: 'row' },
+                            React.createElement(
+                                'div',
+                                { className: 'file-field input-field section scrollspy', id: 'recipeImageSection' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'btn-large' },
+                                    React.createElement(
+                                        'span',
+                                        null,
+                                        'Recipe Image'
+                                    ),
+                                    React.createElement('input', { type: 'file', ref: 'recipeImage', id: 'recipeImage' })
+                                ),
+                                React.createElement(
+                                    'div',
+                                    { className: 'file-path-wrapper' },
+                                    React.createElement('input', { className: 'file-path validate', type: 'text', id: 'dropbox' })
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s12' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section scrollspy', id: 'recipeNameSection' },
+                                    React.createElement('input', { type: 'text', id: 'recipe-name', ref: 'recipeName' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'recipe-name' },
+                                        ' Recipe Name '
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s12' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section scrollspy', id: 'recipeIngredientSection' },
+                                    React.createElement('textarea', { className: 'materialize-textarea', id: 'recipeIngredient', ref: 'recipeIngredients' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'recipeIngredient' },
+                                        ' Recipe Ingredients '
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s12' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section scrollspy', id: 'recipeDirectionsSection' },
+                                    React.createElement('textarea', { className: 'materialize-textarea', id: 'recipeDirections', ref: 'recipeDirections' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'recipeDirections' },
+                                        ' Recipe Directions '
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s6' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section scrollspy', id: 'recipeCookSection' },
+                                    React.createElement('input', { type: 'number', id: 'prepTime', ref: 'prepTime' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'prepTime' },
+                                        'Prep Time'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s6' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section' },
+                                    React.createElement('input', { type: 'number', id: 'cookTime', ref: 'cookTime' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'cookTime' },
+                                        'Cook Time'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s6' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section' },
+                                    React.createElement('input', { type: 'number', id: 'readyTime', ref: 'readyTime' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'readyTime' },
+                                        'Ready In (Optional)'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s6' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section' },
+                                    React.createElement('input', { type: 'number', id: 'servingSize', ref: 'servingSize' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'servingSize' },
+                                        'Number of Servings'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s6' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section' },
+                                    React.createElement('input', { type: 'number', id: 'recipeYield', ref: 'recipeYield' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'recipeYield' },
+                                        'Recipe Yield (Optional)'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s12' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section scrollspy', id: 'recipeNotesSection' },
+                                    React.createElement('textarea', { className: 'materialize-textarea', id: 'recipeNotes', ref: 'recipeNotes' }),
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'recipeNotes' },
+                                        'Recipe Notes'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s4' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section scrollspy', id: 'recipeTagsSection' },
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-appetizers' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-appetizers' },
+                                            'Appetizers'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-bbq' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-bbq' },
+                                            'BBQ and grilling'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-beef' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-beef' },
+                                            'Beef'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-beverages' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-beverages' },
+                                            'Beverages'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-bread' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-bread' },
+                                            'Bread'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-breakfast/brunch' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-breakfast/brunch' },
+                                            'Breakfast/Brunch'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-cakes' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-cakes' },
+                                            'Cakes'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-chicken' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-chicken' },
+                                            'Chicken'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-chinese' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-chinese' },
+                                            'Chinese'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-cookies' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-cookies' },
+                                            'Cookies'
+                                        )
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s4' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section' },
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-desserts' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-desserts' },
+                                            'Desserts'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-family' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-family' },
+                                            'Family'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-healthy' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-healthy' },
+                                            'Healthy Cooking'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-holidays' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-holidays' },
+                                            'Holidays'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-italian' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-italian' },
+                                            'Italian'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-japanese' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-japanese' },
+                                            'Japanese'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-main' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-main' },
+                                            'Main Dish'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-mexican' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-mexican' },
+                                            'Mexican'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-other' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-other' },
+                                            'Other'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-pasta' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-pasta' },
+                                            'Pasta'
+                                        )
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s4' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section' },
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-pork' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-pork' },
+                                            'Pork'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-quick' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-quick' },
+                                            'Quick and Easy'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-salad' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-salad' },
+                                            'Salad'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-seafood' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-seafood' },
+                                            'Seafood'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-seasonal' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-seasonal' },
+                                            'Seasonal'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-sidedish' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-sidedish' },
+                                            'Side Dish'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-slowcooker' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-slowcooker' },
+                                            'Slow Cooker'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-soupsandstews' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-soupsandstews' },
+                                            'Soups and Stews'
+                                        )
+                                    ),
+                                    React.createElement(
+                                        'p',
+                                        null,
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-vegetarian' }),
+                                        React.createElement(
+                                            'label',
+                                            { htmlFor: 'checkbox-vegetarian' },
+                                            'Vegetarian'
+                                        )
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col s12' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'input-field section scrollspy', id: 'recipeDescriptionSection' },
+                                    React.createElement(
+                                        'label',
+                                        { htmlFor: 'recipe-description' },
+                                        ' Recipe Description'
+                                    ),
+                                    React.createElement('textarea', { id: 'recipe-description', className: 'materialize-textarea', ref: 'recipeDescription' })
+                                )
+                            ),
+                            React.createElement(
+                                'button',
+                                { className: 'btn-large waves-effect col s6 modal-action modal-close', type: 'submit' },
+                                'Submit Recipe'
+                            )
+                        )
                     )
                 ),
                 React.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'col s5' },
                     React.createElement(
-                        'div',
-                        { className: 'col s6' },
+                        'ul',
+                        { className: 'section table-of-contents' },
                         React.createElement(
-                            'div',
-                            { className: 'input-field' },
-                            React.createElement('input', { type: 'text', id: 'recipe-name', ref: 'recipeName' }),
+                            'li',
+                            null,
                             React.createElement(
-                                'label',
-                                { htmlFor: 'recipe-name' },
-                                ' Recipe Name '
+                                'a',
+                                { href: '#recipeImageSection' },
+                                'Recipe Image'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'a',
+                                { href: '#recipeNameSection' },
+                                'Recipe Name'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'a',
+                                { href: '#recipeIngredientSection' },
+                                'Recipe Ingredients'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'a',
+                                { href: '#recipeDirectionsSection' },
+                                'Recipe Directions'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'a',
+                                { href: '#recipeCookSection' },
+                                'Recipe Cook Times'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'a',
+                                { href: '#recipeNotesSection' },
+                                'Recipe Notes'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'a',
+                                { href: '#recipeTagsSection' },
+                                'Recipe Tags'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                'a',
+                                { href: '#recipeDescriptionSection' },
+                                'Recipe Description'
                             )
                         )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'col s6' },
-                        React.createElement(
-                            'div',
-                            { className: 'input-field' },
-                            React.createElement('input', { type: 'number', id: 'average-cook-time', ref: 'averageCookTime' }),
-                            React.createElement(
-                                'label',
-                                { htmlFor: 'average-cook-time' },
-                                ' Average Cook Time'
-                            )
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        React.createElement(
-                            'div',
-                            { className: 'input-field' },
-                            React.createElement(
-                                'label',
-                                { htmlFor: 'recipe-description' },
-                                ' Recipe Description'
-                            ),
-                            React.createElement('textarea', { id: 'recipe-description', className: 'materialize-textarea', ref: 'recipeDescription' })
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'col s6' },
-                        React.createElement(
-                            'div',
-                            { className: 'input-field' },
-                            React.createElement('input', { type: 'text', id: 'recipe-tags', ref: 'recipeTags' }),
-                            React.createElement(
-                                'label',
-                                { htmlFor: 'recipe-tags' },
-                                ' Recipe Tags'
-                            )
-                        )
-                    ),
-                    React.createElement(
-                        'button',
-                        { className: 'btn-large waves-effect col s6 modal-action modal-close', type: 'submit' },
-                        'Submit Recipe'
                     )
                 )
             )
@@ -36992,13 +37517,15 @@ module.exports = React.createClass({
     },
     addRecipe: function addRecipe(e) {
         e.preventDefault();
+        var recipeTags = this.refs.recipeTags;
         var recipeName = this.refs.recipeName.value;
         var recipeImageData = this.refs.recipeImage.files[0];
         var newRecipe = new Recipes({
             recipeName: recipeName,
             averageCookTime: this.refs.averageCookTime.value,
             recipeDescription: this.refs.recipeDescription.value,
-            userId: Parse.User.current()
+            userId: Parse.User.current(),
+            recipeTags: recipeTags
         });
         var recipeFile = new Parse.File(recipeName + '.png', recipeImageData);
         newRecipe.set('recipeImage', recipeFile);
@@ -37006,7 +37533,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/RecipesModel":183,"react":166}],168:[function(require,module,exports){
+},{"../models/RecipesModel":184,"./AddIngredientComponent":167,"dropzone":4,"react":166}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37049,7 +37576,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],169:[function(require,module,exports){
+},{"react":166}],170:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37244,7 +37771,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/EventModel":180,"./EventListComponent":168,"moment":6,"react":166,"react-calendar-pane":7}],170:[function(require,module,exports){
+},{"../models/EventModel":181,"./EventListComponent":169,"moment":6,"react":166,"react-calendar-pane":7}],171:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -37274,7 +37801,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],171:[function(require,module,exports){
+},{"react":166}],172:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37505,7 +38032,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],172:[function(require,module,exports){
+},{"react":166}],173:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37701,7 +38228,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListModel":181,"../models/ListsModel":182,"backbone":1,"react":166}],173:[function(require,module,exports){
+},{"../models/ListModel":182,"../models/ListsModel":183,"backbone":1,"react":166}],174:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37824,7 +38351,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListsModel":182,"./ListDetailsComponent":172,"react":166}],174:[function(require,module,exports){
+},{"../models/ListsModel":183,"./ListDetailsComponent":173,"react":166}],175:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37926,7 +38453,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"backbone":1,"react":166}],175:[function(require,module,exports){
+},{"backbone":1,"react":166}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37999,11 +38526,10 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/RecipesModel":183,"react":166}],176:[function(require,module,exports){
+},{"../models/RecipesModel":184,"react":166}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var Dropzone = require('dropzone');
 var Recipes = require('../models/RecipesModel');
 var RecipeDetailComponent = require('./RecipeDetailComponent');
 var AddRecipeComponent = require('./AddRecipeComponent');
@@ -38017,21 +38543,6 @@ module.exports = React.createClass({
     },
     componentWillMount: function componentWillMount() {
         this.fetchRecipes();
-    },
-    componentDidMount: function componentDidMount() {
-        $(document).ready(function () {
-            $("input#dropbox").dropzone({ url: "/file/post" });
-            $('.modal-trigger').leanModal();
-        });
-        Dropzone.options.imageUpload = {
-            paramName: "file",
-            maxFilesize: 2,
-            uploadMultiple: false,
-            maxFiles: 1,
-            accept: function accept(file, done) {
-                done('File Accepted');
-            }
-        };
     },
     render: function render() {
         var allRecipes = this.state.recipes.map(function (recipe) {
@@ -38059,17 +38570,8 @@ module.exports = React.createClass({
             { className: 'RecipeManagementComponent' },
             React.createElement(
                 'a',
-                { className: 'waves-effect waves-light btn-large modal-trigger', href: '#AddRecipe' },
+                { className: 'waves-effect waves-light btn-large', href: '#addrecipe' },
                 'Add Recipe'
-            ),
-            React.createElement(
-                'div',
-                { id: 'AddRecipe', className: 'modal' },
-                React.createElement(
-                    'div',
-                    { className: 'modal-content' },
-                    React.createElement(AddRecipeComponent, null)
-                )
             ),
             React.createElement(
                 'div',
@@ -38101,7 +38603,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/RecipesModel":183,"./AddRecipeComponent":167,"./RecipeDetailComponent":175,"dropzone":4,"react":166}],177:[function(require,module,exports){
+},{"../models/RecipesModel":184,"./AddRecipeComponent":168,"./RecipeDetailComponent":176,"react":166}],178:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -38187,7 +38689,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],178:[function(require,module,exports){
+},{"react":166}],179:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -38354,7 +38856,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],179:[function(require,module,exports){
+},{"react":166}],180:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -38378,6 +38880,7 @@ var ListManagementComponent = require('./components/ListManagementComponent');
 var EventManagementComponent = require('./components/EventManagementComponent');
 var RecipeManagementComponent = require('./components/RecipeManagementComponent');
 var RecipeDetailComponent = require('./components/RecipeDetailComponent');
+var AddRecipeComponent = require('./components/AddRecipeComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -38388,7 +38891,8 @@ var Router = Backbone.Router.extend({
         'listdetails/:id': 'listdetails',
         'eventmanagement': 'eventmanagement',
         'recipemanagement': 'recipemanagement',
-        'recipemanagement/:id': 'recipedetail'
+        'recipemanagement/:id': 'recipedetail',
+        'addrecipe': 'addrecipe'
     },
     home: function home() {
         ReactDOM.render(React.createElement(HomepageComponent, null), main);
@@ -38410,6 +38914,9 @@ var Router = Backbone.Router.extend({
     },
     recipedetail: function recipedetail(id) {
         ReactDOM.render(React.createElement(RecipeDetailComponent, { recipe: id }), main);
+    },
+    addrecipe: function addrecipe() {
+        ReactDOM.render(React.createElement(AddRecipeComponent, null), main);
     }
 });
 
@@ -38420,35 +38927,35 @@ ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
 ReactDOM.render(React.createElement(FooterComponent, null), footer);
 
-},{"./components/EventManagementComponent":169,"./components/FooterComponent":170,"./components/HomepageComponent":171,"./components/ListManagementComponent":173,"./components/NavbarComponent":174,"./components/RecipeDetailComponent":175,"./components/RecipeManagementComponent":176,"./components/SignInComponent":177,"./components/SignUpComponent":178,"backbone":1,"jquery":5,"react":166,"react-dom":11}],180:[function(require,module,exports){
+},{"./components/AddRecipeComponent":168,"./components/EventManagementComponent":170,"./components/FooterComponent":171,"./components/HomepageComponent":172,"./components/ListManagementComponent":174,"./components/NavbarComponent":175,"./components/RecipeDetailComponent":176,"./components/RecipeManagementComponent":177,"./components/SignInComponent":178,"./components/SignUpComponent":179,"backbone":1,"jquery":5,"react":166,"react-dom":11}],181:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Event'
 });
 
-},{}],181:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'List'
 });
 
-},{}],182:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Lists'
 });
 
-},{}],183:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Recipes'
 });
 
-},{}]},{},[179])
+},{}]},{},[180])
 
 
 //# sourceMappingURL=bundle.js.map

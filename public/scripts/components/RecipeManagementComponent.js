@@ -1,5 +1,4 @@
 var React = require('react');
-var Dropzone = require('dropzone');
 var Recipes = require('../models/RecipesModel');
 var RecipeDetailComponent = require('./RecipeDetailComponent');
 var AddRecipeComponent = require('./AddRecipeComponent');
@@ -11,21 +10,6 @@ module.exports = React.createClass({
     },
     componentWillMount: function(){
         this.fetchRecipes();
-    },
-    componentDidMount: function(){
-        $(document).ready(function(){
-            $("input#dropbox").dropzone({ url: "/file/post" });
-            $('.modal-trigger').leanModal();
-        });
-        Dropzone.options.imageUpload = {
-            paramName: "file",
-            maxFilesize: 2,
-            uploadMultiple: false,
-            maxFiles: 1,
-            accept: function(file, done) {
-                done('File Accepted')
-            }
-        };
     },
     render: function(){
         let allRecipes = this.state.recipes.map(function(recipe){
@@ -40,13 +24,8 @@ module.exports = React.createClass({
         });
         return(
             <div className="RecipeManagementComponent">
-                <a className="waves-effect waves-light btn-large modal-trigger" href="#AddRecipe">Add Recipe</a>
+                <a className="waves-effect waves-light btn-large" href="#addrecipe">Add Recipe</a>
 
-                <div id="AddRecipe" className="modal">
-                    <div className="modal-content">
-                        <AddRecipeComponent />
-                    </div>
-                </div>
                 <div className="row">
                     {allRecipes}
                 </div>
