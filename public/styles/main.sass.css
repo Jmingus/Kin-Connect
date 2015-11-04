@@ -80,6 +80,13 @@ footer.page-footer {
 .RecipeManagementComponent .dz-success-mark {
   display: none; }
 
+.RecipeManagementComponent .img-box {
+  height: 10em;
+  width: 10em; }
+  .RecipeManagementComponent .img-box img {
+    height: 100%;
+    width: 100%; }
+
 .ListDetailsComponent .action-button {
   top: 60px;
   right: 10px; }

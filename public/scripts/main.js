@@ -20,6 +20,7 @@ var SignInComponent = require('./components/SignInComponent');
 var ListManagementComponent = require('./components/ListManagementComponent');
 var EventManagementComponent = require('./components/EventManagementComponent');
 var RecipeManagementComponent = require('./components/RecipeManagementComponent');
+var RecipeDetailComponent = require('./components/RecipeDetailComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -29,7 +30,8 @@ var Router = Backbone.Router.extend({
         'listmanagement(/:id)': 'listmanagement',
         'listdetails/:id': 'listdetails',
         'eventmanagement': 'eventmanagement',
-        'recipemanagement': 'recipemanagement'
+        'recipemanagement': 'recipemanagement',
+        'recipemanagement/:id': 'recipedetail'
     },
     home: function(){
         ReactDOM.render(
@@ -64,6 +66,12 @@ var Router = Backbone.Router.extend({
     recipemanagement: function(){
         ReactDOM.render(
             <RecipeManagementComponent />,
+            main
+        )
+    },
+    recipedetail: function(id){
+        ReactDOM.render(
+            <RecipeDetailComponent recipe={id} />,
             main
         )
     }

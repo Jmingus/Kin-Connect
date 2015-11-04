@@ -36891,6 +36891,125 @@ module.exports = require('./lib/React');
 'use strict';
 
 var React = require('react');
+var Recipes = require('../models/RecipesModel');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            { className: 'AddRecipeComponent' },
+            React.createElement(
+                'form',
+                { onSubmit: this.addRecipe },
+                React.createElement(
+                    'div',
+                    { className: 'file-field input-field' },
+                    React.createElement(
+                        'div',
+                        { className: 'btn-large' },
+                        React.createElement(
+                            'span',
+                            null,
+                            'Recipe Image'
+                        ),
+                        React.createElement('input', { type: 'file', ref: 'recipeImage' })
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'file-path-wrapper' },
+                        React.createElement('input', { className: 'file-path validate', type: 'text', id: 'dropbox' })
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'row' },
+                    React.createElement(
+                        'div',
+                        { className: 'col s6' },
+                        React.createElement(
+                            'div',
+                            { className: 'input-field' },
+                            React.createElement('input', { type: 'text', id: 'recipe-name', ref: 'recipeName' }),
+                            React.createElement(
+                                'label',
+                                { htmlFor: 'recipe-name' },
+                                ' Recipe Name '
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col s6' },
+                        React.createElement(
+                            'div',
+                            { className: 'input-field' },
+                            React.createElement('input', { type: 'number', id: 'average-cook-time', ref: 'averageCookTime' }),
+                            React.createElement(
+                                'label',
+                                { htmlFor: 'average-cook-time' },
+                                ' Average Cook Time'
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col s12' },
+                        React.createElement(
+                            'div',
+                            { className: 'input-field' },
+                            React.createElement(
+                                'label',
+                                { htmlFor: 'recipe-description' },
+                                ' Recipe Description'
+                            ),
+                            React.createElement('textarea', { id: 'recipe-description', className: 'materialize-textarea', ref: 'recipeDescription' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col s6' },
+                        React.createElement(
+                            'div',
+                            { className: 'input-field' },
+                            React.createElement('input', { type: 'text', id: 'recipe-tags', ref: 'recipeTags' }),
+                            React.createElement(
+                                'label',
+                                { htmlFor: 'recipe-tags' },
+                                ' Recipe Tags'
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'button',
+                        { className: 'btn-large waves-effect col s6 modal-action modal-close', type: 'submit' },
+                        'Submit Recipe'
+                    )
+                )
+            )
+        );
+    },
+    addRecipe: function addRecipe(e) {
+        e.preventDefault();
+        var recipeName = this.refs.recipeName.value;
+        var recipeImageData = this.refs.recipeImage.files[0];
+        var newRecipe = new Recipes({
+            recipeName: recipeName,
+            averageCookTime: this.refs.averageCookTime.value,
+            recipeDescription: this.refs.recipeDescription.value,
+            userId: Parse.User.current()
+        });
+        var recipeFile = new Parse.File(recipeName + '.png', recipeImageData);
+        newRecipe.set('recipeImage', recipeFile);
+        newRecipe.save();
+    }
+});
+
+},{"../models/RecipesModel":183,"react":166}],168:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
 module.exports = React.createClass({
     displayName: 'exports',
 
@@ -36930,7 +37049,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],168:[function(require,module,exports){
+},{"react":166}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37111,8 +37230,11 @@ module.exports = React.createClass({
     eventQuery: function eventQuery(date) {
         var _this = this;
 
+        var innerQuery = new Parse.Query(Parse.User);
+        innerQuery.equalTo('familyId', Parse.User.current().get('familyId'));
         var currentDate = moment(date._d).format('MMMM Do YYYY');
         var eventQuery = new Parse.Query('Event');
+        eventQuery.matchesQuery('userId', innerQuery);
         eventQuery.equalTo('dateOfEvent', currentDate);
         eventQuery.find().then(function (events) {
             _this.setState({ events: events });
@@ -37122,7 +37244,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/EventModel":178,"./EventListComponent":167,"moment":6,"react":166,"react-calendar-pane":7}],169:[function(require,module,exports){
+},{"../models/EventModel":180,"./EventListComponent":168,"moment":6,"react":166,"react-calendar-pane":7}],170:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -37152,7 +37274,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],170:[function(require,module,exports){
+},{"react":166}],171:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37383,7 +37505,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],171:[function(require,module,exports){
+},{"react":166}],172:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37579,7 +37701,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListModel":179,"../models/ListsModel":180,"backbone":1,"react":166}],172:[function(require,module,exports){
+},{"../models/ListModel":181,"../models/ListsModel":182,"backbone":1,"react":166}],173:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37702,7 +37824,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListsModel":180,"./ListDetailsComponent":171,"react":166}],173:[function(require,module,exports){
+},{"../models/ListsModel":182,"./ListDetailsComponent":172,"react":166}],174:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37804,20 +37926,102 @@ module.exports = React.createClass({
     }
 });
 
-},{"backbone":1,"react":166}],174:[function(require,module,exports){
+},{"backbone":1,"react":166}],175:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Recipe = require('../models/RecipesModel');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    getInitialState: function getInitialState() {
+        return {
+            recipe: null
+        };
+    },
+    componentWillMount: function componentWillMount() {
+        this.fetchRecipe();
+    },
+    render: function render() {
+        var details = null;
+        if (this.state.recipe !== null) {
+            details = React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'div',
+                    null,
+                    this.state.recipe.get('recipeName')
+                ),
+                React.createElement(
+                    'div',
+                    null,
+                    this.state.recipe.get('recipeDescription')
+                ),
+                React.createElement(
+                    'div',
+                    null,
+                    React.createElement('img', { src: this.state.recipe.get('recipeImage').url() })
+                ),
+                React.createElement(
+                    'div',
+                    null,
+                    this.state.recipe.get('averageCookTime')
+                ),
+                React.createElement(
+                    'div',
+                    null,
+                    this.state.recipe.get('recipeTags')
+                )
+            );
+        }
+        return React.createElement(
+            'div',
+            { className: 'RecipeDetailComponent' },
+            details
+        );
+    },
+    fetchRecipe: function fetchRecipe() {
+        var _this = this;
+
+        var innerQuery = new Parse.Query(Parse.User);
+        innerQuery.equalTo('familyId', Parse.User.current().get('familyId'));
+        var query = new Parse.Query('Recipes');
+        query.matchesQuery('userId', innerQuery);
+        query.equalTo('objectId', this.props.recipe);
+
+        query.first().then(function (recipe) {
+            _this.setState({ recipe: recipe });
+        }, function (err) {
+            console.log(err);
+        });
+    }
+});
+
+},{"../models/RecipesModel":183,"react":166}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Dropzone = require('dropzone');
 var Recipes = require('../models/RecipesModel');
-
+var RecipeDetailComponent = require('./RecipeDetailComponent');
+var AddRecipeComponent = require('./AddRecipeComponent');
 module.exports = React.createClass({
     displayName: 'exports',
 
-    componentWillMount: function componentWillMount() {},
+    getInitialState: function getInitialState() {
+        return {
+            recipes: []
+        };
+    },
+    componentWillMount: function componentWillMount() {
+        this.fetchRecipes();
+    },
     componentDidMount: function componentDidMount() {
         $(document).ready(function () {
             $("input#dropbox").dropzone({ url: "/file/post" });
+            $('.modal-trigger').leanModal();
         });
         Dropzone.options.imageUpload = {
             paramName: "file",
@@ -37830,102 +38034,62 @@ module.exports = React.createClass({
         };
     },
     render: function render() {
+        var allRecipes = this.state.recipes.map(function (recipe) {
+            return React.createElement(
+                'div',
+                { className: 'col s2', key: recipe.id },
+                React.createElement(
+                    'a',
+                    { href: '#recipemanagement/' + recipe.id },
+                    React.createElement(
+                        'div',
+                        { className: 'img-box' },
+                        React.createElement('img', { src: recipe.get('recipeImage').url() })
+                    ),
+                    React.createElement(
+                        'h5',
+                        null,
+                        recipe.get('recipeName')
+                    )
+                )
+            );
+        });
         return React.createElement(
             'div',
             { className: 'RecipeManagementComponent' },
             React.createElement(
+                'a',
+                { className: 'waves-effect waves-light btn-large modal-trigger', href: '#AddRecipe' },
+                'Add Recipe'
+            ),
+            React.createElement(
                 'div',
-                { className: 'row' },
+                { id: 'AddRecipe', className: 'modal' },
                 React.createElement(
                     'div',
-                    { className: 'col s6' },
-                    React.createElement(
-                        'form',
-                        { onSubmit: this.addRecipe },
-                        React.createElement(
-                            'div',
-                            { className: 'file-field input-field' },
-                            React.createElement(
-                                'div',
-                                { className: 'btn' },
-                                React.createElement(
-                                    'span',
-                                    null,
-                                    'Recipe Image'
-                                ),
-                                React.createElement('input', { type: 'file', ref: 'recipeImage' })
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: 'file-path-wrapper' },
-                                React.createElement('input', { className: 'file-path validate', type: 'text', id: 'dropbox' })
-                            )
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'row' },
-                            React.createElement(
-                                'div',
-                                { className: 'col s6' },
-                                React.createElement(
-                                    'div',
-                                    { className: 'input-field' },
-                                    React.createElement('input', { type: 'text', id: 'recipe-name', ref: 'recipeName' }),
-                                    React.createElement(
-                                        'label',
-                                        { htmlFor: 'recipe-name' },
-                                        ' Recipe Name '
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: 'col s6' },
-                                React.createElement(
-                                    'div',
-                                    { className: 'input-field' },
-                                    React.createElement('input', { type: 'number', id: 'average-cook-time', ref: 'averageCookTime' }),
-                                    React.createElement(
-                                        'label',
-                                        { htmlFor: 'average-cook-time' },
-                                        ' Average Cook Time'
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: 'col s12' },
-                                React.createElement(
-                                    'label',
-                                    { htmlFor: 'recipe-description' },
-                                    ' Recipe Description'
-                                ),
-                                React.createElement('textarea', { id: 'recipe-description', className: 'materialize-textarea', ref: 'recipeDescription' })
-                            ),
-                            React.createElement(
-                                'button',
-                                { className: 'btn-large waves-effect', type: 'submit' },
-                                'Submit Recipe'
-                            )
-                        )
-                    )
+                    { className: 'modal-content' },
+                    React.createElement(AddRecipeComponent, null)
                 )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                allRecipes
             )
         );
     },
-    addRecipe: function addRecipe(e) {
-        e.preventDefault();
-        var recipeName = this.refs.recipeName.value;
-        var recipeImageData = this.refs.recipeImage.files[0];
-        var newRecipe = new Recipes({
-            recipeName: recipeName,
-            averageCookTime: this.refs.averageCookTime.value,
-            recipeDescription: this.refs.recipeDescription.value,
-            userId: Parse.User.current()
+    fetchRecipes: function fetchRecipes() {
+        var _this = this;
+
+        var innerQuery = new Parse.Query(Parse.User);
+        innerQuery.equalTo('familyId', Parse.User.current().get('familyId'));
+        var query = new Parse.Query('Recipes');
+        query.matchesQuery('userId', innerQuery);
+        query.find().then(function (recipes) {
+            _this.setState({ recipes: recipes });
+        }, function (err) {
+            console.log(err);
         });
-        var recipeFile = new Parse.File(recipeName + '.png', recipeImageData);
-        newRecipe.set('recipeImage', recipeFile);
-        newRecipe.save();
     },
     sendEmail: function sendEmail() {
         Parse.Cloud.run('emailNotification', { user: 'Jacob' }, {
@@ -37937,20 +38101,7 @@ module.exports = React.createClass({
     }
 });
 
-//file = this.refs.addPicture.files[0];
-//var picLabel;
-//var formatTitle = this.refs.title.value.split(' ').join('');
-//console.log(formatTitle)
-//formatTitle.length > 0 ? picLabel = formatTitle : picLabel = 'picture';
-//var parseFile = new Parse.File(picLabel+'.png',file);
-//var pic = new PictureModel({
-//    spotId: new SpotModel({objectId:this.props.spot}),
-//    title: this.refs.title.value,
-//    caption: this.refs.caption.value
-//});
-//pic.set('picture', parseFile);
-
-},{"../models/RecipesModel":181,"dropzone":4,"react":166}],175:[function(require,module,exports){
+},{"../models/RecipesModel":183,"./AddRecipeComponent":167,"./RecipeDetailComponent":175,"dropzone":4,"react":166}],177:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -38036,7 +38187,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],176:[function(require,module,exports){
+},{"react":166}],178:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -38203,7 +38354,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":166}],177:[function(require,module,exports){
+},{"react":166}],179:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -38226,6 +38377,7 @@ var SignInComponent = require('./components/SignInComponent');
 var ListManagementComponent = require('./components/ListManagementComponent');
 var EventManagementComponent = require('./components/EventManagementComponent');
 var RecipeManagementComponent = require('./components/RecipeManagementComponent');
+var RecipeDetailComponent = require('./components/RecipeDetailComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -38235,7 +38387,8 @@ var Router = Backbone.Router.extend({
         'listmanagement(/:id)': 'listmanagement',
         'listdetails/:id': 'listdetails',
         'eventmanagement': 'eventmanagement',
-        'recipemanagement': 'recipemanagement'
+        'recipemanagement': 'recipemanagement',
+        'recipemanagement/:id': 'recipedetail'
     },
     home: function home() {
         ReactDOM.render(React.createElement(HomepageComponent, null), main);
@@ -38254,6 +38407,9 @@ var Router = Backbone.Router.extend({
     },
     recipemanagement: function recipemanagement() {
         ReactDOM.render(React.createElement(RecipeManagementComponent, null), main);
+    },
+    recipedetail: function recipedetail(id) {
+        ReactDOM.render(React.createElement(RecipeDetailComponent, { recipe: id }), main);
     }
 });
 
@@ -38264,35 +38420,35 @@ ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
 ReactDOM.render(React.createElement(FooterComponent, null), footer);
 
-},{"./components/EventManagementComponent":168,"./components/FooterComponent":169,"./components/HomepageComponent":170,"./components/ListManagementComponent":172,"./components/NavbarComponent":173,"./components/RecipeManagementComponent":174,"./components/SignInComponent":175,"./components/SignUpComponent":176,"backbone":1,"jquery":5,"react":166,"react-dom":11}],178:[function(require,module,exports){
+},{"./components/EventManagementComponent":169,"./components/FooterComponent":170,"./components/HomepageComponent":171,"./components/ListManagementComponent":173,"./components/NavbarComponent":174,"./components/RecipeDetailComponent":175,"./components/RecipeManagementComponent":176,"./components/SignInComponent":177,"./components/SignUpComponent":178,"backbone":1,"jquery":5,"react":166,"react-dom":11}],180:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Event'
 });
 
-},{}],179:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'List'
 });
 
-},{}],180:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Lists'
 });
 
-},{}],181:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Recipes'
 });
 
-},{}]},{},[177])
+},{}]},{},[179])
 
 
 //# sourceMappingURL=bundle.js.map

@@ -110,8 +110,11 @@ module.exports = React.createClass({
         newEvent.save()
     },
     eventQuery: function(date){
+        var innerQuery = new Parse.Query(Parse.User);
+        innerQuery.equalTo('familyId' ,Parse.User.current().get('familyId'));
         let currentDate = moment(date._d).format('MMMM Do YYYY');
         let eventQuery = new Parse.Query('Event');
+        eventQuery.matchesQuery('userId', innerQuery);
         eventQuery.equalTo('dateOfEvent', currentDate);
         eventQuery.find().then(
             (events) => {
