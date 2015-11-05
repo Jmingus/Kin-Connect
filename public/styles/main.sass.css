@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 @import url(materialize-css/dist/css/materialize.min.css);
 .HomepageComponent .brand-title {
   color: #8fdd88;
@@ -87,6 +89,11 @@ footer.page-footer {
     height: 100%;
     width: 100%; }
 
+.RecipeManagementComponent .nav-wrapper {
+  background-color: #DFEC90; }
+  .RecipeManagementComponent .nav-wrapper .add-recipe-button {
+    padding: 1em; }
+
 .ListDetailsComponent .action-button {
   top: 60px;
   right: 10px; }
@@ -101,7 +108,8 @@ footer.page-footer {
   position: fixed; }
 
 .nav-wrapper {
-  background-color: #0088AA; }
+  background-color: #0088AA;
+  font-family: "Lato", serif; }
 
 body {
   display: flex;
@@ -117,3 +125,6 @@ body {
 .btn-large:hover {
   background-color: #A4DD88;
   color: #000; }
+
+html {
+  font-family: "Titillium Web", sans-serif; }

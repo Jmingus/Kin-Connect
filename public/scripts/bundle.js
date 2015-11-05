@@ -38574,9 +38574,48 @@ module.exports = React.createClass({
             'div',
             { className: 'RecipeManagementComponent' },
             React.createElement(
-                'a',
-                { className: 'waves-effect waves-light btn-large', href: '#addrecipe' },
-                'Add Recipe'
+                'div',
+                { className: 'row nav-wrapper' },
+                React.createElement(
+                    'div',
+                    { className: 'col s3' },
+                    React.createElement(
+                        'div',
+                        { className: 'add-recipe-button' },
+                        React.createElement(
+                            'a',
+                            { className: 'waves-effect waves-light btn-large', href: '#addrecipe' },
+                            'Add Recipe'
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col s9' },
+                    React.createElement(
+                        'form',
+                        null,
+                        React.createElement(
+                            'div',
+                            { className: 'input-field' },
+                            React.createElement('input', { id: 'search', type: 'search', required: true, onChange: this.filterRecipes, ref: 'search' }),
+                            React.createElement(
+                                'label',
+                                { htmlFor: 'search' },
+                                React.createElement(
+                                    'i',
+                                    { className: 'material-icons' },
+                                    'search'
+                                )
+                            ),
+                            React.createElement(
+                                'i',
+                                { className: 'material-icons' },
+                                'close'
+                            )
+                        )
+                    )
+                )
             ),
             React.createElement(
                 'div',
@@ -38594,6 +38633,20 @@ module.exports = React.createClass({
         query.matchesQuery('userId', innerQuery);
         query.find().then(function (recipes) {
             _this.setState({ recipes: recipes });
+        }, function (err) {
+            console.log(err);
+        });
+    },
+    filterRecipes: function filterRecipes() {
+        var _this2 = this;
+
+        var innerQuery = new Parse.Query(Parse.User);
+        innerQuery.equalTo('familyId', Parse.User.current().get('familyId'));
+        var query = new Parse.Query('Recipes');
+        query.matchesQuery('userId', innerQuery);
+        query.equalTo('recipeTags', this.refs.search.value);
+        query.find().then(function (recipes) {
+            _this2.setState({ recipes: recipes });
         }, function (err) {
             console.log(err);
         });

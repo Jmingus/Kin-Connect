@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 @import 'materialize-css/dist/css/materialize.min.css',
 'variables',
 'home-page',
@@ -9,6 +11,7 @@
 'list-details',
 'add-recipe',
 'nav-styling';
+
 body {
   display: flex;
   min-height: 100vh;
@@ -25,4 +28,8 @@ body {
 .btn-large:hover{
   background-color: $HeaderColor;
   color: #000;
+}
+
+html{
+  font-family: $ParagraphFont;
 }
