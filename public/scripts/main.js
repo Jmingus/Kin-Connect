@@ -79,11 +79,11 @@ var Router = Backbone.Router.extend({
     },
     addrecipe: function(){
         ReactDOM.render(
-            <AddRecipeComponent />,
+            <AddRecipeComponent router={app}/>,
             main
         )
     }
-    });
+});
 
 var app = new Router;
 Backbone.history.start();

@@ -89,10 +89,8 @@ footer.page-footer {
     height: 100%;
     width: 100%; }
 
-.RecipeManagementComponent .nav-wrapper {
-  background-color: #DFEC90; }
-  .RecipeManagementComponent .nav-wrapper .add-recipe-button {
-    padding: 1em; }
+.RecipeManagementComponent .add-recipe-button {
+  padding: 1em; }
 
 .ListDetailsComponent .action-button {
   top: 60px;

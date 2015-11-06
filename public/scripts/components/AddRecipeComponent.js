@@ -249,8 +249,8 @@ module.exports = React.createClass({
        let recipeName = this.refs.recipeName.value;
        let recipeReadyTime;
        let recipeYield;
-       this.refs.readyTime.value === '' ? recipeReadyTime = 0 : recipeReadyTime = this.refs.readyTime.value;
-       this.refs.recipeYield.value === '' ? recipeYield = 0 : recipeYield = this.refs.recipeYield.value;
+       this.refs.readyTime.value === '' ? recipeReadyTime = 0 : recipeReadyTime = parseInt(this.refs.readyTime.value);
+       this.refs.recipeYield.value === '' ? recipeYield = 0 : recipeYield = parseInt(this.refs.recipeYield.value);
        let recipeImageData = this.refs.recipeImage.files[0];
        let recipeIngredients = this.refs.recipeIngredients.value.split(',');
        let newRecipe = new Recipes({
@@ -266,11 +266,10 @@ module.exports = React.createClass({
            recipeReadyTime: recipeReadyTime,
            recipeServingSize: this.refs.servingSize.value,
            recipeYield : recipeYield
-
-
        });
        let recipeFile = new Parse.File(`${recipeName}.png`,recipeImageData);
        newRecipe.set('recipeImage', recipeFile);
        newRecipe.save();
+       this.props.router.navigate('#recipemanagement', {trigger: true});
    }
 });
