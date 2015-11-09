@@ -31,7 +31,7 @@ Parse.Cloud.define('textNotification', function(request, response){
         from: process.env.twilioPhoneNumber,
         body: request.params.event + "is in a week's time!"
     }, function(err, message) {
-        console.log(message.sid);
+        console.log(message);
     });
 });
 Parse.Cloud.define('emailNotification', function(request,response){
