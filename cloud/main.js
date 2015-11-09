@@ -52,6 +52,7 @@ Parse.Cloud.define('emailNotification', function(request,response){
     });
 });
 Parse.Cloud.define('eventEmailNotification', function(request, response){
+    console.log(moment().format('MMMM Do YYYY').add(1,'w')));
     var allEvents = [];
     var query = new Parse.Query(Parse.User);
     query.equalTo('emailNotifications', true);
