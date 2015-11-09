@@ -52,12 +52,11 @@ Parse.Cloud.define('emailNotification', function(request,response){
     });
 });
 Parse.Cloud.define('eventEmailNotification', function(request, response){
-    console.log(moment().format('MMMM Do YYYY').add(1,'w'));
     var allEvents = [];
     var query = new Parse.Query(Parse.User);
     query.equalTo('emailNotifications', true);
     var innerQuery = new Parse.Query('Event');
-    innerQuery.equalTo('dateOfEvent', moment().format('MMMM Do YYYY').add(1,'w'));
+    innerQuery.equalTo('dateOfEvent', moment().add(1,'w').format('MMMM Do YYYY'));
     innerQuery.find().then(
         function(events){
             allEvents.push(events)
@@ -88,7 +87,7 @@ Parse.Cloud.define('eventTextNotification', function(request, response){
     var query = new Parse.Query(Parse.User);
     query.equalTo('textNotifications', true);
     var innerQuery = new Parse.Query('Event');
-    innerQuery.equalTo('dateOfEvent', moment().format('MMMM Do YYYY').add(1,'w'));
+    innerQuery.equalTo('dateOfEvent', moment().add(1,'w').format('MMMM Do YYYY'));
     innerQuery.find().then(
         function(events){
             allEvents.push(events)
