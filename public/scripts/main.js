@@ -22,6 +22,8 @@ var EventManagementComponent = require('./components/EventManagementComponent');
 var RecipeManagementComponent = require('./components/RecipeManagementComponent');
 var RecipeDetailComponent = require('./components/RecipeDetailComponent');
 var AddRecipeComponent = require('./components/AddRecipeComponent');
+var ProfileComponent = require('./components/ProfileComponent');
+var ChatComponent = require('./components/ChatComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -33,7 +35,9 @@ var Router = Backbone.Router.extend({
         'eventmanagement': 'eventmanagement',
         'recipemanagement': 'recipemanagement',
         'recipemanagement/:id': 'recipedetail',
-        'addrecipe': 'addrecipe'
+        'addrecipe': 'addrecipe',
+        'profile': 'profile',
+        'chat': 'chat'
     },
     home: function(){
         ReactDOM.render(
@@ -80,6 +84,18 @@ var Router = Backbone.Router.extend({
     addrecipe: function(){
         ReactDOM.render(
             <AddRecipeComponent router={app}/>,
+            main
+        )
+    },
+    profile: function(){
+        ReactDOM.render(
+            <ProfileComponent />,
+            main
+        )
+    },
+    chat: function(){
+        ReactDOM.render(
+            <ChatComponent />,
             main
         )
     }

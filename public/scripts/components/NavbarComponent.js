@@ -5,14 +5,19 @@ module.exports = React.createClass({
         this.props.router.on('route', () => {
             this.forceUpdate();
         });
+    },
+    componentDidMount: function(){
         $(document).ready(function(){
             $(".button-collapse").sideNav();
+            $('.dropdown-button').dropdown({hover: false});
         });
     },
     render: function(){
         var currentUser = Parse.User.current();
         var allLinks = [];
         if(currentUser){
+            allLinks.push(this.links('chat','Chat'));
+            allLinks.push(this.links('profile','Profile'));
             allLinks.push(this.links('recipemanagement', 'Recipes'));
             allLinks.push(this.links('eventmanagement', 'Events'));
             allLinks.push(this.links('listmanagement', 'Lists'));
@@ -21,6 +26,7 @@ module.exports = React.createClass({
             allLinks.push(this.links('signin', 'Sign-In'));
             allLinks.push(this.links('signup', 'Sign-Up'));
         }
+
         return(
             <nav>
                 <div className="nav-wrapper">
@@ -32,8 +38,15 @@ module.exports = React.createClass({
                     <ul className="side-nav" id="mobile">
                         {allLinks}
                     </ul>
+                    <ul id="message-dropdown" className="dropdown-content">
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
+                        <li><a href="#!">three</a></li>
+                    </ul>
                 </div>
             </nav>
+
+
         )
     },
     links: function(url, label) {

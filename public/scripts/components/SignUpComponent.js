@@ -73,7 +73,9 @@ module.exports = React.createClass({
                 password: this.refs.password.value,
                 username: this.refs.email.value,
                 email: this.refs.email.value,
-                familyId: familyId
+                familyId: familyId,
+                emailNotifications: false,
+                textNotifications: false
             },
             {
                 success: () => {

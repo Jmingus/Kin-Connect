@@ -89,7 +89,6 @@ module.exports = React.createClass({
 
     },
     changePage: function(page){
-        console.log('ran', page);
         this.setState({page: page});
         this.filterRecipes();
     },

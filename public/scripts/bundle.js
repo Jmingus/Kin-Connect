@@ -37545,7 +37545,70 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/RecipesModel":187,"./AddIngredientComponent":168,"dropzone":5,"react":167}],170:[function(require,module,exports){
+},{"../models/RecipesModel":189,"./AddIngredientComponent":168,"dropzone":5,"react":167}],170:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    getInitialState: function getInitialState() {
+        return {
+            familyMembers: []
+        };
+    },
+    componentWillMount: function componentWillMount() {
+        this.fetchFamilyMembers();
+    },
+    render: function render() {
+        var allFamilyMembers = this.state.familyMembers.map(function (person) {
+            if (person.id === Parse.User.current().id) {
+                return null;
+            } else {
+                return React.createElement(
+                    'div',
+                    { className: 'chip', key: person.id },
+                    person.get('firstname'),
+                    ' ',
+                    person.get('lastname')
+                );
+            }
+        });
+        return React.createElement(
+            'div',
+            { className: 'ChatComponent' },
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col s3' },
+                    React.createElement(
+                        'h5',
+                        null,
+                        'Family Members'
+                    ),
+                    allFamilyMembers
+                ),
+                React.createElement('div', { className: 'col s9' })
+            )
+        );
+    },
+    fetchFamilyMembers: function fetchFamilyMembers() {
+        var _this = this;
+
+        var query = new Parse.Query(Parse.User);
+        query.equalTo('familyId', Parse.User.current().get('familyId'));
+        query.find().then(function (familyMembers) {
+            _this.setState({ familyMembers: familyMembers });
+        }, function (err) {
+            console.log(err);
+        });
+    }
+});
+
+},{"react":167}],171:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37759,7 +37822,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":167}],171:[function(require,module,exports){
+},{"react":167}],172:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37802,7 +37865,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":167}],172:[function(require,module,exports){
+},{"react":167}],173:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -37997,7 +38060,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/EventModel":184,"./EventListComponent":171,"moment":7,"react":167,"react-calendar-pane":8}],173:[function(require,module,exports){
+},{"../models/EventModel":186,"./EventListComponent":172,"moment":7,"react":167,"react-calendar-pane":8}],174:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -38027,7 +38090,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":167}],174:[function(require,module,exports){
+},{"react":167}],175:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38258,7 +38321,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":167}],175:[function(require,module,exports){
+},{"react":167}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38454,7 +38517,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListModel":185,"../models/ListsModel":186,"backbone":1,"react":167}],176:[function(require,module,exports){
+},{"../models/ListModel":187,"../models/ListsModel":188,"backbone":1,"react":167}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38577,7 +38640,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/ListsModel":186,"./ListDetailsComponent":175,"react":167}],177:[function(require,module,exports){
+},{"../models/ListsModel":188,"./ListDetailsComponent":176,"react":167}],178:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38591,14 +38654,19 @@ module.exports = React.createClass({
         this.props.router.on('route', function () {
             _this.forceUpdate();
         });
+    },
+    componentDidMount: function componentDidMount() {
         $(document).ready(function () {
             $(".button-collapse").sideNav();
+            $('.dropdown-button').dropdown({ hover: false });
         });
     },
     render: function render() {
         var currentUser = Parse.User.current();
         var allLinks = [];
         if (currentUser) {
+            allLinks.push(this.links('chat', 'Chat'));
+            allLinks.push(this.links('profile', 'Profile'));
             allLinks.push(this.links('recipemanagement', 'Recipes'));
             allLinks.push(this.links('eventmanagement', 'Events'));
             allLinks.push(this.links('listmanagement', 'Lists'));
@@ -38615,6 +38683,7 @@ module.exports = React.createClass({
             allLinks.push(this.links('signin', 'Sign-In'));
             allLinks.push(this.links('signup', 'Sign-Up'));
         }
+
         return React.createElement(
             'nav',
             null,
@@ -38644,6 +38713,37 @@ module.exports = React.createClass({
                     'ul',
                     { className: 'side-nav', id: 'mobile' },
                     allLinks
+                ),
+                React.createElement(
+                    'ul',
+                    { id: 'message-dropdown', className: 'dropdown-content' },
+                    React.createElement(
+                        'li',
+                        null,
+                        React.createElement(
+                            'a',
+                            { href: '#!' },
+                            'one'
+                        )
+                    ),
+                    React.createElement(
+                        'li',
+                        null,
+                        React.createElement(
+                            'a',
+                            { href: '#!' },
+                            'two'
+                        )
+                    ),
+                    React.createElement(
+                        'li',
+                        null,
+                        React.createElement(
+                            'a',
+                            { href: '#!' },
+                            'three'
+                        )
+                    )
                 )
             )
         );
@@ -38679,7 +38779,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"backbone":1,"react":167}],178:[function(require,module,exports){
+},{"backbone":1,"react":167}],179:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38695,7 +38795,6 @@ module.exports = React.createClass({
             _this2.renderPageLinks();
             _this2.forceUpdate();
         });
-        console.log(this.props.page);
     },
     render: function render() {
         var _this3 = this;
@@ -38789,7 +38888,97 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":167}],179:[function(require,module,exports){
+},{"react":167}],180:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        var currentUser = Parse.User.current();
+        if (currentUser.get('emailNotifications') !== undefined && currentUser.get('emailNotifications') === true) {
+            $('#emailNotifications').attr('checked', true);
+        }
+        if (currentUser.get('textNotifications') !== undefined && currentUser.get('textNotifications') === true) {
+            $('#textNotifications').attr('checked', true);
+        }
+        return React.createElement(
+            'div',
+            { className: 'ProfileComponent' },
+            React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'h5',
+                    null,
+                    ' Family Code : ',
+                    currentUser.get('familyId')
+                ),
+                React.createElement(
+                    'h5',
+                    null,
+                    ' Name : ',
+                    currentUser.get('firstname'),
+                    ' ',
+                    currentUser.get('lastname')
+                ),
+                React.createElement(
+                    'h5',
+                    null,
+                    ' Email: ',
+                    currentUser.get('email'),
+                    ' '
+                ),
+                React.createElement(
+                    'h5',
+                    null,
+                    'Email Notifications'
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'switch' },
+                    React.createElement(
+                        'label',
+                        null,
+                        'Off',
+                        React.createElement('input', { type: 'checkbox', id: 'emailNotifications', onClick: this.editEmailNotification, ref: 'emailNoti' }),
+                        React.createElement('span', { className: 'lever' }),
+                        'On'
+                    )
+                ),
+                React.createElement(
+                    'h5',
+                    null,
+                    'Text Notifications'
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'switch' },
+                    React.createElement(
+                        'label',
+                        null,
+                        'Off',
+                        React.createElement('input', { type: 'checkbox', id: 'textNotifications', onClick: this.editTextNotification, ref: 'textNoti' }),
+                        React.createElement('span', { className: 'lever' }),
+                        'On'
+                    )
+                )
+            )
+        );
+    },
+    editEmailNotification: function editEmailNotification() {
+        Parse.User.current().set('emailNotifications', this.refs.emailNoti.checked);
+        Parse.User.current().save();
+    },
+    editTextNotification: function editTextNotification() {
+        Parse.User.current().set('textNotifications', this.refs.textNoti.checked);
+        Parse.User.current().save();
+    }
+});
+
+},{"react":167}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38862,7 +39051,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../models/RecipesModel":187,"react":167}],180:[function(require,module,exports){
+},{"../models/RecipesModel":189,"react":167}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -38974,7 +39163,6 @@ module.exports = React.createClass({
         }, function (err) {});
     },
     changePage: function changePage(page) {
-        console.log('ran', page);
         this.setState({ page: page });
         this.filterRecipes();
     },
@@ -38988,7 +39176,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"../../node_modules/backbone/node_modules/underscore/underscore-min.js":2,"../models/RecipesModel":187,"./AddRecipeComponent":169,"./ChipsComponent":170,"./PaginationComponent":178,"./RecipeDetailComponent":179,"backbone":1,"react":167}],181:[function(require,module,exports){
+},{"../../node_modules/backbone/node_modules/underscore/underscore-min.js":2,"../models/RecipesModel":189,"./AddRecipeComponent":169,"./ChipsComponent":171,"./PaginationComponent":179,"./RecipeDetailComponent":181,"backbone":1,"react":167}],183:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -39074,7 +39262,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":167}],182:[function(require,module,exports){
+},{"react":167}],184:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -39220,7 +39408,9 @@ module.exports = React.createClass({
             password: this.refs.password.value,
             username: this.refs.email.value,
             email: this.refs.email.value,
-            familyId: familyId
+            familyId: familyId,
+            emailNotifications: false,
+            textNotifications: false
         }, {
             success: function success() {
                 _this.props.router.navigate('', { trigger: true });
@@ -39241,7 +39431,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"react":167}],183:[function(require,module,exports){
+},{"react":167}],185:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -39266,6 +39456,8 @@ var EventManagementComponent = require('./components/EventManagementComponent');
 var RecipeManagementComponent = require('./components/RecipeManagementComponent');
 var RecipeDetailComponent = require('./components/RecipeDetailComponent');
 var AddRecipeComponent = require('./components/AddRecipeComponent');
+var ProfileComponent = require('./components/ProfileComponent');
+var ChatComponent = require('./components/ChatComponent');
 
 var Router = Backbone.Router.extend({
     routes: {
@@ -39277,7 +39469,9 @@ var Router = Backbone.Router.extend({
         'eventmanagement': 'eventmanagement',
         'recipemanagement': 'recipemanagement',
         'recipemanagement/:id': 'recipedetail',
-        'addrecipe': 'addrecipe'
+        'addrecipe': 'addrecipe',
+        'profile': 'profile',
+        'chat': 'chat'
     },
     home: function home() {
         ReactDOM.render(React.createElement(HomepageComponent, null), main);
@@ -39302,6 +39496,12 @@ var Router = Backbone.Router.extend({
     },
     addrecipe: function addrecipe() {
         ReactDOM.render(React.createElement(AddRecipeComponent, { router: app }), main);
+    },
+    profile: function profile() {
+        ReactDOM.render(React.createElement(ProfileComponent, null), main);
+    },
+    chat: function chat() {
+        ReactDOM.render(React.createElement(ChatComponent, null), main);
     }
 });
 
@@ -39312,35 +39512,35 @@ ReactDOM.render(React.createElement(NavbarComponent, { router: app }), nav);
 
 ReactDOM.render(React.createElement(FooterComponent, null), footer);
 
-},{"./components/AddRecipeComponent":169,"./components/EventManagementComponent":172,"./components/FooterComponent":173,"./components/HomepageComponent":174,"./components/ListManagementComponent":176,"./components/NavbarComponent":177,"./components/RecipeDetailComponent":179,"./components/RecipeManagementComponent":180,"./components/SignInComponent":181,"./components/SignUpComponent":182,"backbone":1,"jquery":6,"react":167,"react-dom":12}],184:[function(require,module,exports){
+},{"./components/AddRecipeComponent":169,"./components/ChatComponent":170,"./components/EventManagementComponent":173,"./components/FooterComponent":174,"./components/HomepageComponent":175,"./components/ListManagementComponent":177,"./components/NavbarComponent":178,"./components/ProfileComponent":180,"./components/RecipeDetailComponent":181,"./components/RecipeManagementComponent":182,"./components/SignInComponent":183,"./components/SignUpComponent":184,"backbone":1,"jquery":6,"react":167,"react-dom":12}],186:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Event'
 });
 
-},{}],185:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'List'
 });
 
-},{}],186:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Lists'
 });
 
-},{}],187:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
     className: 'Recipes'
 });
 
-},{}]},{},[183])
+},{}]},{},[185])
 
 
 //# sourceMappingURL=bundle.js.map

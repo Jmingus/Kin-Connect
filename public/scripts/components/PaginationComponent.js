@@ -7,7 +7,6 @@ module.exports = React.createClass({
             this.renderPageLinks();
             this.forceUpdate();
         });
-        console.log(this.props.page)
     },
     render: function(){
         let leftClick;
