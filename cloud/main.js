@@ -73,7 +73,7 @@ Parse.Cloud.define('eventEmailNotification', function(request, response){
             allEvents.forEach(function(event){
                 Parse.Cloud.run('emailNotification', {email: user.get('email'), event: event.get('eventName')}, {
                     success: function (email) {
-                        console.log('Sent Email')
+                        console.log(email)
                     },
                     error: function (error) {
                     }
@@ -103,8 +103,8 @@ Parse.Cloud.define('eventTextNotification', function(request, response){
         query.each(function (user) {
             allEvents.forEach(function(event){
                 Parse.Cloud.run('textNotification', {phoneNumber: user.get('phoneNumber'), event: event.get('eventName')}, {
-                    success: function (email) {
-                        console.log('Sent Email')
+                    success: function (text) {
+                        console.log(text)
                     },
                     error: function (error) {
                     }
