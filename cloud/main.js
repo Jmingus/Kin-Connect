@@ -3,6 +3,7 @@ var postmark = require("postmark")(process.env.POSTMARK_API_TOKEN);
 var client = require('twilio')(process.env.accountSid, process.env.authToken);
 var Event = Parse.Object.extend('Event');
 var moment = require('moment');
+Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 
 
 Parse.Cloud.define('emailSignUp', function(request,response){
