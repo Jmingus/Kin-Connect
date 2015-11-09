@@ -26,11 +26,14 @@ Parse.Cloud.define('emailSignUp', function(request,response){
     });
 });
 Parse.Cloud.define('textNotification', function(request, response){
-    client.messages.create({
+    client.sendMessage({
         to: request.params.phoneNumber,
         from: process.env.twilioPhoneNumber,
         body: request.params.event + "is in a week's time!"
     }, function(err, message) {
+        if(err){
+            console.log(err)
+        }
         console.log(message);
     });
 });
