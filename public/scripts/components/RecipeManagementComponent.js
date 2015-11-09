@@ -91,14 +91,5 @@ module.exports = React.createClass({
     changePage: function(page){
         this.setState({page: page});
         this.filterRecipes();
-    },
-    sendEmail: function(){
-        Parse.Cloud.run('emailNotification', {user: 'Jacob'}, {
-            success: function(email) {
-                console.log('Sent Email')
-            },
-            error: function(error) {
-            }
-        });
     }
 });

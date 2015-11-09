@@ -94,5 +94,14 @@ module.exports = React.createClass({
             var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
             return v.toString(16);
         });
+    },
+    sendEmail: function(){
+        Parse.Cloud.run('emailNotification', Parse.User.current(), {
+            success: function(email) {
+                console.log('Sent Email')
+            },
+            error: function(error) {
+            }
+        });
     }
 });

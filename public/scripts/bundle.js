@@ -39165,14 +39165,6 @@ module.exports = React.createClass({
     changePage: function changePage(page) {
         this.setState({ page: page });
         this.filterRecipes();
-    },
-    sendEmail: function sendEmail() {
-        Parse.Cloud.run('emailNotification', { user: 'Jacob' }, {
-            success: function success(email) {
-                console.log('Sent Email');
-            },
-            error: function error(_error) {}
-        });
     }
 });
 
@@ -39427,6 +39419,14 @@ module.exports = React.createClass({
             var r = Math.random() * 16 | 0,
                 v = c == 'x' ? r : r & 0x3 | 0x8;
             return v.toString(16);
+        });
+    },
+    sendEmail: function sendEmail() {
+        Parse.Cloud.run('emailNotification', Parse.User.current(), {
+            success: function success(email) {
+                console.log('Sent Email');
+            },
+            error: function error(_error2) {}
         });
     }
 });
