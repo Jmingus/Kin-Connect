@@ -53,7 +53,7 @@ Parse.Cloud.define('emailNotification', function(request,response){
     });
 });
 Parse.Cloud.define('eventEmailNotification', function(request, response){
-    var allEvents;
+    var allEvents = [];
     var query = new Parse.Query(Parse.User);
     query.equalTo('emailNotifications', true);
     var innerQuery = new Parse.Query('Event');
@@ -66,7 +66,7 @@ Parse.Cloud.define('eventEmailNotification', function(request, response){
             response.error(err)
         }
     );
-    if(allEvents === undefined){
+    if(allEvents === []){
         response.success("No Events");
     }else {
         query.each(function (user) {
@@ -84,7 +84,7 @@ Parse.Cloud.define('eventEmailNotification', function(request, response){
     }
 });
 Parse.Cloud.define('eventTextNotification', function(request, response){
-    var allEvents;
+    var allEvents = [];
     var query = new Parse.Query(Parse.User);
     query.equalTo('textNotifications', true);
     var innerQuery = new Parse.Query('Event');
@@ -97,7 +97,7 @@ Parse.Cloud.define('eventTextNotification', function(request, response){
             response.error(err)
         }
     );
-    if(allEvents === undefined){
+    if(allEvents === []){
         response.success("No Events");
     }else {
         query.each(function (user) {
