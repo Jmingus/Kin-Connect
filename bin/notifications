@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 Parse.Cloud.run('eventEmailNotification', {},{
     success: function (email) {
         console.log('Sent Email')
