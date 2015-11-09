@@ -38058,6 +38058,7 @@ module.exports = React.createClass({
             console.log(err);
         });
     }
+
 });
 
 },{"../models/EventModel":186,"./EventListComponent":172,"moment":7,"react":167,"react-calendar-pane":8}],174:[function(require,module,exports){

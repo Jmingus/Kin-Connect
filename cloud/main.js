@@ -70,6 +70,7 @@ Parse.Cloud.define('eventEmailNotification', function(request, response){
         response.success("No Events");
     }else {
         query.each(function (user) {
+            console.log(allEvents);
             allEvents.forEach(function(event){
                 Parse.Cloud.run('emailNotification', {email: user.get('email'), event: event.get('eventName')}, {
                     success: function (email) {

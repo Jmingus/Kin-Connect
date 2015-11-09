@@ -17,7 +17,7 @@ module.exports = React.createClass({
         }
     },
     componentWillMount: function(){
-        this.eventQuery(moment())
+        this.eventQuery(moment());
     },
     componentDidMount: function(){
         $(document).ready(function() {
@@ -125,4 +125,5 @@ module.exports = React.createClass({
             }
         )
     }
+
 });
