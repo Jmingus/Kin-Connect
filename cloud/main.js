@@ -8,8 +8,9 @@ Parse.Cloud.define('emailNotification', function(request,response){
         "From": "jmingus@austin.rr.com",
         "To": request.params.get('email'),
         "Subject": "Hello from Kin-Connect!",
-        "TextBody": `Welcome to Kin-Connect, Your family code is ${request.params.get('familyId')}, send this code to other family members so they can sign up to your family!`,
-        "Tag": "signUp-Notification"
+        "TextBody": "Welcome to Kin-Connect, Your family code is "+ request.params.get('familyId') +
+        ", send this code to other family members so they can sign up to your family!",
+        "Tag": "signup-Notification"
     }, function(error, success) {
         if(error) {
             console.error("Unable to send via postmark: " + error.message);
