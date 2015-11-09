@@ -1,6 +1,6 @@
 #!/usr/bin/env node
+var Parse = require('parse-cloud-express').Parse;
 
-Parse.initialize("1xv2vWgq4vX1pZWpk423tdezx4E8Vd2Bkm9TwRP9", "7XWpt8emtIKhNbBw12OUfWnaSVk3EEwE1DXWs9IN");
 Parse.Cloud.run('eventEmailNotification', {},{
     success: function (email) {
         console.log('Sent Email')
