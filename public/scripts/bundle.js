@@ -38530,7 +38530,10 @@ module.exports = React.createClass({
 
     getInitialState: function getInitialState() {
         return {
-            lists: []
+            lists: [],
+            familyMembers: [],
+            familyList: [],
+            currentClickedUser: null
         };
     },
     componentDidMount: function componentDidMount() {
@@ -38540,9 +38543,11 @@ module.exports = React.createClass({
     },
     componentWillMount: function componentWillMount() {
         this.fetchLists();
+        this.fetchFamilyMembers();
     },
     render: function render() {
-        var allLists = this.state.lists.map(function (list) {
+        var _this = this;
+        var allYourLists = this.state.lists.map(function (list) {
             return React.createElement(
                 'a',
                 { key: list.id, href: '#listmanagement/' + list.id },
@@ -38556,6 +38561,24 @@ module.exports = React.createClass({
         if (this.props.list !== null) {
             var listDetails = React.createElement(ListDetailsComponent, { list: this.props.list, router: this.props.router });
         }
+        var allMembers = this.state.familyMembers.map(function (person) {
+            if (person.id === Parse.User.current().id) {
+                return null;
+            } else {
+                return React.createElement(
+                    'div',
+                    { key: person.id, onClick: function () {
+                            _this.userList(person);
+                        }, className: 'chip' },
+                    person.get('firstname'),
+                    ' ',
+                    person.get('lastname')
+                );
+            }
+        });
+        var allUserLists = this.state.familyList.map(function (list) {
+            return React.createElement(ListDetailsComponent, { list: list.id, key: list.id, router: _this.props.router });
+        });
         return React.createElement(
             'div',
             { className: 'ListManagementComponent' },
@@ -38565,12 +38588,24 @@ module.exports = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col s3' },
-                    allLists,
+                    React.createElement(
+                        'h4',
+                        null,
+                        'Your Lists'
+                    ),
+                    allYourLists,
                     React.createElement(
                         'a',
                         { className: 'waves-effect waves-light btn-large modal-trigger add-list-button', href: '#addList' },
                         'Add List'
-                    )
+                    ),
+                    React.createElement('hr', null),
+                    React.createElement(
+                        'h4',
+                        null,
+                        'Family'
+                    ),
+                    allMembers
                 ),
                 React.createElement(
                     'div',
@@ -38617,6 +38652,30 @@ module.exports = React.createClass({
                     ),
                     listDetails
                 )
+            ),
+            React.createElement(
+                'div',
+                { id: 'otherUserLists', className: 'modal bottom-sheet' },
+                React.createElement(
+                    'div',
+                    { className: 'modal-content' },
+                    React.createElement(
+                        'h4',
+                        null,
+                        this.state.currentClickedUser,
+                        '\'s Lists'
+                    ),
+                    allUserLists
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'modal-footer' },
+                    React.createElement(
+                        'a',
+                        { className: ' modal-action modal-close waves-effect waves-green btn-large' },
+                        'Close'
+                    )
+                )
             )
         );
     },
@@ -38627,14 +38686,41 @@ module.exports = React.createClass({
             userId: Parse.User.current()
         });
         newList.save();
+        this.fetchLists();
     },
     fetchLists: function fetchLists() {
-        var _this = this;
+        var _this2 = this;
 
         var query = new Parse.Query('Lists');
         query.equalTo('userId', Parse.User.current());
         query.find().then(function (lists) {
-            _this.setState({ lists: lists });
+            _this2.setState({ lists: lists });
+        }, function (err) {
+            console.log(err);
+        });
+    },
+    fetchFamilyMembers: function fetchFamilyMembers() {
+        var _this3 = this;
+
+        var query = new Parse.Query(Parse.User);
+        query.equalTo('familyId', Parse.User.current().get('familyId'));
+        query.find().then(function (familyMembers) {
+            _this3.setState({ familyMembers: familyMembers });
+        }, function (err) {
+            console.log(err);
+        });
+    },
+    userList: function userList(person) {
+        var _this4 = this;
+
+        this.setState({ currentClickedUser: person.get('firstname') });
+        var query = new Parse.Query('Lists');
+        query.equalTo('listPrivacy', true);
+        query.equalTo('userId', person);
+        query.find().then(function (familyList) {
+            console.log(familyList, 'ran');
+            _this4.setState({ familyList: familyList });
+            $('#otherUserLists').openModal();
         }, function (err) {
             console.log(err);
         });

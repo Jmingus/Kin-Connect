@@ -76,6 +76,20 @@ footer.page-footer {
   background-color: #A4DD88;
   color: #000; }
 
+.ListManagementComponent .chip {
+  display: block;
+  text-align: center;
+  height: 32px;
+  margin: 5px auto;
+  max-width: 300px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #E4E4E4; }
+
 .RecipeManagementComponent .dz-error-mark {
   display: none; }
 
