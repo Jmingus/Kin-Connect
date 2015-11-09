@@ -38892,11 +38892,26 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
-
+var moment = require('moment');
+var Event = require('../models/EventModel');
 module.exports = React.createClass({
     displayName: 'exports',
 
+    getInitialState: function getInitialState() {
+        return {
+            phoneNumberEditFlag: false,
+            birthdayEditFlag: false,
+            birthday: undefined,
+            phoneNumber: undefined
+        };
+    },
+    componentDidMount: function componentDidMount() {
+        this.setState({ birthday: Parse.User.current().get('birthday') });
+        this.setState({ phoneNumber: Parse.User.current().get('phoneNumber') });
+    },
     render: function render() {
+        var birthday = undefined;
+        var phoneNumber = undefined;
         var currentUser = Parse.User.current();
         if (currentUser.get('emailNotifications') !== undefined && currentUser.get('emailNotifications') === true) {
             $('#emailNotifications').attr('checked', true);
@@ -38904,6 +38919,63 @@ module.exports = React.createClass({
         if (currentUser.get('textNotifications') !== undefined && currentUser.get('textNotifications') === true) {
             $('#textNotifications').attr('checked', true);
         }
+        if (this.state.birthday === undefined) {
+            birthday = React.createElement(
+                'h5',
+                null,
+                ' Birthday : Not Set'
+            );
+        } else {
+            birthday = React.createElement(
+                'h5',
+                null,
+                ' Birthday : ',
+                currentUser.get('birthday'),
+                ' '
+            );
+        }
+        if (this.state.birthdayEditFlag === true) {
+            birthday = React.createElement(
+                'label',
+                null,
+                'Birthday',
+                React.createElement('input', { type: 'date', ref: 'birthday' })
+            );
+            var birthdaySubmit = React.createElement(
+                'button',
+                { className: 'btn-large waves-effect', onClick: this.birthdaySubmit },
+                'Submit'
+            );
+        }
+        if (this.state.phoneNumber === undefined) {
+            phoneNumber = React.createElement(
+                'h5',
+                null,
+                ' Mobile Number : Not Set'
+            );
+        } else {
+            phoneNumber = React.createElement(
+                'h5',
+                null,
+                ' Mobile Number : ',
+                currentUser.get('phoneNumber'),
+                ' '
+            );
+        }
+        if (this.state.phoneNumberEditFlag === true) {
+            phoneNumber = React.createElement(
+                'label',
+                null,
+                'Mobile Number',
+                React.createElement('input', { type: 'text', ref: 'phoneNumber' })
+            );
+            var phoneNumberSubmit = React.createElement(
+                'button',
+                { className: 'btn-large waves-effect', onClick: this.phoneNumberSubmit },
+                'Submit'
+            );
+        }
+
         return React.createElement(
             'div',
             { className: 'ProfileComponent' },
@@ -38930,6 +39002,32 @@ module.exports = React.createClass({
                     ' Email: ',
                     currentUser.get('email'),
                     ' '
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'row' },
+                    React.createElement(
+                        'div',
+                        { className: 'col s6' },
+                        phoneNumber,
+                        React.createElement(
+                            'button',
+                            { className: 'btn-large waves-effect', onClick: this.editPhoneNumber },
+                            'Edit'
+                        ),
+                        phoneNumberSubmit
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col s6' },
+                        birthday,
+                        React.createElement(
+                            'button',
+                            { className: 'btn-large waves-effect', onClick: this.editBirthday },
+                            'Edit'
+                        ),
+                        birthdaySubmit
+                    )
                 ),
                 React.createElement(
                     'h5',
@@ -38968,6 +39066,31 @@ module.exports = React.createClass({
             )
         );
     },
+    phoneNumberSubmit: function phoneNumberSubmit() {
+        Parse.User.current().set('phoneNumber', this.refs.phoneNumber.value);
+        Parse.User.current().save();
+        this.setState({ phoneNumberEditFlag: false });
+    },
+    birthdaySubmit: function birthdaySubmit() {
+        Parse.User.current().set('birthday', moment(new Date(this.refs.birthday.value)).format('MMMM Do YYYY'));
+        Parse.User.current().save();
+        this.setState({ birthdayEditFlag: false });
+        this.addBirthday();
+    },
+    editPhoneNumber: function editPhoneNumber() {
+        if (this.state.phoneNumberEditFlag === false) {
+            this.setState({ phoneNumberEditFlag: true });
+        } else {
+            this.setState({ phoneNumberEditFlag: false });
+        }
+    },
+    editBirthday: function editBirthday() {
+        if (this.state.birthdayEditFlag === false) {
+            this.setState({ birthdayEditFlag: true });
+        } else {
+            this.setState({ birthdayEditFlag: false });
+        }
+    },
     editEmailNotification: function editEmailNotification() {
         Parse.User.current().set('emailNotifications', this.refs.emailNoti.checked);
         Parse.User.current().save();
@@ -38975,10 +39098,25 @@ module.exports = React.createClass({
     editTextNotification: function editTextNotification() {
         Parse.User.current().set('textNotifications', this.refs.textNoti.checked);
         Parse.User.current().save();
+    },
+    addBirthday: function addBirthday() {
+        var user = Parse.User.current().get('firstname') + ' ' + Parse.User.current().get('lastname') + '\'s Birthday';
+        var currentDateSliced = moment().format('MMMM Do YYYY').slice(-4);
+        var userBirthdaySliced = moment(new Date(this.refs.birthday.value)).format('MMMM Do YYYY').slice(0, -4);
+        var userBirthday = userBirthdaySliced + currentDateSliced;
+        var newEvent = new Event({
+            eventName: user,
+            dateOfEvent: userBirthday,
+            startTime: 'All Day',
+            endTime: 'All Day',
+            eventDescription: 'Its ' + user,
+            userId: Parse.User.current()
+        });
+        newEvent.save();
     }
 });
 
-},{"react":167}],181:[function(require,module,exports){
+},{"../models/EventModel":186,"moment":7,"react":167}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
