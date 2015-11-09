@@ -51,7 +51,9 @@ Parse.Cloud.define('emailNotification', function(request,response){
         }
     });
 });
+
 Parse.Cloud.job('eventEmailNotification', function(request, status){
+    Parse.Cloud.useMasterKey();
     var allEvents = [];
     var query = new Parse.Query(Parse.User);
     query.equalTo('emailNotifications', true);
@@ -78,7 +80,8 @@ Parse.Cloud.job('eventEmailNotification', function(request, status){
                     }
                 });
             })
-        })
+        });
+        status.success("Events Sent Out")
     }
 });
 Parse.Cloud.job('eventTextNotification', function(request, status){
@@ -108,6 +111,7 @@ Parse.Cloud.job('eventTextNotification', function(request, status){
                     }
                 });
             })
-        })
+        });
+        status.success('Events Sent Out')
     }
 });
