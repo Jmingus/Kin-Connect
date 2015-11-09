@@ -53,9 +53,9 @@ Parse.Cloud.define('emailNotification', function(request,response){
 });
 Parse.Cloud.job('eventEmailNotification', function(request, status){
     var allEvents = [];
-    let query = new Parse.Query(Parse.User);
+    var query = new Parse.Query(Parse.User);
     query.equalTo('emailNotifications', true);
-    let innerQuery = new Parse.Query('Event');
+    var innerQuery = new Parse.Query('Event');
     innerQuery.equalTo('dateOfEvent', moment().format('MMMM Do YYYY').add(1,'w'));
     innerQuery.find().then(
         function(events){
@@ -83,9 +83,9 @@ Parse.Cloud.job('eventEmailNotification', function(request, status){
 });
 Parse.Cloud.job('eventTextNotification', function(request, status){
     var allEvents = [];
-    let query = new Parse.Query(Parse.User);
+    var query = new Parse.Query(Parse.User);
     query.equalTo('textNotifications', true);
-    let innerQuery = new Parse.Query('Event');
+    var innerQuery = new Parse.Query('Event');
     innerQuery.equalTo('dateOfEvent', moment().format('MMMM Do YYYY').add(1,'w'));
     innerQuery.find().then(
         function(events){
