@@ -20,7 +20,7 @@ Parse.Cloud.define('emailSignUp', function(request,response){
             return;
         }
         if(success){
-            response.success(response, 'Email Sent');
+            response.success('Email Sent');
             console.info("Sent to postmark for delivery")
         }
     });
@@ -47,7 +47,7 @@ Parse.Cloud.define('emailNotification', function(request,response){
             return;
         }
         if(success){
-            response.success(response, 'Email Sent');
+            response.success('Email Sent');
             console.info("Sent to postmark for delivery")
         }
     });
