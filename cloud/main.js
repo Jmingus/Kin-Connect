@@ -51,7 +51,7 @@ Parse.Cloud.define('emailNotification', function(request,response){
         }
     });
 });
-Parse.Cloud.define('eventEmailNotification', function(request, status){
+Parse.Cloud.define('eventEmailNotification', function(request, response){
     var allEvents = [];
     var query = new Parse.Query(Parse.User);
     query.equalTo('emailNotifications', true);
@@ -62,11 +62,11 @@ Parse.Cloud.define('eventEmailNotification', function(request, status){
             allEvents.push(events)
         },
         function(err){
-            status.error(err)
+            response.error(err)
         }
     );
     if(allEvents === []){
-        status.success("No Events");
+        response.success("No Events");
     }else {
         query.each(function (user) {
             allEvents.forEach(function(event){
@@ -79,10 +79,10 @@ Parse.Cloud.define('eventEmailNotification', function(request, status){
                 });
             })
         });
-        status.success("Events Sent Out")
+        response.success("Events Sent Out")
     }
 });
-Parse.Cloud.define('eventTextNotification', function(request, status){
+Parse.Cloud.define('eventTextNotification', function(request, response){
     var allEvents = [];
     var query = new Parse.Query(Parse.User);
     query.equalTo('textNotifications', true);
@@ -93,11 +93,11 @@ Parse.Cloud.define('eventTextNotification', function(request, status){
             allEvents.push(events)
         },
         function(err){
-            status.error(err)
+            response.error(err)
         }
     );
     if(allEvents === []){
-        status.success("No Events");
+        response.success("No Events");
     }else {
         query.each(function (user) {
             allEvents.forEach(function(event){
@@ -110,6 +110,6 @@ Parse.Cloud.define('eventTextNotification', function(request, status){
                 });
             })
         });
-        status.success('Events Sent Out')
+        response.success('Events Sent Out')
     }
 });
