@@ -15,7 +15,8 @@
     "multer": "~0.1.8",
     "parse": "~1.6",
     "parse-cloud-express": "~1.0",
-    "postmark": "^1.2.1"
+    "postmark": "^1.2.1",
+    "twilio": "^2.5.2"
   },
   "engines": {
     "node": "0.12.2"
