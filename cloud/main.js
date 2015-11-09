@@ -53,24 +53,23 @@ Parse.Cloud.define('emailNotification', function(request,response){
     });
 });
 Parse.Cloud.define('eventEmailNotification', function(request, response){
-    var allEvents = [];
+    var allEvents;
     var query = new Parse.Query(Parse.User);
     query.equalTo('emailNotifications', true);
     var innerQuery = new Parse.Query('Event');
     innerQuery.equalTo('dateOfEvent', moment().add(1,'w').format('MMMM Do YYYY'));
     innerQuery.find().then(
         function(events){
-            allEvents.push(events)
+            allEvents = events;
         },
         function(err){
             response.error(err)
         }
     );
-    if(allEvents === []){
+    if(allEvents === undefined){
         response.success("No Events");
     }else {
         query.each(function (user) {
-            console.log(allEvents);
             allEvents.forEach(function(event){
                 Parse.Cloud.run('emailNotification', {email: user.get('email'), event: event.get('eventName')}, {
                     success: function (email) {
@@ -85,20 +84,20 @@ Parse.Cloud.define('eventEmailNotification', function(request, response){
     }
 });
 Parse.Cloud.define('eventTextNotification', function(request, response){
-    var allEvents = [];
+    var allEvents;
     var query = new Parse.Query(Parse.User);
     query.equalTo('textNotifications', true);
     var innerQuery = new Parse.Query('Event');
     innerQuery.equalTo('dateOfEvent', moment().add(1,'w').format('MMMM Do YYYY'));
     innerQuery.find().then(
         function(events){
-            allEvents.push(events)
+            allEvents = events
         },
         function(err){
             response.error(err)
         }
     );
-    if(allEvents === []){
+    if(allEvents === undefined){
         response.success("No Events");
     }else {
         query.each(function (user) {
