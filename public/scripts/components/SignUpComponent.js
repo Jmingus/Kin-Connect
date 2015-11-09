@@ -79,6 +79,7 @@ module.exports = React.createClass({
             },
             {
                 success: () => {
+                    this.sendEmail();
                     this.props.router.navigate('', {trigger: true});
                 },
                 error: (error) => {

@@ -39405,6 +39405,7 @@ module.exports = React.createClass({
             textNotifications: false
         }, {
             success: function success() {
+                _this.sendEmail();
                 _this.props.router.navigate('', { trigger: true });
             },
             error: function error(_error) {
