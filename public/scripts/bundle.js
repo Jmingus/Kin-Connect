@@ -39483,10 +39483,62 @@ module.exports = React.createClass({
         _.extend(this.dispatcher, Backbone.Events);
     },
     render: function render() {
-        var allRecipes = this.state.recipes.map(function (recipe) {
+        var allRecipes1Array = [];
+        var allRecipes2Array = [];
+        var allRecipes3Array = [];
+        this.state.recipes.map(function (recipe, index) {
+            if (index <= 3) {
+                allRecipes1Array.push(recipe);
+            } else if (index > 3 && index <= 7) {
+                allRecipes2Array.push(recipe);
+            } else if (index > 7) {
+                allRecipes3Array.push(recipe);
+            }
+        });
+        var allRecipes1 = allRecipes1Array.map(function (recipe) {
             return React.createElement(
                 'div',
-                { className: 'col s12 m3 recipe-box', key: recipe.id },
+                { className: 'col s12 m4 l3 recipe-box', key: recipe.id },
+                React.createElement(
+                    'a',
+                    { href: '#recipemanagement/' + recipe.id },
+                    React.createElement(
+                        'div',
+                        { className: 'img-box' },
+                        React.createElement('img', { src: recipe.get('recipeImage').url() })
+                    ),
+                    React.createElement(
+                        'h5',
+                        null,
+                        recipe.get('recipeName')
+                    )
+                )
+            );
+        });
+        var allRecipes2 = allRecipes2Array.map(function (recipe) {
+            return React.createElement(
+                'div',
+                { className: 'col s12 m4 l3 recipe-box', key: recipe.id },
+                React.createElement(
+                    'a',
+                    { href: '#recipemanagement/' + recipe.id },
+                    React.createElement(
+                        'div',
+                        { className: 'img-box' },
+                        React.createElement('img', { src: recipe.get('recipeImage').url() })
+                    ),
+                    React.createElement(
+                        'h5',
+                        null,
+                        recipe.get('recipeName')
+                    )
+                )
+            );
+        });
+        var allRecipes3 = allRecipes3Array.map(function (recipe) {
+            return React.createElement(
+                'div',
+                { className: 'col s12 m4 l3 recipe-box', key: recipe.id },
                 React.createElement(
                     'a',
                     { href: '#recipemanagement/' + recipe.id },
@@ -39531,7 +39583,17 @@ module.exports = React.createClass({
             React.createElement(
                 'div',
                 { className: 'row' },
-                allRecipes
+                allRecipes1
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                allRecipes2
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                allRecipes3
             ),
             React.createElement(PaginationComponent, { page: this.state.page, onPageChange: this.changePage, itemCount: this.state.itemCount, dispatcher: this.dispatcher, displayLimit: this.state.displayLimit })
         );

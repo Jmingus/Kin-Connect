@@ -22,15 +22,53 @@ module.exports = React.createClass({
         _.extend(this.dispatcher, Backbone.Events);
     },
     render: function(){
-        let allRecipes = this.state.recipes.map(function(recipe){
+        let allRecipes1Array = [];
+        let allRecipes2Array = [];
+        let allRecipes3Array = [];
+        this.state.recipes.map(function(recipe, index) {
+            if(index <= 3){
+                allRecipes1Array.push(recipe)
+            }else if(index > 3 && index <= 7){
+                allRecipes2Array.push(recipe)
+            }else if(index > 7){
+                allRecipes3Array.push(recipe)
+            }
+        });
+        let allRecipes1 = allRecipes1Array.map(function(recipe){
             return (
-            <div className="col s12 m3 recipe-box" key={recipe.id}>
-                <a href={`#recipemanagement/${recipe.id}`}>
-                    <div className="img-box"><img src={recipe.get('recipeImage').url()}/></div>
-                    <h5>{recipe.get('recipeName')}</h5>
-                </a>
-            </div>
-            )
+                <div className="col s12 m4 l3 recipe-box" key={recipe.id}>
+                    <a href={`#recipemanagement/${recipe.id}`}>
+                        <div className="img-box">
+                            <img src={recipe.get('recipeImage').url()}/>
+                        </div>
+                        <h5>{recipe.get('recipeName')}</h5>
+                    </a>
+                </div>
+            );
+        });
+        let allRecipes2 = allRecipes2Array.map(function(recipe){
+            return (
+                <div className="col s12 m4 l3 recipe-box" key={recipe.id}>
+                    <a href={`#recipemanagement/${recipe.id}`}>
+                        <div className="img-box">
+                            <img src={recipe.get('recipeImage').url()}/>
+                        </div>
+                        <h5>{recipe.get('recipeName')}</h5>
+                    </a>
+                </div>
+            );
+        });
+        let allRecipes3 = allRecipes3Array.map(function(recipe){
+            return (
+                <div className="col s12 m4 l3 recipe-box" key={recipe.id}>
+                    <a href={`#recipemanagement/${recipe.id}`}>
+                        <div className="img-box">
+                            <img src={recipe.get('recipeImage').url()}/>
+                        </div>
+                        <h5>{recipe.get('recipeName')}</h5>
+                    </a>
+                </div>
+            );
         });
         return(
             <div className="RecipeManagementComponent container">
@@ -44,9 +82,14 @@ module.exports = React.createClass({
                         <ChipsComponent filterRecipes={this.filterRecipes}/>
                     </div>
                 </div>
-
                 <div className="row">
-                    {allRecipes}
+                    {allRecipes1}
+                </div>
+                <div className="row">
+                    {allRecipes2}
+                </div>
+                <div className="row">
+                    {allRecipes3}
                 </div>
                 <PaginationComponent page={this.state.page} onPageChange={this.changePage} itemCount={this.state.itemCount} dispatcher={this.dispatcher} displayLimit={this.state.displayLimit}/>
             </div>

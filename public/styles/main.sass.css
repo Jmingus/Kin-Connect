@@ -155,6 +155,15 @@ footer.page-footer {
   margin: 0 auto;
   text-align: center; }
 
+@media screen and (min-width: 600px) {
+  .RecipeManagementComponent .img-box {
+    height: 10em;
+    width: 10em;
+    margin: 0 auto; }
+    .RecipeManagementComponent .img-box img {
+      height: 100%;
+      width: 100%; } }
+
 .ListDetailsComponent .action-button {
   position: absolute;
   top: 78%;
