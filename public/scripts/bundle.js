@@ -39498,7 +39498,7 @@ module.exports = React.createClass({
         var allRecipes1 = allRecipes1Array.map(function (recipe) {
             return React.createElement(
                 'div',
-                { className: 'col s12 m4 l3 recipe-box', key: recipe.id },
+                { className: 'col s12 m3 l3 recipe-box', key: recipe.id },
                 React.createElement(
                     'a',
                     { href: '#recipemanagement/' + recipe.id },
@@ -39518,7 +39518,7 @@ module.exports = React.createClass({
         var allRecipes2 = allRecipes2Array.map(function (recipe) {
             return React.createElement(
                 'div',
-                { className: 'col s12 m4 l3 recipe-box', key: recipe.id },
+                { className: 'col s12 m3 l3 recipe-box', key: recipe.id },
                 React.createElement(
                     'a',
                     { href: '#recipemanagement/' + recipe.id },
@@ -39538,7 +39538,7 @@ module.exports = React.createClass({
         var allRecipes3 = allRecipes3Array.map(function (recipe) {
             return React.createElement(
                 'div',
-                { className: 'col s12 m4 l3 recipe-box', key: recipe.id },
+                { className: 'col s12 m3 l3 recipe-box', key: recipe.id },
                 React.createElement(
                     'a',
                     { href: '#recipemanagement/' + recipe.id },
@@ -39599,29 +39599,33 @@ module.exports = React.createClass({
         );
     },
     filterRecipes: function filterRecipes(tag) {
-        var _this2 = this;
-
-        var _this = this;
-        var queryTag = undefined;
-        this.setState({ currentTag: tag });
-        var innerQuery = new Parse.Query(Parse.User);
-        innerQuery.equalTo('familyId', Parse.User.current().get('familyId'));
         var query = new Parse.Query('Recipes');
         if (tag === undefined) {
-            queryTag = null;
+            this.setState({ currentTag: null });
         } else {
-            _this.setState({ currentTag: tag });
-            queryTag = query.equalTo('recipeTags', this.state.currentTag);
+            this.setState({ currentTag: tag });
         }
+        this.filterQuery(query);
+    },
+    filterQuery: function filterQuery(query) {
+        var _this = this;
+
+        var innerQuery = new Parse.Query(Parse.User);
+        innerQuery.equalTo('familyId', Parse.User.current().get('familyId'));
         query.matchesQuery('userId', innerQuery);
         query.find().then(function (itemCount) {
-            _this2.setState({ itemCount: itemCount.length });
-            query.limit(_this2.state.displayLimit);
-            query.skip((_this2.state.page - 1) * _this2.state.displayLimit);
+            _this.setState({ itemCount: itemCount.length });
+            query.limit(_this.state.displayLimit);
+            query.skip((_this.state.page - 1) * _this.state.displayLimit);
+            if (_this.state.currentTag !== null) {
+                var queryTag = query.equalTo('recipeTags', _this.state.currentTag);
+            } else {
+                var queryTag = null;
+            };
             queryTag;
             query.find().then(function (recipes) {
-                _this2.setState({ recipes: recipes });
-                _this2.dispatcher.trigger('setState');
+                _this.setState({ recipes: recipes });
+                _this.dispatcher.trigger('setState');
             }, function (err) {
                 console.log(err);
             });

@@ -36,7 +36,7 @@ module.exports = React.createClass({
         });
         let allRecipes1 = allRecipes1Array.map(function(recipe){
             return (
-                <div className="col s12 m4 l3 recipe-box" key={recipe.id}>
+                <div className="col s12 m3 l3 recipe-box" key={recipe.id}>
                     <a href={`#recipemanagement/${recipe.id}`}>
                         <div className="img-box">
                             <img src={recipe.get('recipeImage').url()}/>
@@ -48,7 +48,7 @@ module.exports = React.createClass({
         });
         let allRecipes2 = allRecipes2Array.map(function(recipe){
             return (
-                <div className="col s12 m4 l3 recipe-box" key={recipe.id}>
+                <div className="col s12 m3 l3 recipe-box" key={recipe.id}>
                     <a href={`#recipemanagement/${recipe.id}`}>
                         <div className="img-box">
                             <img src={recipe.get('recipeImage').url()}/>
@@ -60,7 +60,7 @@ module.exports = React.createClass({
         });
         let allRecipes3 = allRecipes3Array.map(function(recipe){
             return (
-                <div className="col s12 m4 l3 recipe-box" key={recipe.id}>
+                <div className="col s12 m3 l3 recipe-box" key={recipe.id}>
                     <a href={`#recipemanagement/${recipe.id}`}>
                         <div className="img-box">
                             <img src={recipe.get('recipeImage').url()}/>
@@ -96,25 +96,30 @@ module.exports = React.createClass({
         )
     },
     filterRecipes: function(tag){
-        let _this = this;
-        let queryTag;
-        this.setState({currentTag: tag});
-        var innerQuery = new Parse.Query(Parse.User);
-        innerQuery.equalTo('familyId' ,Parse.User.current().get('familyId'));
         let query = new Parse.Query('Recipes');
         if( tag === undefined){
-            queryTag = null;
+            this.setState({currentTag: null})
         }else{
-            _this.setState({currentTag: tag});
-            queryTag = (query.equalTo('recipeTags', this.state.currentTag))
+            this.setState({currentTag: tag});
         }
+        this.filterQuery(query)
+
+    },
+    filterQuery: function(query){
+        var innerQuery = new Parse.Query(Parse.User);
+        innerQuery.equalTo('familyId' ,Parse.User.current().get('familyId'));
         query.matchesQuery('userId', innerQuery);
         query.find().then(
             (itemCount)=>{
                 this.setState({itemCount: itemCount.length});
                 query.limit(this.state.displayLimit);
                 query.skip((this.state.page - 1) * this.state.displayLimit);
-                queryTag;
+                if(this.state.currentTag !== null){
+                    var queryTag = query.equalTo('recipeTags', this.state.currentTag)
+                }else{
+                    var queryTag = null
+                };
+                queryTag
                 query.find().then(
                     (recipes) => {
                         this.setState({recipes: recipes});
@@ -129,7 +134,6 @@ module.exports = React.createClass({
 
             }
         )
-
     },
     changePage: function(page){
         this.setState({page: page});
