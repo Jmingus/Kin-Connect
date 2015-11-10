@@ -24,7 +24,7 @@ module.exports = React.createClass({
     render: function(){
         let allRecipes = this.state.recipes.map(function(recipe){
             return (
-            <div className="col s3" key={recipe.id}>
+            <div className="col s12 m3 recipe-box" key={recipe.id}>
                 <a href={`#recipemanagement/${recipe.id}`}>
                     <div className="img-box"><img src={recipe.get('recipeImage').url()}/></div>
                     <h5>{recipe.get('recipeName')}</h5>
@@ -33,14 +33,14 @@ module.exports = React.createClass({
             )
         });
         return(
-            <div className="RecipeManagementComponent">
+            <div className="RecipeManagementComponent container">
                 <div className="row">
-                    <div className="col s3">
+                    <div className="col s12 l3">
                         <div className="add-recipe-button">
                             <a className="waves-effect waves-light btn-large" href="#addrecipe">Add Recipe</a>
                         </div>
                     </div>
-                    <div className="col s9">
+                    <div className="col s12 l9">
                         <ChipsComponent filterRecipes={this.filterRecipes}/>
                     </div>
                 </div>

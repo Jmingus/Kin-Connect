@@ -97,14 +97,26 @@ footer.page-footer {
   display: none; }
 
 .RecipeManagementComponent .img-box {
-  height: 10em;
-  width: 10em; }
+  height: 20em;
+  width: 20em;
+  margin: 0 auto; }
   .RecipeManagementComponent .img-box img {
     height: 100%;
     width: 100%; }
 
 .RecipeManagementComponent .add-recipe-button {
   padding: 1em; }
+
+.RecipeManagementComponent .btn {
+  margin: 3px; }
+
+.RecipeManagementComponent .btn:hover {
+  background-color: #DFEC90;
+  color: #000; }
+
+.RecipeManagementComponent .recipe-box {
+  margin: 0 auto;
+  text-align: center; }
 
 .ListDetailsComponent .action-button {
   top: 60px;
@@ -116,8 +128,34 @@ footer.page-footer {
 .ListDetailsComponent .main-floating-button {
   color: #A4DD88; }
 
+.RecipeDetailComponent .recipe-details-img-box {
+  height: 25em;
+  width: 25em; }
+  .RecipeDetailComponent .recipe-details-img-box img {
+    height: 100%;
+    width: 100%; }
+
+.RecipeDetailComponent h5 {
+  font-style: italic; }
+
+.RecipeDetailComponent .card .card-content {
+  font-size: 20px; }
+
+.RecipeDetailComponent .chip {
+  margin-right: 5px; }
+
+.RecipeDetailComponent .info-row {
+  font-size: 20px; }
+
 .AddRecipeComponent .table-of-contents {
   position: fixed; }
+
+.ProfileComponent .profileSubheader {
+  font-size: 24px;
+  font-weight: bold; }
+
+.ProfileComponent .profile-edit-button {
+  margin-right: 20px; }
 
 .nav-wrapper {
   background-color: #0088AA;
@@ -140,3 +178,39 @@ body {
 
 html {
   font-family: "Titillium Web", sans-serif; }
+
+.input-field label {
+  color: #000; }
+
+.input-field input[type=text]:focus + label {
+  color: #025063; }
+
+.input-field input[type=number] {
+  border-bottom: 1px solid #025063;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field input[type=number]:focus {
+  border-bottom: 1px solid #025063;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field input[type=number]:focus + label {
+  color: #025063; }
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #025063;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field textarea.materialize-textarea {
+  border-bottom: 1px solid #025063;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field textarea.materialize-textarea:focus + label {
+  color: #025063; }
+
+.input-field textarea.materialize-textarea:focus {
+  border-bottom: 1px solid #025063;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field input[type="checkbox"]:checked + label:before {
+  border-right: 2px solid #025063;
+  border-bottom: 2px solid #025063; }

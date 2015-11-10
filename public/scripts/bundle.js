@@ -36945,13 +36945,13 @@ module.exports = React.createClass({
     render: function render() {
         return React.createElement(
             'div',
-            { className: 'AddRecipeComponent' },
+            { className: 'AddRecipeComponent container' },
             React.createElement(
                 'div',
                 { className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'col s7' },
+                    { className: 'col s12 l10' },
                     React.createElement(
                         'form',
                         { onSubmit: this.addRecipe },
@@ -36997,7 +36997,7 @@ module.exports = React.createClass({
                                 React.createElement(
                                     'div',
                                     { className: 'input-field section scrollspy', id: 'recipeIngredientSection' },
-                                    React.createElement('textarea', { className: 'materialize-textarea', id: 'recipeIngredient', ref: 'recipeIngredients', placeholder: 'seperate ingredients with a comma' }),
+                                    React.createElement('textarea', { className: 'materialize-textarea', id: 'recipeIngredient', ref: 'recipeIngredients', placeholder: 'Separate ingredients with a comma.' }),
                                     React.createElement(
                                         'label',
                                         { htmlFor: 'recipeIngredient' },
@@ -37021,7 +37021,7 @@ module.exports = React.createClass({
                             ),
                             React.createElement(
                                 'div',
-                                { className: 'col s6' },
+                                { className: 'col s12 m6' },
                                 React.createElement(
                                     'div',
                                     { className: 'input-field section scrollspy', id: 'recipeCookSection' },
@@ -37035,7 +37035,7 @@ module.exports = React.createClass({
                             ),
                             React.createElement(
                                 'div',
-                                { className: 'col s6' },
+                                { className: 'col s12 m6' },
                                 React.createElement(
                                     'div',
                                     { className: 'input-field section' },
@@ -37049,7 +37049,7 @@ module.exports = React.createClass({
                             ),
                             React.createElement(
                                 'div',
-                                { className: 'col s6' },
+                                { className: 'col s12 m6' },
                                 React.createElement(
                                     'div',
                                     { className: 'input-field section' },
@@ -37063,7 +37063,7 @@ module.exports = React.createClass({
                             ),
                             React.createElement(
                                 'div',
-                                { className: 'col s6' },
+                                { className: 'col s12 m6' },
                                 React.createElement(
                                     'div',
                                     { className: 'input-field section' },
@@ -37077,7 +37077,7 @@ module.exports = React.createClass({
                             ),
                             React.createElement(
                                 'div',
-                                { className: 'col s6' },
+                                { className: 'col s12 m6' },
                                 React.createElement(
                                     'div',
                                     { className: 'input-field section' },
@@ -37162,11 +37162,11 @@ module.exports = React.createClass({
                                     React.createElement(
                                         'p',
                                         null,
-                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-breakfast/brunch', value: 'Breakfast/Brunch' }),
+                                        React.createElement('input', { type: 'checkbox', id: 'checkbox-breakfast/brunch', value: 'Breakfast' }),
                                         React.createElement(
                                             'label',
                                             { htmlFor: 'checkbox-breakfast/brunch' },
-                                            'Breakfast/Brunch'
+                                            'Breakfast'
                                         )
                                     ),
                                     React.createElement(
@@ -37431,7 +37431,7 @@ module.exports = React.createClass({
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col s5' },
+                    { className: 'col l2 hide-on-med-and-down' },
                     React.createElement(
                         'ul',
                         { className: 'section table-of-contents' },
@@ -37624,196 +37624,196 @@ module.exports = React.createClass({
             null,
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Appetizers');
                     } },
                 'Appetizers'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('BBQ and Grilling');
                     } },
                 'BBQ and Grilling'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Beef');
                     } },
                 'Beef'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Beverages');
                     } },
                 'Beverages'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Bread');
                     } },
                 'Bread'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
-                        _this.props.filterRecipes('Breakfast/Brunch');
+                { className: 'chip btn', onClick: function () {
+                        _this.props.filterRecipes('Breakfast');
                     } },
-                'Breakfast/Brunch'
+                'Breakfast'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Cakes');
                     } },
                 'Cakes'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Chicken');
                     } },
                 'Chicken'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Chinese');
                     } },
                 'Chinese'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Cookies');
                     } },
                 'Cookies'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Desserts');
                     } },
                 'Desserts'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Healthy Cooking');
                     } },
                 'Healthy Cooking'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Holidays');
                     } },
                 'Holidays'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Italian');
                     } },
                 'Italian'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Japanese');
                     } },
                 'Japanese'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Main Dish');
                     } },
                 'Main Dish'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Mexican');
                     } },
                 'Mexican'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Other');
                     } },
                 'Other'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Pasta');
                     } },
                 'Pasta'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Pork');
                     } },
                 'Pork'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Quick and Easy');
                     } },
                 'Quick and Easy'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Salad');
                     } },
                 'Salad'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Seafood');
                     } },
                 'Seafood'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Seasonal');
                     } },
                 'Seasonal'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Side Dish');
                     } },
                 'Side Dish'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Slow Cooker');
                     } },
                 'Slow Cooker'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Soups and Stews');
                     } },
                 'Soups and Stews'
             ),
             React.createElement(
                 'div',
-                { className: 'chip', onClick: function () {
+                { className: 'chip btn', onClick: function () {
                         _this.props.filterRecipes('Vegetarian');
                     } },
                 'Vegetarian'
@@ -38752,7 +38752,6 @@ module.exports = React.createClass({
         var currentUser = Parse.User.current();
         var allLinks = [];
         if (currentUser) {
-            allLinks.push(this.links('chat', 'Chat'));
             allLinks.push(this.links('profile', 'Profile'));
             allLinks.push(this.links('recipemanagement', 'Recipes'));
             allLinks.push(this.links('eventmanagement', 'Events'));
@@ -39065,20 +39064,32 @@ module.exports = React.createClass({
 
         return React.createElement(
             'div',
-            { className: 'ProfileComponent' },
+            { className: 'ProfileComponent container' },
             React.createElement(
                 'div',
-                null,
+                { className: 'row card-panel' },
                 React.createElement(
                     'h5',
                     null,
-                    ' Family Code : ',
+                    ' ',
+                    React.createElement(
+                        'span',
+                        { className: 'profileSubheader' },
+                        'Family Code'
+                    ),
+                    ' : ',
                     currentUser.get('familyId')
                 ),
                 React.createElement(
                     'h5',
                     null,
-                    ' Name : ',
+                    ' ',
+                    React.createElement(
+                        'span',
+                        { className: 'profileSubheader' },
+                        'Name'
+                    ),
+                    ' : ',
                     currentUser.get('firstname'),
                     ' ',
                     currentUser.get('lastname')
@@ -39086,68 +39097,86 @@ module.exports = React.createClass({
                 React.createElement(
                     'h5',
                     null,
-                    ' Email: ',
+                    ' ',
+                    React.createElement(
+                        'span',
+                        { className: 'profileSubheader' },
+                        'Email'
+                    ),
+                    ' : ',
                     currentUser.get('email'),
                     ' '
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row card-panel' },
+                React.createElement(
+                    'div',
+                    { className: 'col s12 l6' },
+                    phoneNumber,
+                    React.createElement(
+                        'button',
+                        { className: 'btn-large waves-effect profile-edit-button', onClick: this.editPhoneNumber },
+                        'Edit'
+                    ),
+                    phoneNumberSubmit
                 ),
                 React.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'col s12 l6' },
+                    birthday,
                     React.createElement(
-                        'div',
-                        { className: 'col s6' },
-                        phoneNumber,
-                        React.createElement(
-                            'button',
-                            { className: 'btn-large waves-effect', onClick: this.editPhoneNumber },
-                            'Edit'
-                        ),
-                        phoneNumberSubmit
+                        'button',
+                        { className: 'btn-large waves-effect profile-edit-button', onClick: this.editBirthday },
+                        'Edit'
+                    ),
+                    birthdaySubmit
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row card-panel' },
+                React.createElement(
+                    'div',
+                    { className: 'col s12 m6' },
+                    React.createElement(
+                        'h5',
+                        null,
+                        'Email Notifications'
                     ),
                     React.createElement(
                         'div',
-                        { className: 'col s6' },
-                        birthday,
+                        { className: 'switch' },
                         React.createElement(
-                            'button',
-                            { className: 'btn-large waves-effect', onClick: this.editBirthday },
-                            'Edit'
-                        ),
-                        birthdaySubmit
+                            'label',
+                            null,
+                            'Off',
+                            React.createElement('input', { type: 'checkbox', id: 'emailNotifications', onClick: this.editEmailNotification, ref: 'emailNoti' }),
+                            React.createElement('span', { className: 'lever' }),
+                            'On'
+                        )
                     )
                 ),
                 React.createElement(
-                    'h5',
-                    null,
-                    'Email Notifications'
-                ),
-                React.createElement(
                     'div',
-                    { className: 'switch' },
+                    { className: 'col s12 m6' },
                     React.createElement(
-                        'label',
+                        'h5',
                         null,
-                        'Off',
-                        React.createElement('input', { type: 'checkbox', id: 'emailNotifications', onClick: this.editEmailNotification, ref: 'emailNoti' }),
-                        React.createElement('span', { className: 'lever' }),
-                        'On'
-                    )
-                ),
-                React.createElement(
-                    'h5',
-                    null,
-                    'Text Notifications'
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'switch' },
+                        'Text Notifications'
+                    ),
                     React.createElement(
-                        'label',
-                        null,
-                        'Off',
-                        React.createElement('input', { type: 'checkbox', id: 'textNotifications', onClick: this.editTextNotification, ref: 'textNoti' }),
-                        React.createElement('span', { className: 'lever' }),
-                        'On'
+                        'div',
+                        { className: 'switch' },
+                        React.createElement(
+                            'label',
+                            null,
+                            'Off',
+                            React.createElement('input', { type: 'checkbox', id: 'textNotifications', onClick: this.editTextNotification, ref: 'textNoti' }),
+                            React.createElement('span', { className: 'lever' }),
+                            'On'
+                        )
                     )
                 )
             )
@@ -39223,39 +39252,134 @@ module.exports = React.createClass({
     render: function render() {
         var details = null;
         if (this.state.recipe !== null) {
+            var recipeIngredients = this.state.recipe.get('recipeIngredients').map(function (item) {
+                return React.createElement(
+                    'div',
+                    null,
+                    item
+                );
+            });
+            var recipeTags = this.state.recipe.get('recipeTags').map(function (tag) {
+                return React.createElement(
+                    'div',
+                    { className: 'chip' },
+                    tag
+                );
+            });
             details = React.createElement(
                 'div',
                 null,
                 React.createElement(
                     'div',
-                    null,
-                    this.state.recipe.get('recipeName')
+                    { className: 'row' },
+                    React.createElement(
+                        'div',
+                        { className: 'col s12 m8' },
+                        React.createElement(
+                            'h4',
+                            null,
+                            this.state.recipe.get('recipeName')
+                        ),
+                        React.createElement(
+                            'h5',
+                            null,
+                            this.state.recipe.get('recipeDescription')
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'card' },
+                            React.createElement(
+                                'div',
+                                { className: 'card-content' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'row' },
+                                    React.createElement(
+                                        'div',
+                                        { className: 'col s12 l6' },
+                                        'PrepTime : ',
+                                        this.state.recipe.get('recipePrepTime'),
+                                        ' Minutes'
+                                    ),
+                                    React.createElement(
+                                        'div',
+                                        { className: 'col s12 l6' },
+                                        'CookTime : ',
+                                        this.state.recipe.get('recipeCookTime'),
+                                        ' Minutes'
+                                    ),
+                                    React.createElement(
+                                        'div',
+                                        { className: 'col s12 l6' },
+                                        'ReadyTime : ',
+                                        this.state.recipe.get('recipeReadyTime'),
+                                        ' Minutes'
+                                    ),
+                                    React.createElement(
+                                        'div',
+                                        { className: 'col s12 l6' },
+                                        'Serving Size : ',
+                                        this.state.recipe.get('recipeServingSize'),
+                                        ' servings'
+                                    ),
+                                    React.createElement(
+                                        'div',
+                                        { className: 'col s12' },
+                                        'Recipe Tags : ',
+                                        recipeTags
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col s12 m4' },
+                        React.createElement(
+                            'div',
+                            { className: 'recipe-details-img-box' },
+                            React.createElement('img', { src: this.state.recipe.get('recipeImage').url() })
+                        )
+                    )
                 ),
                 React.createElement(
                     'div',
-                    null,
-                    this.state.recipe.get('recipeDescription')
-                ),
-                React.createElement(
-                    'div',
-                    null,
-                    React.createElement('img', { src: this.state.recipe.get('recipeImage').url() })
-                ),
-                React.createElement(
-                    'div',
-                    null,
-                    this.state.recipe.get('averageCookTime')
-                ),
-                React.createElement(
-                    'div',
-                    null,
-                    this.state.recipe.get('recipeTags')
+                    { className: 'row info-row' },
+                    React.createElement(
+                        'div',
+                        { className: 'col s12 l4' },
+                        React.createElement(
+                            'h4',
+                            null,
+                            'Ingredients'
+                        ),
+                        React.createElement(
+                            'p',
+                            null,
+                            recipeIngredients,
+                            ' '
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col s12 l8' },
+                        React.createElement(
+                            'h4',
+                            null,
+                            'Directions'
+                        ),
+                        React.createElement(
+                            'p',
+                            null,
+                            this.state.recipe.get('recipeDirections')
+                        )
+                    )
                 )
             );
         }
         return React.createElement(
             'div',
-            { className: 'RecipeDetailComponent' },
+            { className: 'RecipeDetailComponent container' },
             details
         );
     },
@@ -39308,7 +39432,7 @@ module.exports = React.createClass({
         var allRecipes = this.state.recipes.map(function (recipe) {
             return React.createElement(
                 'div',
-                { className: 'col s3', key: recipe.id },
+                { className: 'col s12 m3 recipe-box', key: recipe.id },
                 React.createElement(
                     'a',
                     { href: '#recipemanagement/' + recipe.id },
@@ -39327,13 +39451,13 @@ module.exports = React.createClass({
         });
         return React.createElement(
             'div',
-            { className: 'RecipeManagementComponent' },
+            { className: 'RecipeManagementComponent container' },
             React.createElement(
                 'div',
                 { className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'col s3' },
+                    { className: 'col s12 l3' },
                     React.createElement(
                         'div',
                         { className: 'add-recipe-button' },
@@ -39346,7 +39470,7 @@ module.exports = React.createClass({
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col s9' },
+                    { className: 'col s12 l9' },
                     React.createElement(ChipsComponent, { filterRecipes: this.filterRecipes })
                 )
             ),

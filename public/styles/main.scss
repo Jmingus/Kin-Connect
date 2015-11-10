@@ -9,7 +9,9 @@
 'list-management',
 'recipe-management',
 'list-details',
+'recipe-detail',
 'add-recipe',
+'profile',
 'nav-styling';
 
 body {
@@ -32,4 +34,40 @@ body {
 
 html{
   font-family: $ParagraphFont;
+}
+.input-field label {
+  color: #000;
+}
+.input-field input[type=text]:focus + label {
+  color: $ButtonBackgroundColor;
+}
+.input-field input[type=number]{
+  border-bottom: 1px solid $ButtonBackgroundColor;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field input[type=number]:focus{
+  border-bottom: 1px solid $ButtonBackgroundColor;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field input[type=number]:focus + label{
+  color: $ButtonBackgroundColor;
+}
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid $ButtonBackgroundColor;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field textarea.materialize-textarea{
+  border-bottom: 1px solid $ButtonBackgroundColor;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field textarea.materialize-textarea:focus + label{
+  color: $ButtonBackgroundColor;
+}
+.input-field textarea.materialize-textarea:focus{
+  border-bottom: 1px solid $ButtonBackgroundColor;
+  box-shadow: 0 1px 0 0 #000;
+}
+.input-field input[type="checkbox"]:checked+label:before{
+  border-right: 2px solid $ButtonBackgroundColor;
+  border-bottom: 2px solid $ButtonBackgroundColor;
 }

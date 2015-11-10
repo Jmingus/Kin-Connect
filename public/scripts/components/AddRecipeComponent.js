@@ -21,9 +21,9 @@ module.exports = React.createClass({
    },
    render: function(){
        return(
-           <div className="AddRecipeComponent">
+           <div className="AddRecipeComponent container">
                <div className="row">
-                   <div className="col s7">
+                   <div className="col s12 l10">
                        <form onSubmit={this.addRecipe}>
                            <div className="row">
                                <div className="file-field input-field section scrollspy" id="recipeImageSection">
@@ -43,7 +43,7 @@ module.exports = React.createClass({
                                </div>
                                <div className="col s12">
                                    <div className="input-field section scrollspy" id="recipeIngredientSection">
-                                       <textarea className="materialize-textarea" id="recipeIngredient" ref="recipeIngredients" placeholder="seperate ingredients with a comma"/>
+                                       <textarea className="materialize-textarea" id="recipeIngredient" ref="recipeIngredients" placeholder="Separate ingredients with a comma."/>
                                        <label htmlFor="recipeIngredient"> Recipe Ingredients </label>
                                    </div>
                                </div>
@@ -53,31 +53,31 @@ module.exports = React.createClass({
                                        <label htmlFor="recipeDirections"> Recipe Directions </label>
                                    </div>
                                </div>
-                               <div className="col s6">
+                               <div className="col s12 m6">
                                    <div className="input-field section scrollspy" id="recipeCookSection">
                                        <input type="number" id="prepTime" ref="prepTime"/>
                                        <label htmlFor="prepTime">Prep Time</label>
                                    </div>
                                </div>
-                               <div className="col s6">
+                               <div className="col s12 m6">
                                    <div className="input-field section">
                                        <input type="number" id="cookTime" ref="cookTime"/>
                                        <label htmlFor="cookTime">Cook Time</label>
                                    </div>
                                </div>
-                               <div className="col s6">
+                               <div className="col s12 m6">
                                    <div className="input-field section">
                                        <input type="number" id="readyTime" ref="readyTime"/>
                                        <label htmlFor="readyTime">Ready In (Optional)</label>
                                    </div>
                                </div>
-                               <div className="col s6">
+                               <div className="col s12 m6">
                                    <div className="input-field section">
                                        <input type="number" id="servingSize" ref="servingSize"/>
                                        <label htmlFor="servingSize">Number of Servings</label>
                                    </div>
                                </div>
-                               <div className="col s6">
+                               <div className="col s12 m6">
                                    <div className="input-field section">
                                        <input type="number" id="recipeYield" ref="recipeYield"/>
                                        <label htmlFor="recipeYield">Recipe Yield (Optional)</label>
@@ -112,8 +112,8 @@ module.exports = React.createClass({
                                            <label htmlFor="checkbox-bread">Bread</label>
                                        </p>
                                        <p>
-                                           <input type="checkbox" id="checkbox-breakfast/brunch" value="Breakfast/Brunch" />
-                                           <label htmlFor="checkbox-breakfast/brunch">Breakfast/Brunch</label>
+                                           <input type="checkbox" id="checkbox-breakfast/brunch" value="Breakfast" />
+                                           <label htmlFor="checkbox-breakfast/brunch">Breakfast</label>
                                        </p>
                                        <p>
                                            <input type="checkbox" id="checkbox-cakes" value="Cakes" />
@@ -224,7 +224,7 @@ module.exports = React.createClass({
                            </div>
                        </form>
                    </div>
-                   <div className="col s5">
+                   <div className="col l2 hide-on-med-and-down">
                        <ul className="section table-of-contents">
                            <li><a href="#recipeImageSection">Recipe Image</a></li>
                            <li><a href="#recipeNameSection">Recipe Name</a></li>

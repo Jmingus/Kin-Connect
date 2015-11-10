@@ -6,8 +6,9 @@
     display: none;
   }
   .img-box{
-    height: 10em;
-    width: 10em;
+    height: 20em;
+    width: 20em;
+    margin: 0 auto;
     img{
       height: 100%;
       width: 100%;
@@ -15,5 +16,16 @@
   }
   .add-recipe-button{
     padding: 1em;
+  }
+  .btn{
+    margin: 3px;
+  }
+  .btn:hover{
+    background-color: $SubHeaderColor;
+    color: #000;
+  }
+  .recipe-box{
+    margin: 0 auto;
+    text-align: center;
   }
 }

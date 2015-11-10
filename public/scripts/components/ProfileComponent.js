@@ -44,40 +44,46 @@ module.exports = React.createClass({
         }
 
         return(
-            <div className="ProfileComponent">
-                <div>
-                    <h5> Family Code : {currentUser.get('familyId')}</h5>
-                    <h5> Name : {currentUser.get('firstname')} {currentUser.get('lastname')}</h5>
-                    <h5> Email: {currentUser.get('email')} </h5>
-                    <div className="row">
-                        <div className="col s6">
-                            {phoneNumber}
-                            <button className="btn-large waves-effect" onClick={this.editPhoneNumber}>Edit</button>
-                            {phoneNumberSubmit}
-                        </div>
-                        <div className="col s6">
-                            {birthday}
-                            <button className="btn-large waves-effect" onClick={this.editBirthday}>Edit</button>
-                            {birthdaySubmit}
+            <div className="ProfileComponent container">
+                <div className="row card-panel">
+                    <h5> <span className="profileSubheader">Family Code</span> : {currentUser.get('familyId')}</h5>
+                    <h5> <span className="profileSubheader">Name</span> : {currentUser.get('firstname')} {currentUser.get('lastname')}</h5>
+                    <h5> <span className="profileSubheader">Email</span> : {currentUser.get('email')} </h5>
+                </div>
+                <div className="row card-panel">
+                    <div className="col s12 l6">
+                        {phoneNumber}
+                        <button className="btn-large waves-effect profile-edit-button" onClick={this.editPhoneNumber}>Edit</button>
+                        {phoneNumberSubmit}
+                    </div>
+                    <div className="col s12 l6">
+                        {birthday}
+                        <button className="btn-large waves-effect profile-edit-button" onClick={this.editBirthday}>Edit</button>
+                        {birthdaySubmit}
+                    </div>
+                </div>
+                <div className="row card-panel">
+                    <div className="col s12 m6">
+                        <h5>Email Notifications</h5>
+                        <div className="switch">
+                            <label>
+                                Off
+                                <input type="checkbox" id="emailNotifications" onClick={this.editEmailNotification} ref="emailNoti"/>
+                                <span className="lever"></span>
+                                On
+                            </label>
                         </div>
                     </div>
-                    <h5>Email Notifications</h5>
-                    <div className="switch">
-                        <label>
-                            Off
-                            <input type="checkbox" id="emailNotifications" onClick={this.editEmailNotification} ref="emailNoti"/>
-                            <span className="lever"></span>
-                            On
-                        </label>
-                    </div>
-                    <h5>Text Notifications</h5>
-                    <div className="switch">
-                        <label>
-                            Off
-                            <input type="checkbox" id="textNotifications" onClick={this.editTextNotification} ref="textNoti" />
-                            <span className="lever"></span>
-                            On
-                        </label>
+                    <div className="col s12 m6">
+                        <h5>Text Notifications</h5>
+                        <div className="switch">
+                            <label>
+                                Off
+                                <input type="checkbox" id="textNotifications" onClick={this.editTextNotification} ref="textNoti" />
+                                <span className="lever"></span>
+                                On
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

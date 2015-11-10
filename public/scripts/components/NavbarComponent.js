@@ -16,7 +16,6 @@ module.exports = React.createClass({
         var currentUser = Parse.User.current();
         var allLinks = [];
         if(currentUser){
-            allLinks.push(this.links('chat','Chat'));
             allLinks.push(this.links('profile','Profile'));
             allLinks.push(this.links('recipemanagement', 'Recipes'));
             allLinks.push(this.links('eventmanagement', 'Events'));
