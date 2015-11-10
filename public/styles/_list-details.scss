@@ -1,12 +1,34 @@
 .ListDetailsComponent{
   .action-button{
-    top: 60px;
-    right: 10px;
+    position: absolute;
+    top: 78%;
+    right: 5px;
   }
   .fixed-action-btn ul{
-    top: 90px;
+    top: 65%;
   }
   .main-floating-button{
     color: $HeaderColor;
+  }
+  .list-items{
+    font-size: 20px;
+  }
+}
+
+@media screen and(min-width: 992px){
+  .ListDetailsComponent{
+    .action-button{
+      top: 60px;
+      right: 10px;
+    }
+    .fixed-action-btn ul{
+      top: 90px;
+    }
+    .main-floating-button{
+      color: $HeaderColor;
+    }
+    .list-items{
+      font-size: 20px;
+    }
   }
 }

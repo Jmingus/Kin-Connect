@@ -12,7 +12,7 @@ module.exports = React.createClass({
     render: function(){
         var errorElement = (<div className="red lighten-1">{this.state.error}</div>);
         return(
-            <div className="SignUpComponent">
+            <div className="SignUpComponent container">
                     <div className="row">
                         {errorElement}
                         <form className="col s12" onSubmit={this.signUp}>
@@ -29,24 +29,24 @@ module.exports = React.createClass({
                                         <label htmlFor="password">Password</label>
                                     </div>
                                 </div>
-                                <div className="input-field col s6">
+                                <div className="input-field col s12 m6">
                                     <input id="firstName" type="text" className="validate" ref="firstName" />
                                     <label htmlFor="firstName">First Name</label>
                                 </div>
-                                <div className="input-field col s6">
+                                <div className="input-field col s12 m6">
                                     <input id="lastName" type="text" className="validate" ref="lastName" />
                                     <label htmlFor="lastName">Last Name</label>
                                 </div>
                                 <div className="row">
-                                    {this.state.showFamilyCode ? <div className="input-field col s6">
+                                    {this.state.showFamilyCode ? <div className="input-field col s9">
                                         <input id="familyCode" type="text" ref="familyCode" />
                                         <label htmlFor="familyCode">Family Code </label>
-                                    </div> : <div className="optional col s6">Already have a family code, then click here!
+                                    </div> : <div className="optional col s9">Already have a family code, then click here!
                                         <i className="material-icons">play_arrow</i></div>}
                                     <a className="btn-floating btn-large waves-effect waves-light" onClick={this.showFamily}><i className="material-icons">add</i></a>
                                 </div>
 
-                                <button type="submit" className="btn-large waves-effect col s6">Sign-Up</button>
+                                <button type="submit" className="btn-large waves-effect col s3">Sign-Up</button>
                             </div>
                         </form>
                     </div>
@@ -80,7 +80,7 @@ module.exports = React.createClass({
             {
                 success: () => {
                     this.sendEmail();
-                    this.props.router.navigate('', {trigger: true});
+                    this.props.router.navigate('profile', {trigger: true});
                 },
                 error: (error) => {
                     this.setState({

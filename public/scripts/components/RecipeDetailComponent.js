@@ -14,10 +14,10 @@ module.exports = React.createClass({
         var details = null;
         if(this.state.recipe !== null){
             var recipeIngredients = this.state.recipe.get('recipeIngredients').map(function(item){
-                return <div>{item}</div>
+                return <div key={item}>{item}</div>
             });
             var recipeTags = this.state.recipe.get('recipeTags').map(function(tag){
-                return <div className="chip">{tag}</div>
+                return <div className="chip" key={tag}>{tag}</div>
             });
             details = (
                 <div>
@@ -54,7 +54,7 @@ module.exports = React.createClass({
                     <div className="row info-row">
                         <div className="col s12 l4">
                             <h4>Ingredients</h4>
-                            <p>{recipeIngredients} </p>
+                            {recipeIngredients}
                         </div>
                         <div className="col s12 l8">
                             <h4>Directions</h4>

@@ -10,17 +10,21 @@
     border-collapse: collapse;
     padding: 0;
     margin: 4rem auto 0;
-    background: #fff;
+    background: $ButtonBackgroundColor;
+    color: white;
+    box-shadow: 2px 2px 2px #000;
   }
 
   .Calendar th,
   .Calendar td {
     padding: 1rem;
     text-align: center;
+    border-radius: 0;
   }
 
   .Calendar th {
-    background: #ddd;
+    background: $HeaderColor;
+    color: #000810;
   }
 
   .Calendar .month-header {
@@ -28,7 +32,7 @@
   }
 
   .Day.weekend {
-    background: #bdc3c7;
+    background: $SubHeaderColor;
     color: #000;
   }
 
@@ -48,11 +52,19 @@
   }
 
   .Day.selected {
-    background: #2980b9;
+    background: #000810;
     color: #fff;
   }
   .picker.picker--opened.picker--focused{
     font-size: 15px;
   }
-
+  .event-form{
+    padding: 1em;
+  }
+  .description{
+    font-size: 20px;
+  }
+  .times{
+    font-size: 18px;
+  }
 }

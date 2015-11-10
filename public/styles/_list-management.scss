@@ -1,8 +1,8 @@
 .ListManagementComponent{
   .add-list-button{
     position: absolute;
-    left: 10px;
-    bottom: 80px;
+    top: 60px;
+    right: 10px;
   }
   .list-title{
     background-color: $ButtonBackgroundColor;
@@ -26,5 +26,35 @@
     padding: 0 12px;
     border-radius: 16px;
     background-color: #E4E4E4;
+  }
+  .your-lists{
+    max-height: 20em;
+    height: 20em;
+    overflow: scroll;
+  }
+  .other-lists{
+    height: 19em;
+    max-height: 19em;
+    overflow: scroll;
+  }
+}
+@media screen and(min-width: 601px){
+  .ListManagementComponent {
+    .add-list-button {
+      position: absolute;
+      top: 69px;
+      right: 10px;
+    }
+  }
+}
+@media screen and(min-width: 992px){
+  .ListManagementComponent {
+    .add-list-button {
+      position: absolute;
+      left: 10px;
+      bottom: 80px;
+      top: initial;
+      right: initial;
+    }
   }
 }

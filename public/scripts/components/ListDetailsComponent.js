@@ -8,7 +8,8 @@ module.exports = React.createClass({
      return{
          listTitle: null,
          listDetails: [],
-         listObject: []
+         listObject: [],
+         currentUser: 0
      }
    },
    componentWillMount(){
@@ -32,25 +33,50 @@ module.exports = React.createClass({
        });
    },
    render: function(){
+       var editButton = null;
        if(this.state.listTitle !== []){
            var list = this.state.listTitle
        }
        var allItems = this.state.listDetails.map(function(item){
-           return(<li key={item.id} >{item.get('listItemName')}</li>)
+           return(<li key={item.id} >- {item.get('listItemName')}</li>)
        });
-       return(
-           <div className="ListDetailsComponent">
-                <h4>{list}</h4>
-                <div className="fixed-action-btn action-button">
+       if(this.props.user !== undefined) {
+           editButton =
+               <div className="fixed-action-btn action-button">
                    <a className="btn-floating btn-large main-floating-button">
                        <i className="large material-icons">mode_edit</i>
                    </a>
                    <ul>
-                       <li><a className="btn-floating light-green darken-1 tooltipped modal-trigger" href="#addListItem" data-position="left" data-delay="30" data-tooltip="Add List Item"><i className="material-icons">add</i></a></li>
-                       <li><a className="btn-floating yellow darken-2 tooltipped" data-position="left" data-delay="30" data-tooltip="Edit List"><i className="material-icons">settings</i></a></li>
-                       <li><a className="btn-floating red darken-1 tooltipped" data-position="left" data-delay="30" data-tooltip="Delete List"><i className="material-icons">close</i></a></li>
-                    </ul>
-                </div>
+                       <li><a
+                           className="btn-floating light-green darken-1 tooltipped modal-trigger"
+                           href="#addListItem"
+                           data-position="left"
+                           data-delay="30"
+                           data-tooltip="Add List Item"><i
+                           className="material-icons">add</i></a>
+                       </li>
+                       <li><a
+                           className="btn-floating yellow darken-2 tooltipped"
+                           data-position="left"
+                           data-delay="30"
+                           data-tooltip="Edit List"><i
+                           className="material-icons">settings</i></a>
+                       </li>
+                       <li><a
+                           className="btn-floating red darken-1 tooltipped"
+                           data-position="left"
+                           data-delay="30"
+                           data-tooltip="Delete List"><i
+                           className="material-icons">close</i></a>
+                       </li>
+                   </ul>
+               </div>;
+       }
+
+       return(
+           <div className="ListDetailsComponent">
+                <h4>{list}</h4>
+               {editButton}
                <div id="addListItem" className="modal">
                    <div className="modal-content">
                        <form>
@@ -67,7 +93,7 @@ module.exports = React.createClass({
                        <button className="modal-action modal-close waves-effect waves-green btn-large" id="addListItemButton" onClick={this.addListItem}>Submit</button>
                    </div>
                </div>
-                <ul>{allItems}</ul>
+                <ul className="list-items">{allItems}</ul>
            </div>
        )
    },

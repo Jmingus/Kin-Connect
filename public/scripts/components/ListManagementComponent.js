@@ -26,7 +26,7 @@ module.exports = React.createClass({
             return (<a key={list.id} href={`#listmanagement/${list.id}`}><div className="btn list-title">{list.get('listTitle')}</div></a>)
         });
         if(this.props.list !== null){
-           var listDetails = <ListDetailsComponent list={this.props.list} router={this.props.router}/>
+           var listDetails = <ListDetailsComponent list={this.props.list} router={this.props.router} user={Parse.User.current().id}/>
         }
         var allMembers = this.state.familyMembers.map(function(person){
             if(person.id === Parse.User.current().id){
@@ -42,15 +42,19 @@ module.exports = React.createClass({
         return(
             <div className="ListManagementComponent">
                 <div className="row">
-                    <div className="col s3">
-                        <h4>Your Lists</h4>
-                        {allYourLists}
-                        <a className="waves-effect waves-light btn-large modal-trigger add-list-button" href="#addList">Add List</a>
-                        <hr />
-                        <h4>Family</h4>
-                        {allMembers}
+                    <div className="col s12 l3">
+                        <div className="your-lists">
+                            <h4>Your Lists</h4>
+                            {allYourLists}
+                        </div>
+                        <div className="other-lists">
+                            <a className="waves-effect waves-light btn-large modal-trigger add-list-button" href="#addList">Add List</a>
+                            <hr />
+                            <h4>Family</h4>
+                            {allMembers}
+                        </div>
                     </div>
-                    <div className="col s9" id="list-details">
+                    <div className="col s12 l9" id="list-details">
                         <div id="addList" className="modal">
                             <div className="modal-content">
                                 <h4>Add a List</h4>
@@ -123,7 +127,6 @@ module.exports = React.createClass({
         query.equalTo('userId', person);
         query.find().then(
             (familyList) => {
-                console.log(familyList,'ran');
                 this.setState({familyList: familyList});
                 $('#otherUserLists').openModal();
             },

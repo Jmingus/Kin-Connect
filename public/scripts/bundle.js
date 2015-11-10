@@ -37843,22 +37843,44 @@ module.exports = React.createClass({
                 id: this.props.event.id },
             React.createElement(
                 'div',
-                {
-                    className: 'collapsible-header' },
+                { className: 'collapsible-header' },
                 this.props.event.get('eventName')
             ),
             React.createElement(
                 'div',
-                {
-                    className: 'collapsible-body event' },
+                { className: 'collapsible-body event' },
                 React.createElement(
-                    'p',
-                    null,
-                    this.props.event.get('startTime'),
-                    ' ',
-                    this.props.event.get('endTime'),
-                    ' ',
-                    this.props.event.get('eventDescription')
+                    'div',
+                    { className: 'row' },
+                    React.createElement(
+                        'p',
+                        { className: 'description section' },
+                        this.props.event.get('eventDescription')
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'row' },
+                    React.createElement(
+                        'div',
+                        { className: 'col s6' },
+                        React.createElement(
+                            'p',
+                            { className: 'times' },
+                            'StartTime : ',
+                            this.props.event.get('startTime')
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col s6' },
+                        React.createElement(
+                            'p',
+                            { className: 'times' },
+                            'EndTime : ',
+                            this.props.event.get('endTime')
+                        )
+                    )
                 )
             )
         );
@@ -37921,7 +37943,7 @@ module.exports = React.createClass({
                 { className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'col s5' },
+                    { className: 'col s12 m5' },
                     React.createElement(
                         'ul',
                         { className: 'collapsible', 'data-collapsible': 'accordion' },
@@ -37930,7 +37952,7 @@ module.exports = React.createClass({
                             null,
                             React.createElement(
                                 'div',
-                                { className: 'collapsible-header' },
+                                { className: 'collapsible-header event-form' },
                                 React.createElement(
                                     'i',
                                     { className: 'material-icons' },
@@ -37998,9 +38020,13 @@ module.exports = React.createClass({
                                             React.createElement('textarea', { id: 'Event-Description', className: 'materialize-textarea', ref: 'eventDescription' })
                                         ),
                                         React.createElement(
-                                            'button',
-                                            { type: 'submit', className: 'btn-large waves-effect' },
-                                            'Add Event'
+                                            'div',
+                                            { className: 'input-field col s12' },
+                                            React.createElement(
+                                                'button',
+                                                { type: 'submit', className: 'btn-large waves-effect', onClick: this.closeEvent },
+                                                'Add Event'
+                                            )
                                         )
                                     )
                                 )
@@ -38011,7 +38037,7 @@ module.exports = React.createClass({
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col s7' },
+                    { className: 'col s12 m7' },
                     React.createElement(
                         'div',
                         { className: 'row' },
@@ -38029,6 +38055,9 @@ module.exports = React.createClass({
                 )
             )
         );
+    },
+    closeEvent: function closeEvent() {
+        $('.event-form').trigger('click');
     },
     addEvent: function addEvent(e) {
         e.preventDefault();
@@ -38337,7 +38366,8 @@ module.exports = React.createClass({
         return {
             listTitle: null,
             listDetails: [],
-            listObject: []
+            listObject: [],
+            currentUser: 0
         };
     },
     componentWillMount: function componentWillMount() {
@@ -38364,6 +38394,7 @@ module.exports = React.createClass({
         });
     },
     render: function render() {
+        var editButton = null;
         if (this.state.listTitle !== []) {
             var list = this.state.listTitle;
         }
@@ -38371,18 +38402,12 @@ module.exports = React.createClass({
             return React.createElement(
                 'li',
                 { key: item.id },
+                '- ',
                 item.get('listItemName')
             );
         });
-        return React.createElement(
-            'div',
-            { className: 'ListDetailsComponent' },
-            React.createElement(
-                'h4',
-                null,
-                list
-            ),
-            React.createElement(
+        if (this.props.user !== undefined) {
+            editButton = React.createElement(
                 'div',
                 { className: 'fixed-action-btn action-button' },
                 React.createElement(
@@ -38402,10 +38427,16 @@ module.exports = React.createClass({
                         null,
                         React.createElement(
                             'a',
-                            { className: 'btn-floating light-green darken-1 tooltipped modal-trigger', href: '#addListItem', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Add List Item' },
+                            {
+                                className: 'btn-floating light-green darken-1 tooltipped modal-trigger',
+                                href: '#addListItem',
+                                'data-position': 'left',
+                                'data-delay': '30',
+                                'data-tooltip': 'Add List Item' },
                             React.createElement(
                                 'i',
-                                { className: 'material-icons' },
+                                {
+                                    className: 'material-icons' },
                                 'add'
                             )
                         )
@@ -38415,10 +38446,15 @@ module.exports = React.createClass({
                         null,
                         React.createElement(
                             'a',
-                            { className: 'btn-floating yellow darken-2 tooltipped', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Edit List' },
+                            {
+                                className: 'btn-floating yellow darken-2 tooltipped',
+                                'data-position': 'left',
+                                'data-delay': '30',
+                                'data-tooltip': 'Edit List' },
                             React.createElement(
                                 'i',
-                                { className: 'material-icons' },
+                                {
+                                    className: 'material-icons' },
                                 'settings'
                             )
                         )
@@ -38428,16 +38464,32 @@ module.exports = React.createClass({
                         null,
                         React.createElement(
                             'a',
-                            { className: 'btn-floating red darken-1 tooltipped', 'data-position': 'left', 'data-delay': '30', 'data-tooltip': 'Delete List' },
+                            {
+                                className: 'btn-floating red darken-1 tooltipped',
+                                'data-position': 'left',
+                                'data-delay': '30',
+                                'data-tooltip': 'Delete List' },
                             React.createElement(
                                 'i',
-                                { className: 'material-icons' },
+                                {
+                                    className: 'material-icons' },
                                 'close'
                             )
                         )
                     )
                 )
+            );
+        }
+
+        return React.createElement(
+            'div',
+            { className: 'ListDetailsComponent' },
+            React.createElement(
+                'h4',
+                null,
+                list
             ),
+            editButton,
             React.createElement(
                 'div',
                 { id: 'addListItem', className: 'modal' },
@@ -38480,7 +38532,7 @@ module.exports = React.createClass({
             ),
             React.createElement(
                 'ul',
-                null,
+                { className: 'list-items' },
                 allItems
             )
         );
@@ -38559,7 +38611,7 @@ module.exports = React.createClass({
             );
         });
         if (this.props.list !== null) {
-            var listDetails = React.createElement(ListDetailsComponent, { list: this.props.list, router: this.props.router });
+            var listDetails = React.createElement(ListDetailsComponent, { list: this.props.list, router: this.props.router, user: Parse.User.current().id });
         }
         var allMembers = this.state.familyMembers.map(function (person) {
             if (person.id === Parse.User.current().id) {
@@ -38587,29 +38639,37 @@ module.exports = React.createClass({
                 { className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'col s3' },
+                    { className: 'col s12 l3' },
                     React.createElement(
-                        'h4',
-                        null,
-                        'Your Lists'
+                        'div',
+                        { className: 'your-lists' },
+                        React.createElement(
+                            'h4',
+                            null,
+                            'Your Lists'
+                        ),
+                        allYourLists
                     ),
-                    allYourLists,
                     React.createElement(
-                        'a',
-                        { className: 'waves-effect waves-light btn-large modal-trigger add-list-button', href: '#addList' },
-                        'Add List'
-                    ),
-                    React.createElement('hr', null),
-                    React.createElement(
-                        'h4',
-                        null,
-                        'Family'
-                    ),
-                    allMembers
+                        'div',
+                        { className: 'other-lists' },
+                        React.createElement(
+                            'a',
+                            { className: 'waves-effect waves-light btn-large modal-trigger add-list-button', href: '#addList' },
+                            'Add List'
+                        ),
+                        React.createElement('hr', null),
+                        React.createElement(
+                            'h4',
+                            null,
+                            'Family'
+                        ),
+                        allMembers
+                    )
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col s9', id: 'list-details' },
+                    { className: 'col s12 l9', id: 'list-details' },
                     React.createElement(
                         'div',
                         { id: 'addList', className: 'modal' },
@@ -38718,7 +38778,6 @@ module.exports = React.createClass({
         query.equalTo('listPrivacy', true);
         query.equalTo('userId', person);
         query.find().then(function (familyList) {
-            console.log(familyList, 'ran');
             _this4.setState({ familyList: familyList });
             $('#otherUserLists').openModal();
         }, function (err) {
@@ -39255,14 +39314,14 @@ module.exports = React.createClass({
             var recipeIngredients = this.state.recipe.get('recipeIngredients').map(function (item) {
                 return React.createElement(
                     'div',
-                    null,
+                    { key: item },
                     item
                 );
             });
             var recipeTags = this.state.recipe.get('recipeTags').map(function (tag) {
                 return React.createElement(
                     'div',
-                    { className: 'chip' },
+                    { className: 'chip', key: tag },
                     tag
                 );
             });
@@ -39353,12 +39412,7 @@ module.exports = React.createClass({
                             null,
                             'Ingredients'
                         ),
-                        React.createElement(
-                            'p',
-                            null,
-                            recipeIngredients,
-                            ' '
-                        )
+                        recipeIngredients
                     ),
                     React.createElement(
                         'div',
@@ -39537,7 +39591,7 @@ module.exports = React.createClass({
         );
         return React.createElement(
             "div",
-            { className: "SignUpComponent" },
+            { className: "SignUpComponent container" },
             React.createElement(
                 "div",
                 { className: "row" },
@@ -39592,7 +39646,7 @@ module.exports = React.createClass({
         e.preventDefault();
         Parse.User.logIn(this.refs.email.value, this.refs.password.value, {
             success: function success() {
-                _this.props.router.navigate('', { trigger: true });
+                _this.props.router.navigate('profile', { trigger: true });
             },
             error: function error(_error) {
                 _this.setState({
@@ -39627,7 +39681,7 @@ module.exports = React.createClass({
         );
         return React.createElement(
             "div",
-            { className: "SignUpComponent" },
+            { className: "SignUpComponent container" },
             React.createElement(
                 "div",
                 { className: "row" },
@@ -39668,7 +39722,7 @@ module.exports = React.createClass({
                         ),
                         React.createElement(
                             "div",
-                            { className: "input-field col s6" },
+                            { className: "input-field col s12 m6" },
                             React.createElement("input", { id: "firstName", type: "text", className: "validate", ref: "firstName" }),
                             React.createElement(
                                 "label",
@@ -39678,7 +39732,7 @@ module.exports = React.createClass({
                         ),
                         React.createElement(
                             "div",
-                            { className: "input-field col s6" },
+                            { className: "input-field col s12 m6" },
                             React.createElement("input", { id: "lastName", type: "text", className: "validate", ref: "lastName" }),
                             React.createElement(
                                 "label",
@@ -39691,7 +39745,7 @@ module.exports = React.createClass({
                             { className: "row" },
                             this.state.showFamilyCode ? React.createElement(
                                 "div",
-                                { className: "input-field col s6" },
+                                { className: "input-field col s9" },
                                 React.createElement("input", { id: "familyCode", type: "text", ref: "familyCode" }),
                                 React.createElement(
                                     "label",
@@ -39700,7 +39754,7 @@ module.exports = React.createClass({
                                 )
                             ) : React.createElement(
                                 "div",
-                                { className: "optional col s6" },
+                                { className: "optional col s9" },
                                 "Already have a family code, then click here!",
                                 React.createElement(
                                     "i",
@@ -39720,7 +39774,7 @@ module.exports = React.createClass({
                         ),
                         React.createElement(
                             "button",
-                            { type: "submit", className: "btn-large waves-effect col s6" },
+                            { type: "submit", className: "btn-large waves-effect col s3" },
                             "Sign-Up"
                         )
                     )
@@ -39755,7 +39809,7 @@ module.exports = React.createClass({
         }, {
             success: function success() {
                 _this.sendEmail();
-                _this.props.router.navigate('', { trigger: true });
+                _this.props.router.navigate('profile', { trigger: true });
             },
             error: function error(_error) {
                 _this.setState({

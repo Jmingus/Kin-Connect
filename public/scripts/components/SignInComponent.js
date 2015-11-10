@@ -8,7 +8,7 @@ module.exports = React.createClass({
     render: function(){
         var errorElement = (<div className="red lighten-1">{this.state.error}</div>);
         return(
-            <div className="SignUpComponent">
+            <div className="SignUpComponent container">
                 <div className="row">
                     {errorElement}
                     <form className="col s12" onSubmit={this.signIn}>
@@ -39,7 +39,7 @@ module.exports = React.createClass({
             this.refs.password.value,
             {
                 success: () => {
-                    this.props.router.navigate('', {trigger: true})
+                    this.props.router.navigate('profile', {trigger: true})
                 },
                 error: (error) => {
                     this.setState({

@@ -46,10 +46,10 @@ module.exports = React.createClass({
         return (
             <div className="EventManagementComponent">
                 <div className="row">
-                    <div className="col s5">
+                    <div className="col s12 m5">
                         <ul className="collapsible" data-collapsible="accordion">
                             <li>
-                                <div className="collapsible-header"><i className="material-icons">filter_drama</i>Add Event</div>
+                                <div className="collapsible-header event-form"><i className="material-icons">filter_drama</i>Add Event</div>
                                 <div className="collapsible-body">
                                     <form className="event-form" onSubmit={this.addEvent}>
                                         <div className="row">
@@ -73,7 +73,9 @@ module.exports = React.createClass({
                                                 <label htmlFor="Event-Description">Event Description</label>
                                                 <textarea id="Event-Description" className="materialize-textarea" ref="eventDescription"></textarea>
                                             </div>
-                                            <button type="submit" className="btn-large waves-effect">Add Event</button>
+                                            <div className="input-field col s12">
+                                                <button type="submit" className="btn-large waves-effect" onClick={this.closeEvent}>Add Event</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -82,7 +84,7 @@ module.exports = React.createClass({
 
                         <Calendar onSelect={this.onSelect} dayClasses={dayClasses} />
                     </div>
-                    <div className="col s7">
+                    <div className="col s12 m7">
                         <div className="row">
                             <h3>Events</h3>
                             <ul className="collapsible popout" data-collapsible="accordion">
@@ -95,6 +97,9 @@ module.exports = React.createClass({
 
             </div>
         );
+    },
+    closeEvent: function(){
+      $('.event-form').trigger('click');
     },
     addEvent: function(e){
         e.preventDefault();

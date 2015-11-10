@@ -26,21 +26,25 @@ footer.page-footer {
   border-collapse: collapse;
   padding: 0;
   margin: 4rem auto 0;
-  background: #fff; }
+  background: #025063;
+  color: white;
+  box-shadow: 2px 2px 2px #000; }
 
 .EventManagementComponent .Calendar th,
 .EventManagementComponent .Calendar td {
   padding: 1rem;
-  text-align: center; }
+  text-align: center;
+  border-radius: 0; }
 
 .EventManagementComponent .Calendar th {
-  background: #ddd; }
+  background: #A4DD88;
+  color: #000810; }
 
 .EventManagementComponent .Calendar .month-header {
   border-bottom: 1px solid #fff; }
 
 .EventManagementComponent .Day.weekend {
-  background: #bdc3c7;
+  background: #DFEC90;
   color: #000; }
 
 .EventManagementComponent .Day.other-month {
@@ -56,16 +60,25 @@ footer.page-footer {
   color: #000; }
 
 .EventManagementComponent .Day.selected {
-  background: #2980b9;
+  background: #000810;
   color: #fff; }
 
 .EventManagementComponent .picker.picker--opened.picker--focused {
   font-size: 15px; }
 
+.EventManagementComponent .event-form {
+  padding: 1em; }
+
+.EventManagementComponent .description {
+  font-size: 20px; }
+
+.EventManagementComponent .times {
+  font-size: 18px; }
+
 .ListManagementComponent .add-list-button {
   position: absolute;
-  left: 10px;
-  bottom: 80px; }
+  top: 60px;
+  right: 10px; }
 
 .ListManagementComponent .list-title {
   background-color: #025063;
@@ -89,6 +102,30 @@ footer.page-footer {
   padding: 0 12px;
   border-radius: 16px;
   background-color: #E4E4E4; }
+
+.ListManagementComponent .your-lists {
+  max-height: 20em;
+  height: 20em;
+  overflow: scroll; }
+
+.ListManagementComponent .other-lists {
+  height: 19em;
+  max-height: 19em;
+  overflow: scroll; }
+
+@media screen and (min-width: 601px) {
+  .ListManagementComponent .add-list-button {
+    position: absolute;
+    top: 69px;
+    right: 10px; } }
+
+@media screen and (min-width: 992px) {
+  .ListManagementComponent .add-list-button {
+    position: absolute;
+    left: 10px;
+    bottom: 80px;
+    top: initial;
+    right: initial; } }
 
 .RecipeManagementComponent .dz-error-mark {
   display: none; }
@@ -119,14 +156,29 @@ footer.page-footer {
   text-align: center; }
 
 .ListDetailsComponent .action-button {
-  top: 60px;
-  right: 10px; }
+  position: absolute;
+  top: 78%;
+  right: 5px; }
 
 .ListDetailsComponent .fixed-action-btn ul {
-  top: 90px; }
+  top: 65%; }
 
 .ListDetailsComponent .main-floating-button {
   color: #A4DD88; }
+
+.ListDetailsComponent .list-items {
+  font-size: 20px; }
+
+@media screen and (min-width: 992px) {
+  .ListDetailsComponent .action-button {
+    top: 60px;
+    right: 10px; }
+  .ListDetailsComponent .fixed-action-btn ul {
+    top: 90px; }
+  .ListDetailsComponent .main-floating-button {
+    color: #A4DD88; }
+  .ListDetailsComponent .list-items {
+    font-size: 20px; } }
 
 .RecipeDetailComponent .recipe-details-img-box {
   height: 25em;
