@@ -4,6 +4,9 @@ module.exports = React.createClass({
     render: function(){
         return(
             <div>
+                <div className="chip btn" onClick={()=>{this.props.filterRecipes(null)}}>
+                    None
+                </div>
                 <div className="chip btn" onClick={()=>{this.props.filterRecipes('Appetizers')}}>
                     Appetizers
                 </div>

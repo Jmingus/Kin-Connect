@@ -118,7 +118,7 @@ module.exports = React.createClass({
                     var queryTag = query.equalTo('recipeTags', this.state.currentTag)
                 }else{
                     var queryTag = null
-                };
+                }
                 queryTag
                 query.find().then(
                     (recipes) => {

@@ -37609,214 +37609,221 @@ module.exports = React.createClass({
 });
 
 },{"react":167}],171:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var React = require('react');
 
 module.exports = React.createClass({
-    displayName: 'exports',
+    displayName: "exports",
 
     render: function render() {
         var _this = this;
 
         return React.createElement(
-            'div',
+            "div",
             null,
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
+                        _this.props.filterRecipes(null);
+                    } },
+                "None"
+            ),
+            React.createElement(
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Appetizers');
                     } },
-                'Appetizers'
+                "Appetizers"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('BBQ and Grilling');
                     } },
-                'BBQ and Grilling'
+                "BBQ and Grilling"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Beef');
                     } },
-                'Beef'
+                "Beef"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Beverages');
                     } },
-                'Beverages'
+                "Beverages"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Bread');
                     } },
-                'Bread'
+                "Bread"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Breakfast');
                     } },
-                'Breakfast'
+                "Breakfast"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Cakes');
                     } },
-                'Cakes'
+                "Cakes"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Chicken');
                     } },
-                'Chicken'
+                "Chicken"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Chinese');
                     } },
-                'Chinese'
+                "Chinese"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Cookies');
                     } },
-                'Cookies'
+                "Cookies"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Desserts');
                     } },
-                'Desserts'
+                "Desserts"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Healthy Cooking');
                     } },
-                'Healthy Cooking'
+                "Healthy Cooking"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Holidays');
                     } },
-                'Holidays'
+                "Holidays"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Italian');
                     } },
-                'Italian'
+                "Italian"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Japanese');
                     } },
-                'Japanese'
+                "Japanese"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Main Dish');
                     } },
-                'Main Dish'
+                "Main Dish"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Mexican');
                     } },
-                'Mexican'
+                "Mexican"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Other');
                     } },
-                'Other'
+                "Other"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Pasta');
                     } },
-                'Pasta'
+                "Pasta"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Pork');
                     } },
-                'Pork'
+                "Pork"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Quick and Easy');
                     } },
-                'Quick and Easy'
+                "Quick and Easy"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Salad');
                     } },
-                'Salad'
+                "Salad"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Seafood');
                     } },
-                'Seafood'
+                "Seafood"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Seasonal');
                     } },
-                'Seasonal'
+                "Seasonal"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Side Dish');
                     } },
-                'Side Dish'
+                "Side Dish"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Slow Cooker');
                     } },
-                'Slow Cooker'
+                "Slow Cooker"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Soups and Stews');
                     } },
-                'Soups and Stews'
+                "Soups and Stews"
             ),
             React.createElement(
-                'div',
-                { className: 'chip btn', onClick: function () {
+                "div",
+                { className: "chip btn", onClick: function () {
                         _this.props.filterRecipes('Vegetarian');
                     } },
-                'Vegetarian'
+                "Vegetarian"
             )
         );
     }
@@ -39621,7 +39628,7 @@ module.exports = React.createClass({
                 var queryTag = query.equalTo('recipeTags', _this.state.currentTag);
             } else {
                 var queryTag = null;
-            };
+            }
             queryTag;
             query.find().then(function (recipes) {
                 _this.setState({ recipes: recipes });
